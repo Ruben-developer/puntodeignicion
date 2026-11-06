@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Videoteca Ácrata Punto de Ignición — Archivo fílmico libre</title>
+  <meta name="description" content="Videoteca Ácrata Punto de Ignición: películas, documentales y noticiarios sobre luchas obreras, revueltas y mundos sin jefes. Enlaces permanentes, licencias a la vista y descarga directa.">
+  <meta name="theme-color" content="#1b140f">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src https://archive.org https://*.archive.org; connect-src 'self'; frame-src 'none'; form-action 'none'">
+  <link rel="canonical" href="https://ruben-developer.github.io/puntodeignicion/">
+  <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CL">
+  <meta property="og:title" content="Videoteca Ácrata Punto de Ignición">
+  <meta property="og:description" content="Archivo fílmico libre: cine obrero, revueltas, documentales y memoria anarquista. Sin cuentas, sin rastreo y con las licencias a la vista.">
+  <meta property="og:url" content="https://ruben-developer.github.io/puntodeignicion/">
+  <meta property="og:image" content="https://ruben-developer.github.io/puntodeignicion/assets/logo-vapi.png">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <a class="saltar" href="#catalogo">Saltar al catálogo</a>
+  <div class="grano" aria-hidden="true"></div>
+
+  <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-2 1-4 2-5 0 2 1 3 2 3 0-3 1-6 1-8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-archive" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 9v10h14V9M9 13h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m0 0-6-6m6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 11v6M12 7.5v.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 10 4-2.5 7-5.5 7-10V6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <header class="cabecera">
+    <div class="wrap cabecera-interior">
+      <a class="marca" href="./" aria-label="Videoteca Ácrata Punto de Ignición, inicio">
+        <span class="marca-logo"><img src="assets/logo-vapi.png" alt="" width="512" height="512"></span>
+        <span class="marca-texto">
+          <span class="marca-titulo">Videoteca Ácrata</span>
+          <span class="marca-sub">Punto de Ignición</span>
+        </span>
+      </a>
+      <p class="cabecera-cita">«La pantalla en llamas contra la apatía institucional y el celuloide comercial.»</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="heroe wrap" aria-labelledby="heroe-titulo">
+      <div class="heroe-principal">
+        <p class="antetitulo"><svg class="icono" aria-hidden="true"><use href="#i-fire"></use></svg> Archivo subversivo y cine libre</p>
+        <h1 id="heroe-titulo"><span class="heroe-titulo">La pantalla en llamas</span><span class="heroe-titulo-sub">contra la apatía institucional.</span></h1>
+        <p class="heroe-entrada">Videoteca Ácrata Punto de Ignición reúne películas, noticiarios y documentales sobre luchas obreras, revueltas y mundos sin jefes. Todo enlazado a archivos públicos, con licencias a la vista y descarga directa.</p>
+        <div class="heroe-acciones">
+          <a class="boton boton-primario" href="#catalogo"><svg class="icono" aria-hidden="true"><use href="#i-play"></use></svg> Explorar el archivo</a>
+          <a class="boton boton-fantasma" href="#como-funciona"><svg class="icono" aria-hidden="true"><use href="#i-info"></use></svg> Cómo funciona</a>
+        </div>
+        <dl class="heroe-datos">
+          <div><dt>Obras</dt><dd id="statObras">—</dd></div>
+          <div><dt>Categorías</dt><dd id="statCategorias">—</dd></div>
+          <div><dt>Licencias libres</dt><dd id="statLicencias">—</dd></div>
+          <div><dt>Periodo</dt><dd id="statPeriodo">—</dd></div>
+        </dl>
+      </div>
+
+      <aside class="manifiesto" aria-labelledby="manifiesto-titulo">
+        <span class="sello">Manifiesto del punto de ignición</span>
+        <h2 id="manifiesto-titulo">Cine autogestionado, rebelde y sin patrones</h2>
+        <p>Este es un archivo descentralizado de memoria visual: huelgas, barricadas, colectividades, okupas y utopías que se intentaron. No guardamos copias: enlazamos a películas que ya viven en archivos públicos y conservan su propia licencia.</p>
+        <ul class="manifiesto-lista">
+          <li><svg class="icono" aria-hidden="true"><use href="#i-check"></use></svg> Sin cuentas, sin rastreo y sin publicidad.</li>
+          <li><svg class="icono" aria-hidden="true"><use href="#i-check"></use></svg> Enlaces permanentes y descarga directa.</li>
+          <li><svg class="icono" aria-hidden="true"><use href="#i-check"></use></svg> Licencias y fuentes visibles en cada ficha.</li>
+        </ul>
+        <p class="manifiesto-nota">No inventamos enlaces magnet ni simulamos descargas: cada ficha apunta a la fuente real.</p>
+      </aside>
+    </section>
+
+    <section class="archivo wrap" id="catalogo" aria-labelledby="archivo-titulo">
+      <div class="seccion-cabeza">
+        <div>
+          <p class="antetitulo">Catálogo</p>
+          <h2 id="archivo-titulo">El archivo, sin candados</h2>
+          <p class="seccion-entrada">Filtra por tema, busca por título o dirección y abre la ficha para proyectar o descargar. Cada obra indica su licencia y su archivo de origen.</p>
+        </div>
+        <p class="resultado" id="resultadoInfo" role="status" aria-live="polite">Cargando…</p>
+      </div>
+
+      <div class="herramientas">
+        <div class="buscador">
+          <label class="oculto" for="buscador">Buscar en el archivo</label>
+          <svg class="icono icono-buscador" aria-hidden="true"><use href="#i-search"></use></svg>
+          <input type="search" id="buscador" name="buscador" placeholder="Título, dirección, tema…" autocomplete="off">
+        </div>
+        <div class="ordenador">
+          <label for="orden">Ordenar</label>
+          <select id="orden" name="orden">
+            <option value="recientes">Más recientes</option>
+            <option value="antiguas">Más antiguas</option>
+            <option value="titulo">Título A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría"></div>
+
+      <p class="estado" id="estadoCatalogo" role="status" aria-live="polite">Cargando el archivo…</p>
+      <div class="rejilla" id="catalogoGrid"></div>
+
+      <div class="vacio" id="sinResultados" hidden>
+        <svg class="icono icono-vacio" aria-hidden="true"><use href="#i-archive"></use></svg>
+        <h3>No se hallaron registros en este sector del archivo.</h3>
+        <p>Prueba con otro término o vuelve a todo el catálogo.</p>
+        <button class="boton boton-primario" type="button" id="limpiarFiltros"><svg class="icono" aria-hidden="true"><use href="#i-close"></use></svg> Limpiar filtros</button>
+      </div>
+
+      <noscript>
+        <p class="aviso"><strong>Este archivo necesita JavaScript para filtrar y abrir las fichas.</strong> Los datos completos están en <a href="datos/peliculas.json">datos/peliculas.json</a> y las películas se pueden consultar directamente en <a href="https://archive.org">Internet Archive</a>.</p>
+      </noscript>
+    </section>
+
+    <section class="como wrap" id="como-funciona" aria-labelledby="como-titulo">
+      <div class="seccion-cabeza">
+        <div>
+          <p class="antetitulo">Sin intermediarios</p>
+          <h2 id="como-titulo">Cómo se consulta este archivo</h2>
+          <p class="seccion-entrada">Tres pasos, ninguna cuenta y ningún algoritmo decidiendo qué puedes ver.</p>
+        </div>
+      </div>
+      <div class="como-rejilla">
+        <article class="paso">
+          <span class="paso-numero">01</span>
+          <svg class="icono paso-icono" aria-hidden="true"><use href="#i-play"></use></svg>
+          <h3>Proyecta</h3>
+          <p>Abre una ficha y pulsa «Proyectar». El reproductor carga el video desde Internet Archive; no hay anuncios ni registro previo.</p>
+        </article>
+        <article class="paso">
+          <span class="paso-numero">02</span>
+          <svg class="icono paso-icono" aria-hidden="true"><use href="#i-download"></use></svg>
+          <h3>Descarga</h3>
+          <p>El botón de descarga lleva al archivo original. El tamaño y la licencia están indicados antes de bajar nada.</p>
+        </article>
+        <article class="paso">
+          <span class="paso-numero">03</span>
+          <svg class="icono paso-icono" aria-hidden="true"><use href="#i-copy"></use></svg>
+          <h3>Comparte</h3>
+          <p>Copia el enlace de la ficha y llévalo a una asamblea, un ateneo, una radio libre o un chat. La memoria también se distribuye.</p>
+        </article>
+      </div>
+      <div class="aviso" role="note">
+        <svg class="icono" aria-hidden="true"><use href="#i-shield"></use></svg>
+        <p><strong>Una nota sobre las licencias.</strong> El código de este sitio es libre, pero cada película conserva la licencia que le corresponde. Las fichas enlazan a Internet Archive y a la licencia original; si una obra no permite descarga, lo indicamos. No alojamos copias ni eliminamos la atribución de las autoras.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="wrap pie-rejilla">
+      <div class="pie-marca">
+        <span class="marca-logo marca-logo-pie"><img src="assets/logo-vapi.png" alt="" width="512" height="512"></span>
+        <p class="pie-titulo">Videoteca Ácrata<br><span>Punto de Ignición</span></p>
+        <p class="pie-texto">Archivo fílmico libre para ver, descargar, proyectar y compartir. Hecho con HTML, CSS y JavaScript; sin dependencias externas en tiempo de ejecución.</p>
+      </div>
+      <div>
+        <h2>Archivo</h2>
+        <ul class="pie-lista">
+          <li><a href="#catalogo">Catálogo completo</a></li>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="datos/peliculas.json">Datos abiertos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Fuentes y licencias</h2>
+        <ul class="pie-lista">
+          <li><a href="https://archive.org" target="_blank" rel="noopener noreferrer">Internet Archive <svg class="icono" aria-hidden="true"><use href="#i-external"></use></svg></a></li>
+          <li><a href="THIRD-PARTY-NOTICES.md">Créditos y licencias</a></li>
+          <li><a href="SECURITY.md">Seguridad</a></li>
+          <li><a href="https://github.com/Ruben-developer/puntodeignicion" target="_blank" rel="noopener noreferrer">Código fuente <svg class="icono" aria-hidden="true"><use href="#i-external"></use></svg></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap pie-abajo">
+      <p>© 1936 – ∞ Videoteca Ácrata Punto de Ignición. Sin derechos reservados sobre el código: copia, difunde y subvierte.</p>
+      <p>Las películas conservan su licencia. <a href="LICENSE">MIT</a> para el código.</p>
+    </div>
+  </footer>
+
+  <dialog class="modal" id="ficha" aria-labelledby="fichaTitulo">
+    <div class="modal-panel">
+      <button class="modal-cerrar" type="button" id="cerrarFicha" aria-label="Cerrar ficha">
+        <svg class="icono" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+
+      <div class="reproductor">
+        <video id="reproductor" controls playsinline preload="none"></video>
+        <div class="reproductor-portada" id="reproductorPortada">
+          <img id="portadaReproductor" src="assets/logo-vapi.png" alt="" width="600" height="900">
+          <div class="reproductor-velo"></div>
+          <button class="boton boton-primario boton-proyectar" type="button" id="proyectar">
+            <svg class="icono" aria-hidden="true"><use href="#i-play"></use></svg> Proyectar
+          </button>
+          <p class="reproductor-nota">Reproducción desde Internet Archive</p>
+        </div>
+        <p class="reproductor-error" id="reproductorError" hidden>No se pudo cargar el video. <a id="enlaceError" href="#" target="_blank" rel="noopener noreferrer">Abrir la fuente original</a>.</p>
+      </div>
+
+      <div class="modal-contenido">
+        <div class="modal-principal">
+          <p class="antetitulo" id="fichaCategoria">Categoría</p>
+          <h2 id="fichaTitulo">Título</h2>
+          <p class="modal-original" id="fichaOriginal"></p>
+          <p class="modal-meta" id="fichaMeta"></p>
+          <p class="modal-sinopsis" id="fichaSinopsis"></p>
+          <p class="modal-descripcion" id="fichaDescripcion"></p>
+        </div>
+
+        <aside class="modal-lateral" aria-label="Datos de la ficha">
+          <dl class="ficha-datos">
+            <div><dt>Dirección</dt><dd id="fichaDirector"></dd></div>
+            <div><dt>Año</dt><dd id="fichaAnio"></dd></div>
+            <div><dt>Duración</dt><dd id="fichaDuracion"></dd></div>
+            <div><dt>País</dt><dd id="fichaPais"></dd></div>
+            <div><dt>Idioma</dt><dd id="fichaIdioma"></dd></div>
+            <div><dt>Subtítulos</dt><dd id="fichaSubtitulos"></dd></div>
+            <div><dt>Tamaño</dt><dd id="fichaTamano"></dd></div>
+            <div><dt>Licencia</dt><dd><a id="fichaLicencia" href="#" target="_blank" rel="noopener noreferrer">Licencia</a></dd></div>
+          </dl>
+
+          <div class="modal-acciones">
+            <a class="boton boton-primario" id="fichaDescarga" href="#" target="_blank" rel="noopener noreferrer">
+              <svg class="icono" aria-hidden="true"><use href="#i-download"></use></svg> Descargar
+            </a>
+            <button class="boton boton-fantasma" type="button" id="fichaCopiar">
+              <svg class="icono" aria-hidden="true"><use href="#i-copy"></use></svg> Copiar enlace
+            </button>
+            <a class="boton boton-fantasma" id="fichaFuente" href="#" target="_blank" rel="noopener noreferrer">
+              <svg class="icono" aria-hidden="true"><use href="#i-external"></use></svg> Ver en Archive.org
+            </a>
+          </div>
+          <p class="modal-fuente">Fuente: <span id="fichaFuenteTexto"></span></p>
+        </aside>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="aviso-toast" id="aviso" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

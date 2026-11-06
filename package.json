@@ -1,0 +1,19 @@
+{
+  "name": "puntodeignicion",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Videoteca Ácrata Punto de Ignición: archivo fílmico libre sobre luchas obreras, revueltas y mundos sin jefes.",
+  "scripts": {
+    "validar": "node scripts/validar.mjs",
+    "posters": "node scripts/generar-posters.mjs",
+    "posters:check": "node scripts/generar-posters.mjs --check",
+    "check:js": "node --check app.js",
+    "html": "npx --yes html-validate@9 index.html",
+    "test": "npm run validar && npm run posters:check && npm run check:js && npm run html",
+    "servir": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "html-validate": "^9.7.1"
+  }
+}

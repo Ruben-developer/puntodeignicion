@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  calidad:
+    name: Catálogo, carteles, HTML y secretos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configurar Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias de validación
+        run: npm ci
+
+      - name: Validar catálogo y recursos
+        run: npm run validar
+
+      - name: Comprobar carteles
+        run: npm run posters:check
+
+      - name: Comprobar sintaxis de JavaScript
+        run: npm run check:js
+
+      - name: Validar HTML
+        run: npm run html
+
+      - name: Comprobar que no se reintroducen CDNs
+        run: |
+          if grep -rnE "fonts\.googleapis|fonts\.gstatic|cdnjs|unpkg|jsdelivr" \
+            index.html styles.css app.js assets/fonts.css datos/peliculas.json; then
+            echo "Hay recursos de terceros en el sitio"; exit 1;
+          fi
+          echo "OK: sin dependencias externas en tiempo de ejecución"
+
+      - name: Escanear secretos
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
