@@ -29,17 +29,6 @@ archivo.
 | Obra | Licencia declarada | Fuente |
 | --- | --- | --- |
 | Vivir la utopía | CC BY-NC-SA 3.0 | <https://archive.org/details/LivingUtopia> |
-| La huelga | Dominio público | <https://archive.org/details/strike1925> |
-| El acorazado Potemkin | Dominio público | <https://archive.org/details/BattleshipPotemkin> |
-| Sal de la tierra | CC BY 3.0 | <https://archive.org/details/1954SaltOfTheEarth> |
-| La huelga general de San Francisco | Dominio público | <https://archive.org/details/SanFranc1934> |
-| La huelga de los ferroviarios | Dominio público | <https://archive.org/details/UnitedRa1917> |
-| La huelga general de Winnipeg | Dominio público | <https://archive.org/details/nfb-1919-general-strike> |
-| La huelga de los estibadores | Dominio público | <https://archive.org/details/SanFranc1934_3> |
-| Mutt and Jeff: On Strike | Dominio público | <https://archive.org/details/mutt-and-jeff-on-strike-1920> |
-| Anarchy in the USA | Dominio público (según el archivo) | <https://archive.org/details/Anarchy_in_the_USA> |
-| Black Flags and Windmills | CC BY-NC-ND 3.0 | <https://archive.org/details/BlackFlagsAndWindmills> |
-| La batalla de Tuntenhaus | CC BY-NC-SA 3.0 | <https://archive.org/details/BattleOfTuntenhausPartsIII> |
 
 Internet Archive presta el servicio de alojamiento y reproducción; su uso se
 rige por los términos del propio archivo.

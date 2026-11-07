@@ -5,10 +5,10 @@
 - [ ] Revisar una por una las licencias en la ficha de Internet Archive antes de
       dar el catálogo por cerrado. La licencia puede variar según el país y la
       digitalización concreta.
-- [ ] Añadir subtítulos en español a las obras que hoy no los incluyen. No se
-      deben enlazar subtítulos de dudosa procedencia.
-- [ ] Ampliar el catálogo con más documentales, noticiarios y cine de animación,
-      siempre con fuente y licencia verificables.
+- [ ] Valorar si se reincorpora «Sal de la tierra» (1954), bilingüe en inglés y
+      español; quedó fuera del criterio actual de audio íntegramente en español.
+- [ ] Ampliar el catálogo con más documentales, noticiarios y cine con audio
+      íntegramente en español, siempre con fuente y licencia verificables.
 - [ ] Incorporar un campo de "notas de la copia" (restauración, intertítulos,
       calidad) para separar la información de la obra de la del archivo.
 

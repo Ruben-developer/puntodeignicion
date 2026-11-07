@@ -25,6 +25,15 @@
     .replace(/[\u0300-\u036f]/g, '');
 
   const texto = (valor) => String(valor ?? '').trim();
+  const sinProtocolo = (url) => String(url ?? '').replace(/^https?:\/\//i, '');
+  const nombreArchivo = (url) => {
+    try {
+      const partes = new URL(url).pathname.split('/');
+      return decodeURIComponent(partes[partes.length - 1] || '');
+    } catch {
+      return sinProtocolo(url);
+    }
+  };
 
   function icono(id) {
     const svg = document.createElementNS(SVG, 'svg');
@@ -89,9 +98,13 @@
     if (cats) cats.textContent = formateador.format(categorias.size);
     if (lics) lics.textContent = formateador.format(libres);
     if (periodo) {
-      periodo.textContent = anios.length
-        ? `${Math.min(...anios)}–${Math.max(...anios)}`
-        : '—';
+      if (!anios.length) {
+        periodo.textContent = '—';
+      } else {
+        const minimo = Math.min(...anios);
+        const maximo = Math.max(...anios);
+        periodo.textContent = minimo === maximo ? String(minimo) : `${minimo}–${maximo}`;
+      }
     }
   }
 
@@ -253,12 +266,13 @@
     rejilla.replaceChildren(fragmento);
 
     if (info) {
+      const etiquetaObras = (cantidad) => `${formateador.format(cantidad)} ${cantidad === 1 ? 'obra' : 'obras'}`;
       if (!lista.length) {
         info.textContent = 'Sin coincidencias';
       } else if (lista.length === total && estado.categoria === 'Todas' && !estado.busqueda.trim()) {
-        info.textContent = `${formateador.format(total)} obras en el archivo`;
+        info.textContent = `${etiquetaObras(total)} en el archivo`;
       } else {
-        info.textContent = `${formateador.format(lista.length)} de ${formateador.format(total)} obras`;
+        info.textContent = `${formateador.format(lista.length)} de ${etiquetaObras(total)}`;
       }
     }
 
@@ -322,6 +336,23 @@
 
     const descarga = $('#fichaDescarga');
     if (descarga) descarga.href = pelicula.descarga;
+
+    const reproduccion = $('#fichaReproduccion');
+    if (reproduccion) {
+      reproduccion.href = pelicula.video;
+      reproduccion.textContent = sinProtocolo(pelicula.video);
+    }
+
+    const descargaArchivo = $('#fichaDescargaArchivo');
+    if (descargaArchivo) {
+      descargaArchivo.href = pelicula.descarga;
+      descargaArchivo.textContent = sinProtocolo(pelicula.descarga);
+    }
+
+    const notaReproductor = $('#notaReproductor');
+    if (notaReproductor) {
+      notaReproductor.textContent = `Internet Archive · ${nombreArchivo(pelicula.video)}`;
+    }
 
     const fuente = $('#fichaFuente');
     if (fuente) fuente.href = pelicula.fuente;

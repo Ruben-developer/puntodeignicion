@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Videoteca Ácrata Punto de Ignición — Archivo fílmico libre</title>
-  <meta name="description" content="Videoteca Ácrata Punto de Ignición: películas, documentales y noticiarios sobre luchas obreras, revueltas y mundos sin jefes. Enlaces permanentes, licencias a la vista y descarga directa.">
+  <meta name="description" content="Videoteca Ácrata Punto de Ignición: cine en español sobre luchas obreras, revueltas y mundos sin jefes. Enlaces permanentes, licencias a la vista y descarga directa desde Internet Archive.">
   <meta name="theme-color" content="#1b140f">
   <meta name="color-scheme" content="dark">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CL">
   <meta property="og:title" content="Videoteca Ácrata Punto de Ignición">
-  <meta property="og:description" content="Archivo fílmico libre: cine obrero, revueltas, documentales y memoria anarquista. Sin cuentas, sin rastreo y con las licencias a la vista.">
+  <meta property="og:description" content="Archivo fílmico libre en español: cine obrero, revueltas, documentales y memoria anarquista. Sin cuentas, sin rastreo y con las licencias a la vista.">
   <meta property="og:url" content="https://ruben-developer.github.io/puntodeignicion/">
   <meta property="og:image" content="https://ruben-developer.github.io/puntodeignicion/assets/logo-vapi.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -92,7 +92,7 @@
         <div>
           <p class="antetitulo">Catálogo</p>
           <h2 id="archivo-titulo">El archivo, sin candados</h2>
-          <p class="seccion-entrada">Filtra por tema, busca por título o dirección y abre la ficha para proyectar o descargar. Cada obra indica su licencia y su archivo de origen.</p>
+          <p class="seccion-entrada">Filtra por tema, busca por título o dirección y abre la ficha para proyectar o descargar. Cada obra indica su licencia y su archivo de origen. Por ahora solo se incluyen obras con audio íntegramente en español.</p>
         </div>
         <p class="resultado" id="resultadoInfo" role="status" aria-live="polite">Cargando…</p>
       </div>
@@ -143,13 +143,13 @@
           <span class="paso-numero">01</span>
           <svg class="icono paso-icono" aria-hidden="true"><use href="#i-play"></use></svg>
           <h3>Proyecta</h3>
-          <p>Abre una ficha y pulsa «Proyectar». El reproductor carga el video desde Internet Archive; no hay anuncios ni registro previo.</p>
+          <p>Abre una ficha y pulsa «Proyectar». El reproductor carga el video directamente desde archive.org; no hay anuncios ni registro previo.</p>
         </article>
         <article class="paso">
           <span class="paso-numero">02</span>
           <svg class="icono paso-icono" aria-hidden="true"><use href="#i-download"></use></svg>
           <h3>Descarga</h3>
-          <p>El botón de descarga lleva al archivo original. El tamaño y la licencia están indicados antes de bajar nada.</p>
+          <p>El botón de descarga lleva al archivo original alojado en archive.org. El tamaño y la licencia están indicados antes de bajar nada.</p>
         </article>
         <article class="paso">
           <span class="paso-numero">03</span>
@@ -210,7 +210,7 @@
           <button class="boton boton-primario boton-proyectar" type="button" id="proyectar">
             <svg class="icono" aria-hidden="true"><use href="#i-play"></use></svg> Proyectar
           </button>
-          <p class="reproductor-nota">Reproducción desde Internet Archive</p>
+          <p class="reproductor-nota" id="notaReproductor">Reproducción desde Internet Archive</p>
         </div>
         <p class="reproductor-error" id="reproductorError" hidden>No se pudo cargar el video. <a id="enlaceError" href="#" target="_blank" rel="noopener noreferrer">Abrir la fuente original</a>.</p>
       </div>
@@ -235,6 +235,8 @@
             <div><dt>Subtítulos</dt><dd id="fichaSubtitulos"></dd></div>
             <div><dt>Tamaño</dt><dd id="fichaTamano"></dd></div>
             <div><dt>Licencia</dt><dd><a id="fichaLicencia" href="#" target="_blank" rel="noopener noreferrer">Licencia</a></dd></div>
+            <div><dt>Reproducción</dt><dd><a id="fichaReproduccion" href="#" target="_blank" rel="noopener noreferrer">Internet Archive</a></dd></div>
+            <div><dt>Descarga</dt><dd><a id="fichaDescargaArchivo" href="#" target="_blank" rel="noopener noreferrer">Internet Archive</a></dd></div>
           </dl>
 
           <div class="modal-acciones">
@@ -248,7 +250,7 @@
               <svg class="icono" aria-hidden="true"><use href="#i-external"></use></svg> Ver en Archive.org
             </a>
           </div>
-          <p class="modal-fuente">Fuente: <span id="fichaFuenteTexto"></span></p>
+          <p class="modal-fuente">Ficha original: <span id="fichaFuenteTexto"></span><br>Los videos se transmiten y descargan desde Internet Archive; este sitio no aloja copias.</p>
         </aside>
       </div>
     </div>

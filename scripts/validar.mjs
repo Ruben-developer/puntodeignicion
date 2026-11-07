@@ -232,11 +232,13 @@ if (errores.length) {
 
 const categorias = new Set(peliculas.map((p) => p.categoria));
 const anios = peliculas.map((p) => p.anio);
+const minimo = Math.min(...anios);
+const maximo = Math.max(...anios);
+const periodo = minimo === maximo ? String(minimo) : `${minimo}–${maximo}`;
 const plural = (n, uno, varios) => `${n} ${n === 1 ? uno : varios}`;
 
 console.log(
   `✓ Catálogo válido: ${plural(peliculas.length, 'obra', 'obras')}, `
-  + `${plural(categorias.size, 'categoría', 'categorías')} y `
-  + `${Math.min(...anios)}–${Math.max(...anios)}. `
+  + `${plural(categorias.size, 'categoría', 'categorías')} y ${periodo}. `
   + 'Todos los carteles y las rutas locales existen.'
 );

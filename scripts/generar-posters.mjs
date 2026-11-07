@@ -244,11 +244,11 @@ if (soloCheck) {
     console.error(`\n✗ ${errores} cartel(es) con problemas.`);
     process.exit(1);
   }
-  console.log(`✓ ${peliculas.length} carteles al día.`);
+  console.log(`✓ ${peliculas.length} ${peliculas.length === 1 ? 'cartel' : 'carteles'} al día.`);
 } else {
   if (errores) {
     console.error(`\n✗ ${errores} cartel(es) con problemas.`);
     process.exit(1);
   }
-  console.log(`\n✓ ${escritos} carteles generados.`);
+  console.log(`\n✓ ${escritos} ${escritos === 1 ? 'cartel generado' : 'carteles generados'}.`);
 }

@@ -9,8 +9,10 @@ de ejecución.
 
 ## Qué contiene
 
-- Catálogo de 12 películas, documentales y noticiarios alojados en Internet
-  Archive, con enlaces reales de reproducción y descarga.
+- Catálogo de obras con **audio íntegramente en español**, alojadas en Internet
+  Archive, con enlaces reales de reproducción y descarga. Actualmente incluye
+  *Vivir la utopía* (1997); las obras mudas, en inglés o bilingües quedan fuera
+  de este criterio.
 - Fichas con dirección, año, país, idioma, subtítulos, tamaño, licencia y fuente
   original.
 - Buscador por título, dirección, país, tema o sinopsis; filtros por categoría
@@ -26,6 +28,19 @@ de ejecución.
 > Este sitio **no aloja copias de las películas**. Enlaza a los archivos públicos
 > de Internet Archive y muestra la licencia de cada obra. No se inventan enlaces
 > magnet ni se simulan descargas.
+
+## Dónde se reproducen y descargan
+
+El catálogo actual tiene una sola obra con audio íntegramente en español:
+
+| Obra | Se reproduce y descarga desde | Ficha de origen |
+| --- | --- | --- |
+| *Vivir la utopía* (1997) | <https://archive.org/download/LivingUtopia/LivingUtopia_512kb.mp4> | <https://archive.org/details/LivingUtopia> |
+
+Al pulsar «Proyectar», el navegador solicita ese MP4 directamente a
+`archive.org`, que redirige a un nodo de descarga `dn*.us.archive.org`. El botón
+«Descargar» apunta al mismo archivo. En ambos casos la copia vive en Internet
+Archive, no en GitHub Pages.
 
 ## Desarrollo local
 
