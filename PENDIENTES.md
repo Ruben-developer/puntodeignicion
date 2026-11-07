@@ -31,6 +31,10 @@
 
 ## Operación
 
-- [ ] Configurar GitHub Pages con Source: GitHub Actions.
+- [x] Publicar la beta en Cloudflare Workers (`puntodeignicion-beta.antarquia.cl`).
+- [ ] Publicar producción en `puntodeignicion.antarquia.cl` (merge a `main`).
+- [x] Añadir cabeceras de seguridad, CodeQL y `404.html`.
+- [ ] Retirar GitHub Pages una vez validada la producción.
+- [ ] Rotar el token de Cloudflare compartido durante la migración.
 - [ ] Activar la rama `main` como protegida y exigir el CI de `develop`.
 - [ ] Revisar el certificado y la URL canónica si se mueve el repositorio.

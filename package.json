@@ -9,11 +9,17 @@
     "posters": "node scripts/generar-posters.mjs",
     "posters:check": "node scripts/generar-posters.mjs --check",
     "check:js": "node --check app.js",
-    "html": "npx --yes html-validate@9 index.html",
+    "html": "npx --yes html-validate@9 index.html 404.html",
     "test": "npm run validar && npm run posters:check && npm run check:js && npm run html",
+    "build": "node scripts/build.mjs",
+    "build:beta": "node scripts/build.mjs --beta",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:beta": "npm run build:beta && wrangler deploy --config wrangler.beta.jsonc",
     "servir": "python3 -m http.server 8000"
   },
   "devDependencies": {
-    "html-validate": "^9.7.1"
+    "html-validate": "^9.7.1",
+    "wrangler": "^4.158.0"
   }
 }

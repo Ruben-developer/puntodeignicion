@@ -14,17 +14,26 @@ issue público: manda el correo primero.
 
 - **Sin terceros en tiempo de ejecución.** No se carga ninguna CDN: los estilos,
   el JavaScript y las tipografías son archivos locales.
-- **CSP estricta** en `index.html`: `default-src 'self'`, `script-src 'self'`,
-  `style-src 'self'`, `object-src 'none'` y `frame-src 'none'`. Solo se permite
-  media desde `archive.org` porque el reproductor carga el video original.
+- **CSP estricta** en `index.html` y en la cabecera HTTP (`_headers`):
+  `default-src 'self'`, `script-src 'self'`, `style-src 'self'`,
+  `object-src 'none'`, `frame-ancestors 'none'` y `form-action 'none'`. Solo se
+  permite media desde `archive.org` porque el reproductor carga el video
+  original.
+- **Cabeceras HTTP de endurecimiento** (`_headers`): `X-Content-Type-Options:
+  nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy:
+  strict-origin-when-cross-origin`, `Permissions-Policy` sin cámara, micrófono,
+  geolocalización ni USB, `Cross-Origin-Opener-Policy: same-origin`,
+  `Cross-Origin-Resource-Policy: same-origin` y HSTS de un año.
 - **Sin `eval`, `new Function` ni manejadores `on*=` inline.** El catálogo se
   pinta con `createElement` y `textContent`, no con `innerHTML`.
 - **Enlaces externos** con `target="_blank"` y `rel="noopener noreferrer"`.
 - **`referrer`** limitado a `strict-origin-when-cross-origin`.
 - **Descargas y video** apuntan a Internet Archive; el sitio no aloja copias.
+- **Beta fuera de buscadores**: `npm run build:beta` añade `X-Robots-Tag:
+  noindex, nofollow` y un `robots.txt` cerrado.
 - **CI** (`.github/workflows/ci.yml`): valida datos, carteles, HTML y sintaxis de
   JavaScript, comprueba que no se reintroduzcan CDNs y escanea secretos con
-  gitleaks.
+  gitleaks. **CodeQL** analiza el JavaScript en cada push y semanalmente.
 
 ## Red
 

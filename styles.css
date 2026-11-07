@@ -930,6 +930,18 @@ button {
   text-align: center;
 }
 
+.pagina-error {
+  padding-top: clamp(50px, 9vw, 100px);
+  padding-bottom: clamp(50px, 9vw, 100px);
+}
+
+.pagina-error .vacio h1 {
+  margin: 0;
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.2;
+}
+
 .icono-vacio {
   width: 46px;
   height: 46px;

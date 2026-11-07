@@ -1,11 +1,12 @@
 # Videoteca Ácrata Punto de Ignición
 
 Archivo fílmico libre dedicado al cine obrero, las revueltas, los documentales
-políticos y la memoria anarquista. Sitio estático pensado para GitHub Pages:
-sin cuentas, sin rastreo, sin publicidad y sin dependencias externas en tiempo
-de ejecución.
+políticos y la memoria anarquista. Sitio estático publicado en Cloudflare
+Workers: sin cuentas, sin rastreo, sin publicidad y sin dependencias externas en
+tiempo de ejecución.
 
-**URL de producción:** <https://ruben-developer.github.io/puntodeignicion/>
+**Producción:** <https://puntodeignicion.antarquia.cl/>
+**Beta:** <https://puntodeignicion-beta.antarquia.cl/>
 
 ## Qué contiene
 
@@ -40,7 +41,7 @@ El catálogo actual tiene una sola obra con audio íntegramente en español:
 Al pulsar «Proyectar», el navegador solicita ese MP4 directamente a
 `archive.org`, que redirige a un nodo de descarga `dn*.us.archive.org`. El botón
 «Descargar» apunta al mismo archivo. En ambos casos la copia vive en Internet
-Archive, no en GitHub Pages.
+Archive, no en este sitio.
 
 ## Desarrollo local
 
@@ -49,10 +50,11 @@ El catálogo se carga con `fetch`, así que hace falta servirlo por HTTP (abrir
 
 ```bash
 npm ci
-npm run servir
+npm run servir          # servidor simple sobre el código fuente
+npm run dev             # build + wrangler dev (réplica de Workers)
 ```
 
-Abre <http://localhost:8000>.
+Abre <http://localhost:8000> o la URL que indique `wrangler dev`.
 
 ## Validación
 
@@ -68,7 +70,7 @@ El comando ejecuta:
 2. `node scripts/generar-posters.mjs --check` — comprueba que los carteles SVG
    coinciden con los datos.
 3. `node --check app.js` — sintaxis del JavaScript.
-4. `npx html-validate@9 index.html` — validación del HTML.
+4. `npx html-validate@9 index.html 404.html` — validación del HTML.
 
 Para regenerar los carteles después de cambiar el catálogo:
 
@@ -110,8 +112,10 @@ El cartel debe llamarse exactamente como el `id` y generarse con
 
 ```text
 ├── index.html
+├── 404.html
 ├── styles.css
 ├── app.js
+├── _headers               # cabeceras de seguridad de Workers
 ├── assets/
 │   ├── fonts.css          # tipografías auto-hospedadas
 │   ├── fonts/             # WOFF2 + textos de licencia
@@ -122,12 +126,17 @@ El cartel debe llamarse exactamente como el `id` y generarse con
 ├── datos/
 │   └── peliculas.json
 ├── scripts/
+│   ├── build.mjs          # copia lo publicable a dist/
 │   ├── validar.mjs
 │   └── generar-posters.mjs
 ├── .github/
 │   ├── workflows/ci.yml
-│   ├── workflows/deploy.yml
+│   ├── workflows/deploy-beta.yml
+│   ├── workflows/deploy-workers.yml
+│   ├── workflows/codeql.yml
 │   └── dependabot.yml
+├── wrangler.jsonc         # Worker de producción
+├── wrangler.beta.jsonc    # Worker de beta
 ├── LICENSE
 ├── SECURITY.md
 ├── THIRD-PARTY-NOTICES.md
@@ -138,13 +147,22 @@ El cartel debe llamarse exactamente como el `id` y generarse con
 
 ## Despliegue
 
-GitHub Actions publica en GitHub Pages al hacer `push` a `main`. El flujo
-`.github/workflows/deploy.yml` valida el catálogo, comprueba los carteles y sube
-el sitio como artefacto. `develop` es la rama de revisión: el flujo de CI se
-ejecuta en cada pull request y en cada push a esa rama.
+| Rama | Destino | Workflow |
+| --- | --- | --- |
+| `develop` | `puntodeignicion-beta.antarquia.cl` | `deploy-beta.yml` |
+| `main` | `puntodeignicion.antarquia.cl` | `deploy-workers.yml` |
 
-En el repositorio de GitHub hay que configurar **Settings → Pages → Source:
-GitHub Actions**.
+Ambos flujos ejecutan `npm test`, construyen `dist/` y despliegan con
+`wrangler`. La beta se construye con `npm run build:beta`, que añade
+`X-Robots-Tag: noindex` y cierra `robots.txt` para que no se indexe.
+
+Los dominios se declaran en `wrangler.jsonc` y `wrangler.beta.jsonc` con
+`custom_domain: true`: Cloudflare crea el registro DNS y el certificado al
+desplegar. No hay que tocar el panel de DNS a mano.
+
+El sitio no usa rutas por `pathname` (las fichas son `#p=<id>`), así que el
+Worker sirve `404.html` para cualquier ruta inexistente en vez de devolver la
+portada.
 
 ## Licencias
 
@@ -157,5 +175,7 @@ GitHub Actions**.
 ## Seguridad
 
 El sitio es estático y no recibe datos. La CSP limita los recursos al propio
-origen y los videos a `archive.org`. Para reportar un problema, consulta
-[`SECURITY.md`](SECURITY.md).
+origen y los videos a `archive.org`. Las cabeceras HTTP (`_headers`) añaden
+`frame-ancestors 'none'`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`,
+`Cross-Origin-*` y HSTS. CodeQL analiza el JavaScript en cada push. Para reportar
+un problema, consulta [`SECURITY.md`](SECURITY.md).
