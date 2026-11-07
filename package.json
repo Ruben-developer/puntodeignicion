@@ -19,7 +19,7 @@
     "servir": "python3 -m http.server 8000"
   },
   "devDependencies": {
-    "html-validate": "^9.7.1",
+    "html-validate": "^11.18.0",
     "wrangler": "^4.158.0"
   }
 }
