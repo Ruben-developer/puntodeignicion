@@ -10,10 +10,11 @@ tiempo de ejecución.
 
 ## Qué contiene
 
-- Catálogo de obras con **audio íntegramente en español**, alojadas en Internet
-  Archive, con enlaces reales de reproducción y descarga. Actualmente incluye
-  *Vivir la utopía* (1997); las obras mudas, en inglés o bilingües quedan fuera
-  de este criterio.
+- Catálogo de **30 obras** con audio íntegramente en español, alojadas en
+  Internet Archive, con enlaces reales de reproducción y descarga. Abarcan de
+  1936 a 2026; las obras mudas, en inglés o bilingües quedan fuera de este
+  criterio. El idioma se comprobó con reconocimiento automático del habla sobre
+  muestras de cada película, no solo con las etiquetas de metadatos.
 - Fichas con dirección, año, país, idioma, subtítulos, tamaño, licencia y fuente
   original.
 - Buscador por título, dirección, país, tema o sinopsis; filtros por categoría
@@ -32,16 +33,21 @@ tiempo de ejecución.
 
 ## Dónde se reproducen y descargan
 
-El catálogo actual tiene una sola obra con audio íntegramente en español:
+El catálogo reúne 30 obras entre 1936 y 2026. Cada ficha enlaza al MP4 alojado
+en Internet Archive y al mismo archivo para su descarga:
 
-| Obra | Se reproduce y descarga desde | Ficha de origen |
-| --- | --- | --- |
-| *Vivir la utopía* (1997) | <https://archive.org/download/LivingUtopia/LivingUtopia_512kb.mp4> | <https://archive.org/details/LivingUtopia> |
+| Categoría | Obras |
+| --- | ---: |
+| Documentales Libres | 14 |
+| Memoria Obrera | 9 |
+| Revueltas Históricas | 4 |
+| Propaganda y Revuelta | 3 |
 
-Al pulsar «Proyectar», el navegador solicita ese MP4 directamente a
-`archive.org`, que redirige a un nodo de descarga `dn*.us.archive.org`. El botón
-«Descargar» apunta al mismo archivo. En ambos casos la copia vive en Internet
-Archive, no en este sitio.
+La lista completa, con título, año, duración, licencia y enlaces, está en
+[`datos/peliculas.json`](datos/peliculas.json). Al pulsar «Proyectar», el
+navegador solicita el MP4 directamente a `archive.org`, que redirige a un nodo
+de descarga `dn*.us.archive.org`. El botón «Descargar» apunta al mismo archivo.
+En ambos casos la copia vive en Internet Archive, no en este sitio.
 
 ## Desarrollo local
 

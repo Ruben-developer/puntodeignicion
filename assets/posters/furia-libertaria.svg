@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-furia-libertaria desc-furia-libertaria">
+  <title id="titulo-furia-libertaria">Cartel de Furia libertaria</title>
+  <desc id="desc-furia-libertaria">Cartel generado para la Videoteca Ácrata Punto de Ignición: Furia libertaria, 1977, dirigida por Antonio Artero.</desc>
+  <defs>
+    <pattern id="trama" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#241a15" opacity=".18"/>
+    </pattern>
+    <filter id="grano" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch" result="ruido"/>
+      <feColorMatrix in="ruido" type="saturate" values="0" result="gris"/>
+      <feComponentTransfer in="gris" result="tenue">
+        <feFuncA type="table" tableValues="0 .12"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="tenue" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="900" fill="#2a0e0b"/>
+  <rect x="20" y="20" width="560" height="860" fill="#e6d4b4"/>
+  <rect x="20" y="20" width="560" height="860" fill="url(#trama)" opacity=".7"/>
+  <rect x="32" y="32" width="536" height="836" fill="none" stroke="#8b261b" stroke-width="2" opacity=".9"/>
+  <rect x="40" y="40" width="520" height="820" fill="none" stroke="#241a15" stroke-width="1" opacity=".35"/>
+
+  <text x="300" y="62" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="15" letter-spacing="4" fill="#241a15">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="84" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="3" fill="#8b261b">PUNTO DE IGNICIÓN · ARCHIVO FÍLMICO LIBRE</text>
+  <path d="M70 102 L530 102" stroke="#8b261b" stroke-width="2" opacity=".7"/>
+
+  <text x="300" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="235" fill="none" stroke="#8b261b" stroke-width="2" opacity=".12">1977</text>
+  <rect x="65" y="125" width="470" height="405" fill="url(#trama)" opacity=".4"/>
+  
+      <g transform="translate(300 320)">
+        <path d="M-120 -55 L15 -110 L15 110 L-120 55 Z" fill="#c59b27" opacity=".14"/>
+        <path d="M-120 -55 L15 -110 L15 110 L-120 55 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-80 55 L-55 55 L-55 140 L-80 140 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-25 30 L-25 90" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M50 -55 Q100 -55 100 0 Q100 55 50 55" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M80 -90 Q150 -90 150 0 Q150 90 80 90" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+        <circle cx="45" cy="-45" r="8" fill="#c59b27"/>
+        <circle cx="45" cy="45" r="8" fill="#c59b27"/>
+      </g>
+
+  <text x="300" y="577" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#8b261b">PROPAGANDA Y REVUELTA</text>
+  <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="60" letter-spacing="1" fill="#241a15"><tspan x="300" y="655">FURIA</tspan><tspan x="300" y="720">LIBERTARIA</tspan></text>
+  <text x="300" y="742" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="15" fill="#241a15" opacity=".75">Furia libertaria: primer mitin de la CNT en 1977</text>
+
+  <path d="M60 758 L540 758" stroke="#8b261b" stroke-width="2"/>
+  <text x="60" y="786" font-family="'Special Elite', 'Courier New', monospace" font-size="13" letter-spacing="2" fill="#8b261b">1977 · 17 min</text>
+  <text x="540" y="786" text-anchor="end" font-family="'Special Elite', 'Courier New', monospace" font-size="11" letter-spacing="1" fill="#241a15" opacity=".8">CC BY-SA 4.0</text>
+  <text x="60" y="816" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#241a15">Dir. Antonio Artero</text>
+  <text x="540" y="816" text-anchor="end" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="#8b261b">DESCARGA LIBRE</text>
+  <g transform="translate(300 846)">
+    <path d="M-135 0 L135 0" stroke="#241a15" stroke-width="1" opacity=".4"/>
+    <circle cx="0" cy="0" r="3" fill="#8b261b"/>
+  </g>
+  <rect x="20" y="20" width="560" height="860" fill="none" stroke="#241a15" stroke-width="1" opacity=".2" filter="url(#grano)"/>
+</svg>
