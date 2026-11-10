@@ -36,10 +36,6 @@ archivo.
 | Donde hay patrón… (2007) | CC BY-NC-ND 4.0 | <https://archive.org/details/donde-hay-patron-2007> |
 | La escena punk en México (1994) | CC BY-NC 4.0 | <https://archive.org/details/LaEscenaPunkEnMxico.1994> |
 | Ocupación del cortijo El Humoso (1988) | CC BY-NC-ND 4.0 | <https://archive.org/details/ocupacion-cortijo-humoso-1988-ecija-sevilla-espana> |
-| El retorno de las radicales — Episodio 1 (2019) | CC BY-NC-SA 4.0 | <https://archive.org/details/err01> |
-| El retorno de las radicales — Episodio 2 (2019) | CC BY-NC-SA 4.0 | <https://archive.org/details/err02> |
-| El retorno de las radicales — Episodio 3 (2019) | CC BY-NC-SA 4.0 | <https://archive.org/details/err03> |
-| El retorno de las radicales — Episodio 5 (2019) | CC BY-NC-SA 4.0 | <https://archive.org/details/err05> |
 | Centro Social Solar Lavapiés (2012) | CC BY-ND 4.0 | <https://archive.org/details/centro-social-solar-lavapies> |
 | Anarcosindicalismo y derecho (2024) | CC BY-ND 4.0 | <https://archive.org/details/20240223-carretero> |
 | José Martí, Lucy Parsons y los anarquistas de Chicago (2019) | CC BY-NC-ND 4.0 | <https://archive.org/details/josemartilucyparsonsylosanarquistasdechicago> |
@@ -53,11 +49,6 @@ archivo.
 | Antonio Torres, anarquista y miliciano (2011) | CC BY-NC-ND 4.0 | <https://archive.org/details/vencidxs-2> |
 | Lucio Urtubia, obrero y anarquista (2011) | CC BY-NC-ND 4.0 | <https://archive.org/details/vencidxs-61> |
 | La guerra eco-anarquista contra el progreso en Chile (2016) | CC BY-NC 4.0 | <https://archive.org/details/LaGuerraEcoAnarquistaContraElProgresoEnChile_201805> |
-| El año que los anarquistas okuparon el cine (2019) | CC BY 3.0 | <https://archive.org/details/yt-la-filmoteca-maldita-pXQ8PMOVTRM> |
-| Cine y anarquía (2018) | CC BY 3.0 | <https://archive.org/details/yt-la-filmoteca-maldita-4hBP2rcjzK4> |
-| Cine libertario (2018) | CC BY 3.0 | <https://archive.org/details/yt-la-filmoteca-maldita-eEn7A7H3Tsc> |
-| El falsificador más grande del mundo (2020) | CC BY 3.0 | <https://archive.org/details/yt-la-filmoteca-maldita-lyIqTck6YAc> |
-| Themroc, la película anarquista (2020) | CC BY 3.0 | <https://archive.org/details/yt-la-filmoteca-maldita-jd3RqZQJlJk> |
 
 Internet Archive presta el servicio de alojamiento y reproducción; su uso se
 rige por los términos del propio archivo.
