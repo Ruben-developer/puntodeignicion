@@ -235,6 +235,11 @@
     const pie = document.createElement('div');
     pie.className = 'tarjeta-pie';
 
+    const admite = document.createElement('span');
+    admite.className = 'tarjeta-admite';
+    admite.setAttribute('aria-hidden', 'true');
+    admite.textContent = 'Admit One';
+
     const licencia = document.createElement('span');
     licencia.className = 'tarjeta-licencia';
     licencia.textContent = pelicula.licencia;
@@ -247,7 +252,7 @@
     descarga.setAttribute('aria-label', `Descargar ${pelicula.titulo} desde Internet Archive`);
     descarga.append(document.createTextNode('Descargar'), icono('i-download'));
 
-    pie.append(licencia, descarga);
+    pie.append(admite, licencia, descarga);
     cuerpo.append(categoria, titulo, meta, sinopsis, pie);
     articulo.append(portada, cuerpo);
     return articulo;

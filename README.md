@@ -22,7 +22,8 @@ tiempo de ejecución.
 - Reproductor que carga el video de Internet Archive solo cuando se pulsa
   «Proyectar».
 - Enlaces profundos a cada ficha (`#p=<id>`) y botón para copiar el enlace.
-- Carteles SVG generados de forma determinista desde `datos/peliculas.json`.
+- Fichas horizontales con estética de boleto de cine antiguo y tira fílmica;
+  carteles SVG generados de forma determinista desde `datos/peliculas.json`.
 - Interfaz responsive, navegación por teclado, foco visible, `prefers-reduced-motion`
   y estilos de impresión.
 - CSP estricta, sin `eval`, sin manejadores inline y sin CDNs.
