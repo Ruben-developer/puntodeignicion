@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-libertarias desc-libertarias">
+  <title id="titulo-libertarias">Cartel de Libertarias</title>
+  <desc id="desc-libertarias">Cartel de la sala Cianotipo para Libertarias, 1996, dirigida por Vicente Aranda.</desc>
+  <defs>
+    <pattern id="cian-ret-libertarias" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#9fdcf0" stroke-width=".6" stroke-opacity=".16"/>
+      <path d="M15 0V30M0 15H30" fill="none" stroke="#9fdcf0" stroke-width=".4" stroke-opacity=".07"/>
+    </pattern>
+    <radialGradient id="cian-luz-libertarias" cx=".5" cy=".3" r=".7">
+      <stop offset="0" stop-color="#5fc8e6" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#5fc8e6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="900" fill="#061a2b"/>
+  <rect width="600" height="900" fill="url(#cian-luz-libertarias)"/>
+  <rect width="600" height="900" fill="url(#cian-ret-libertarias)"/>
+
+  <rect x="24" y="24" width="552" height="852" fill="none" stroke="#9fdcf0" stroke-width="1.5" stroke-opacity=".5" stroke-dasharray="14 7"/>
+  <rect x="36" y="36" width="528" height="828" fill="none" stroke="#9fdcf0" stroke-width=".8" stroke-opacity=".26"/>
+
+  <text x="300" y="74" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="21" letter-spacing="8" fill="#dff2fa">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="95" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#9fdcf0">PUNTO DE IGNICIÓN · LÁMINA TÉCNICA</text>
+  <g stroke="#9fdcf0" stroke-width="1" stroke-opacity=".45">
+    <path d="M62 110 H538"/>
+    <path d="M62 106V114M120 106V114M180 106V114M240 106V114M300 106V114M360 106V114M420 106V114M480 106V114M538 106V114"/>
+  </g>
+
+  <text x="300" y="340" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="220" fill="none" stroke="#9fdcf0" stroke-width="2" stroke-opacity=".07">1996</text>
+  <rect x="76" y="134" width="448" height="330" fill="none" stroke="#9fdcf0" stroke-width=".8" stroke-opacity=".3" stroke-dasharray="4 6"/>
+  <g stroke="#9fdcf0" stroke-width="1" stroke-opacity=".55">
+    <path d="M76 449V134H391"/>
+    <path d="M76 134h-6M76 449h-6M391 134v-6"/>
+  </g>
+  <circle cx="300" cy="299" r="158" fill="none" stroke="#9fdcf0" stroke-width=".8" stroke-opacity=".2"/>
+  <g transform="translate(300 299) scale(0.76)">
+      <g>
+        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="#9fdcf0" opacity=".14"/>
+        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="none" stroke="#9fdcf0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0 -45 C28 5 42 28 42 58 C42 95 22 112 0 112 C-22 112 -42 95 -42 58 C-42 28 -28 5 0 -45 Z" fill="none" stroke="#9fdcf0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-160 95 L-115 95 M115 95 L160 95 M-150 45 L-118 45 M118 45 L150 45" fill="none" stroke="#9fdcf0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+        <circle cx="0" cy="35" r="6" fill="#9fdcf0"/>
+      </g></g>
+
+  <text x="76" y="484" font-family="'Courier Prime', 'Courier New', monospace" font-size="8" letter-spacing="2" fill="#86a7b8">FIG. 01 · REVUELTAS HISTÓRICAS</text>
+  <text x="524" y="484" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="8" letter-spacing="2" fill="#86a7b8">PLACA / 1996</text>
+
+  <text x="300" y="624" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="4" fill="#9fdcf0">[ REVUELTAS HISTÓRICAS ]</text>
+  <text text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="58" letter-spacing="1" fill="#dff2fa"><tspan x="300" y="700">LIBERTARIAS</tspan></text>
+  <text x="300" y="728" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="14" fill="#b0cfdd">Libertarias</text>
+
+  <path d="M74 756 H526" stroke="#9fdcf0" stroke-width="1" stroke-opacity=".4" stroke-dasharray="2 6"/>
+  <text x="300" y="784" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="2" fill="#b0cfdd">1996 · 2 h 7 min · Sin licencia declarada</text>
+  <text x="300" y="808" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="2" fill="#dff2fa">DIR. VICENTE ARANDA</text>
+  <text x="300" y="836" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#86a7b8">ESCALA 1:1 · ARCHIVO FÍLMICO LIBRE</text>
+</svg>

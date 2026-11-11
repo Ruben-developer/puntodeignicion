@@ -36,7 +36,7 @@
   };
 
   /* Tema visual activo y ruta del cartel correspondiente. */
-  const temaActual = () => document.documentElement.dataset.tema || 'taquilla';
+  const temaActual = () => document.documentElement.dataset.tema || 'nitrato';
   const cartelDelTema = (poster) => (
     window.VAPITema ? window.VAPITema.cartel(poster, temaActual()) : poster
   );

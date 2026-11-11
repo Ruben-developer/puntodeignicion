@@ -1,53 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-nestor-makhno desc-nestor-makhno">
   <title id="titulo-nestor-makhno">Cartel de Néstor Makhno, campesino de Ucrania</title>
-  <desc id="desc-nestor-makhno">Cartel generado para la Videoteca Ácrata Punto de Ignición: Néstor Makhno, campesino de Ucrania, 1996, dirigida por Hélène Chatelain.</desc>
+  <desc id="desc-nestor-makhno">Cartel de la sala Nitrato para Néstor Makhno, campesino de Ucrania, 1996, dirigida por Hélène Chatelain.</desc>
   <defs>
-    <pattern id="trama" width="10" height="10" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="#2c221e" opacity=".18"/>
+    <pattern id="grano-n" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#f2ecdc" opacity=".14"/>
     </pattern>
-    <filter id="grano" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch" result="ruido"/>
-      <feColorMatrix in="ruido" type="saturate" values="0" result="gris"/>
-      <feComponentTransfer in="gris" result="tenue">
-        <feFuncA type="table" tableValues="0 .12"/>
-      </feComponentTransfer>
-      <feBlend in="SourceGraphic" in2="tenue" mode="multiply"/>
-    </filter>
+    <radialGradient id="vineta-n" cx=".5" cy=".42" r=".78">
+      <stop offset="52%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity=".72"/>
+    </radialGradient>
   </defs>
 
-  <rect width="600" height="900" fill="#1b140f"/>
-  <rect x="20" y="20" width="560" height="860" fill="#e5d3b3"/>
-  <rect x="20" y="20" width="560" height="860" fill="url(#trama)" opacity=".7"/>
-  <rect x="32" y="32" width="536" height="836" fill="none" stroke="#8b261b" stroke-width="2" opacity=".9"/>
-  <rect x="40" y="40" width="520" height="820" fill="none" stroke="#2c221e" stroke-width="1" opacity=".35"/>
+  <rect width="600" height="900" fill="#0a0a09"/>
+  <rect x="0" y="0" width="36" height="900" fill="#151513"/>
+  <rect x="564" y="0" width="36" height="900" fill="#151513"/>
+  <g fill="#060605"><circle cx="18" cy="13" r="4.2"/><circle cx="582" cy="13" r="4.2"/><circle cx="18" cy="39" r="4.2"/><circle cx="582" cy="39" r="4.2"/><circle cx="18" cy="65" r="4.2"/><circle cx="582" cy="65" r="4.2"/><circle cx="18" cy="91" r="4.2"/><circle cx="582" cy="91" r="4.2"/><circle cx="18" cy="117" r="4.2"/><circle cx="582" cy="117" r="4.2"/><circle cx="18" cy="143" r="4.2"/><circle cx="582" cy="143" r="4.2"/><circle cx="18" cy="169" r="4.2"/><circle cx="582" cy="169" r="4.2"/><circle cx="18" cy="195" r="4.2"/><circle cx="582" cy="195" r="4.2"/><circle cx="18" cy="221" r="4.2"/><circle cx="582" cy="221" r="4.2"/><circle cx="18" cy="247" r="4.2"/><circle cx="582" cy="247" r="4.2"/><circle cx="18" cy="273" r="4.2"/><circle cx="582" cy="273" r="4.2"/><circle cx="18" cy="299" r="4.2"/><circle cx="582" cy="299" r="4.2"/><circle cx="18" cy="325" r="4.2"/><circle cx="582" cy="325" r="4.2"/><circle cx="18" cy="351" r="4.2"/><circle cx="582" cy="351" r="4.2"/><circle cx="18" cy="377" r="4.2"/><circle cx="582" cy="377" r="4.2"/><circle cx="18" cy="403" r="4.2"/><circle cx="582" cy="403" r="4.2"/><circle cx="18" cy="429" r="4.2"/><circle cx="582" cy="429" r="4.2"/><circle cx="18" cy="455" r="4.2"/><circle cx="582" cy="455" r="4.2"/><circle cx="18" cy="481" r="4.2"/><circle cx="582" cy="481" r="4.2"/><circle cx="18" cy="507" r="4.2"/><circle cx="582" cy="507" r="4.2"/><circle cx="18" cy="533" r="4.2"/><circle cx="582" cy="533" r="4.2"/><circle cx="18" cy="559" r="4.2"/><circle cx="582" cy="559" r="4.2"/><circle cx="18" cy="585" r="4.2"/><circle cx="582" cy="585" r="4.2"/><circle cx="18" cy="611" r="4.2"/><circle cx="582" cy="611" r="4.2"/><circle cx="18" cy="637" r="4.2"/><circle cx="582" cy="637" r="4.2"/><circle cx="18" cy="663" r="4.2"/><circle cx="582" cy="663" r="4.2"/><circle cx="18" cy="689" r="4.2"/><circle cx="582" cy="689" r="4.2"/><circle cx="18" cy="715" r="4.2"/><circle cx="582" cy="715" r="4.2"/><circle cx="18" cy="741" r="4.2"/><circle cx="582" cy="741" r="4.2"/><circle cx="18" cy="767" r="4.2"/><circle cx="582" cy="767" r="4.2"/><circle cx="18" cy="793" r="4.2"/><circle cx="582" cy="793" r="4.2"/><circle cx="18" cy="819" r="4.2"/><circle cx="582" cy="819" r="4.2"/><circle cx="18" cy="845" r="4.2"/><circle cx="582" cy="845" r="4.2"/><circle cx="18" cy="871" r="4.2"/><circle cx="582" cy="871" r="4.2"/></g>
 
-  <text x="300" y="62" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="15" letter-spacing="4" fill="#2c221e">VIDEOTECA ÁCRATA</text>
-  <text x="300" y="84" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="3" fill="#8b261b">PUNTO DE IGNICIÓN · ARCHIVO FÍLMICO LIBRE</text>
-  <path d="M70 102 L530 102" stroke="#8b261b" stroke-width="2" opacity=".7"/>
+  <rect x="46" y="26" width="508" height="848" fill="#0d0d0c" stroke="#efe8d8" stroke-width="2" stroke-opacity=".55"/>
+  <rect x="54" y="34" width="492" height="832" fill="none" stroke="#efe8d8" stroke-width="1" stroke-opacity=".18"/>
+  <rect x="54" y="34" width="492" height="832" fill="url(#grano-n)" opacity=".7"/>
 
-  <text x="300" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="235" fill="none" stroke="#8b261b" stroke-width="2" opacity=".12">1996</text>
-  <rect x="65" y="125" width="470" height="405" fill="url(#trama)" opacity=".4"/>
-  <g transform="translate(300 320) scale(1)">
+  <g stroke="#efe8d8" stroke-opacity=".055" stroke-width="1">
+    <path d="M118 34V866"/>
+    <path d="M171 34V866"/>
+    <path d="M302 34V866"/>
+    <path d="M417 34V866"/>
+    <path d="M470 34V866"/>
+  </g>
+  <rect x="46" y="26" width="508" height="848" fill="url(#vineta-n)"/>
+
+  <text x="300" y="68" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="15" letter-spacing="5" fill="#efe8d8">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="90" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#a33124">PUNTO DE IGNICIÓN · ARCHIVO FÍLMICO LIBRE</text>
+  <path d="M86 106 L514 106" stroke="#efe8d8" stroke-width="1" stroke-opacity=".42"/>
+
+  <text x="300" y="596" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="210" fill="none" stroke="#efe8d8" stroke-width="2" stroke-opacity=".09">1996</text>
+  <g transform="translate(300 322) scale(0.8)">
       <g>
-        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="#c59b27" opacity=".14"/>
-        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M0 -45 C28 5 42 28 42 58 C42 95 22 112 0 112 C-22 112 -42 95 -42 58 C-42 28 -28 5 0 -45 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M-160 95 L-115 95 M115 95 L160 95 M-150 45 L-118 45 M118 45 L150 45" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
-        <circle cx="0" cy="35" r="6" fill="#c59b27"/>
+        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="#c8563f" opacity=".14"/>
+        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="none" stroke="#efe8d8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0 -45 C28 5 42 28 42 58 C42 95 22 112 0 112 C-22 112 -42 95 -42 58 C-42 28 -28 5 0 -45 Z" fill="none" stroke="#efe8d8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-160 95 L-115 95 M115 95 L160 95 M-150 45 L-118 45 M118 45 L150 45" fill="none" stroke="#efe8d8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+        <circle cx="0" cy="35" r="6" fill="#c8563f"/>
       </g></g>
 
-  <text x="300" y="615" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#8b261b">REVUELTAS HISTÓRICAS</text>
-  <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="42" letter-spacing="1" fill="#2c221e"><tspan x="300" y="675">NÉSTOR MAKHNO,</tspan><tspan x="300" y="720">CAMPESINO DE UCRANIA</tspan></text>
-  <text x="300" y="742" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="15" fill="#2c221e" opacity=".75">Nestor Makhno, paysan d&apos;Ukraine</text>
+  <text x="300" y="476" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="4" fill="#c8563f">REVUELTAS HISTÓRICAS</text>
+  <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="39" letter-spacing="1.5" fill="#f2ecdc"><tspan x="300" y="578">NÉSTOR MAKHNO,</tspan><tspan x="300" y="620">CAMPESINO DE</tspan><tspan x="300" y="662">UCRANIA</tspan></text>
+  <text x="300" y="712" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="14" fill="#cfc7b4" opacity=".8">Nestor Makhno, paysan d&apos;Ukraine</text>
 
-  <path d="M60 758 L540 758" stroke="#8b261b" stroke-width="2"/>
-  <text x="60" y="786" font-family="'Special Elite', 'Courier New', monospace" font-size="13" letter-spacing="2" fill="#8b261b">1996 · 1 h</text>
-  <text x="540" y="786" text-anchor="end" font-family="'Special Elite', 'Courier New', monospace" font-size="11" letter-spacing="1" fill="#2c221e" opacity=".8">Sin licencia declarada</text>
-  <text x="60" y="816" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#2c221e">Dir. Hélène Chatelain</text>
-  <text x="540" y="816" text-anchor="end" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="#8b261b">DESCARGA LIBRE</text>
-  <g transform="translate(300 846)">
-    <path d="M-135 0 L135 0" stroke="#2c221e" stroke-width="1" opacity=".4"/>
-    <circle cx="0" cy="0" r="3" fill="#8b261b"/>
-  </g>
-  <rect x="20" y="20" width="560" height="860" fill="none" stroke="#2c221e" stroke-width="1" opacity=".2" filter="url(#grano)"/>
+  <path d="M80 732 L520 732" stroke="#efe8d8" stroke-width="1" stroke-opacity=".5"/>
+  <text x="80" y="762" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#efe8d8">1996 · 1 h</text>
+  <text x="520" y="762" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="1" fill="#cfc7b4">Sin licencia declarada</text>
+  <text x="80" y="796" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#efe8d8">Dir. Hélène Chatelain</text>
+  <text x="520" y="796" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="#c8563f">ARCHIVO FÍLMICO</text>
+
+  <text x="300" y="846" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#948c79">PUNTO DE IGNICIÓN · SIN PATRONES</text>
 </svg>

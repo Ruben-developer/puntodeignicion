@@ -1,6 +1,8 @@
-// Genera los tres carteles SVG de cada obra a partir de datos/peliculas.json.
+// Genera los cinco carteles SVG de cada obra a partir de datos/peliculas.json.
+// Nitrato es la sala base y sus carteles viven en la raíz de assets/posters/;
+// las otras cuatro salas usan su propia subcarpeta.
 // Uso:
-//   node scripts/generar-posters.mjs          # escribe las tres salas
+//   node scripts/generar-posters.mjs          # escribe las cinco salas
 //   node scripts/generar-posters.mjs --check  # falla si algún cartel está desactualizado
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -11,18 +13,14 @@ const soloCheck = process.argv.includes('--check');
 
 const peliculas = JSON.parse(readFileSync(rutaDatos, 'utf8'));
 
-const TEMAS = ['taquilla', 'nitrato', 'incendio'];
-const CARPETAS = { taquilla: '', nitrato: 'nitrato/', incendio: 'incendio/' };
-
-const paletas = {
-  'Propaganda y Revuelta': { fondo: '#2a0e0b', papel: '#e6d4b4', tinta: '#241a15', rojo: '#8b261b', oro: '#c59b27' },
-  'Memoria Obrera': { fondo: '#241a12', papel: '#dcc7a6', tinta: '#251b15', rojo: '#8b261b', oro: '#b98a24' },
-  'Revueltas Históricas': { fondo: '#1b140f', papel: '#e5d3b3', tinta: '#2c221e', rojo: '#8b261b', oro: '#c59b27' },
-  'Ficción Subversiva': { fondo: '#17131c', papel: '#e5d3b3', tinta: '#241d25', rojo: '#7c1f1a', oro: '#c59b27' },
-  'Documentales Libres': { fondo: '#151d19', papel: '#e5d3b3', tinta: '#1d2a24', rojo: '#8b261b', oro: '#c59b27' }
+const TEMAS = ['nitrato', 'plata', 'cianotipo', 'ambar', 'consigna'];
+const CARPETAS = {
+  nitrato: '',
+  plata: 'plata/',
+  cianotipo: 'cianotipo/',
+  ambar: 'ambar/',
+  consigna: 'consigna/'
 };
-
-const paletaPorDefecto = { fondo: '#1b140f', papel: '#e5d3b3', tinta: '#2c221e', rojo: '#8b261b', oro: '#c59b27' };
 
 const esc = (valor) => String(valor)
   .replaceAll('&', '&amp;')
@@ -31,14 +29,33 @@ const esc = (valor) => String(valor)
   .replaceAll('"', '&quot;')
   .replaceAll("'", '&apos;');
 
-function envolver(texto, maximo) {
+/* Anchos por carácter (en em) de las fuentes de reserva más anchas
+   (Liberation Serif y Liberation Sans, equivalentes a Times y Arial).
+   Los carteles se sirven como <img>, así que no cargan las tipografías
+   del sitio: conviene medir con la reserva ancha para que el texto quepa
+   en cualquier sistema. */
+const ANCHOS = {"serif":{"!":0.333,"\"":0.555,"#":0.5,"%":1,"&":0.833,"'":0.278,"(":0.333,")":0.333,",":0.25,"-":0.333,".":0.25,"/":0.278,"0":0.5,"1":0.5,"2":0.5,"3":0.5,"4":0.5,"5":0.5,"6":0.5,"7":0.5,"8":0.5,"9":0.5,":":0.333,";":0.333,"?":0.5,"A":0.722,"B":0.667,"C":0.722,"D":0.722,"E":0.667,"F":0.611,"G":0.778,"H":0.778,"I":0.389,"J":0.5,"K":0.778,"L":0.667,"M":0.944,"N":0.722,"O":0.778,"P":0.611,"Q":0.778,"R":0.722,"S":0.556,"T":0.667,"U":0.722,"V":0.722,"Y":0.722,"[":0.333,"]":0.333,"a":0.5,"b":0.556,"c":0.444,"d":0.556,"e":0.444,"f":0.333,"g":0.5,"h":0.556,"i":0.278,"j":0.333,"k":0.556,"l":0.278,"m":0.833,"n":0.556,"o":0.5,"p":0.556,"q":0.556,"r":0.444,"s":0.389,"t":0.333,"u":0.556,"v":0.5,"w":0.722,"x":0.5,"y":0.5,"z":0.444,"¡":0.333,"«":0.5,"·":0.334,"»":0.5,"¿":0.5,"É":0.667,"Ó":0.778,"×":0.57,"á":0.5,"è":0.444,"é":0.444,"í":0.278,"ñ":0.556,"ó":0.5,"ú":0.556,"–":0.5,"—":1,"“":0.5,"”":0.5,"…":1," ":0.28,"W":1.0},"sans":{"!":0.333,"\"":0.474,"#":0.556,"%":0.889,"&":0.722,"'":0.238,"(":0.333,")":0.333,",":0.278,"-":0.333,".":0.278,"/":0.278,"0":0.556,"1":0.556,"2":0.556,"3":0.556,"4":0.556,"5":0.556,"6":0.556,"7":0.556,"8":0.556,"9":0.556,":":0.333,";":0.333,"?":0.611,"A":0.722,"B":0.722,"C":0.722,"D":0.722,"E":0.667,"F":0.611,"G":0.778,"H":0.722,"I":0.278,"J":0.556,"K":0.722,"L":0.611,"M":0.833,"N":0.722,"O":0.778,"P":0.667,"Q":0.778,"R":0.722,"S":0.667,"T":0.611,"U":0.722,"V":0.667,"Y":0.667,"[":0.333,"]":0.333,"a":0.556,"b":0.611,"c":0.556,"d":0.611,"e":0.556,"f":0.333,"g":0.611,"h":0.611,"i":0.278,"j":0.278,"k":0.556,"l":0.278,"m":0.889,"n":0.611,"o":0.611,"p":0.611,"q":0.611,"r":0.389,"s":0.556,"t":0.333,"u":0.611,"v":0.556,"w":0.778,"x":0.556,"y":0.556,"z":0.5,"¡":0.333,"«":0.556,"·":0.333,"»":0.556,"¿":0.611,"É":0.667,"Ó":0.778,"×":0.584,"á":0.556,"è":0.556,"é":0.556,"í":0.278,"ñ":0.611,"ó":0.611,"ú":0.611,"–":0.556,"—":1,"“":0.5,"”":0.5,"…":1," ":0.28,"W":0.94}};
+
+const ANCHO_POR_DEFECTO = { serif: 0.72, sans: 0.62 };
+
+function anchoTexto(texto, estilo = 'serif') {
+  const mapa = ANCHOS[estilo] || ANCHOS.serif;
+  let total = 0;
+  for (const caracter of texto) {
+    total += mapa[caracter] ?? ANCHO_POR_DEFECTO[estilo] ?? 0.65;
+  }
+  return total;
+}
+
+function envolver(texto, tamano, ancho, estilo, espaciado) {
   const palabras = texto.split(/\s+/).filter(Boolean);
   if (!palabras.length) return [''];
   const lineas = [];
   let linea = '';
   for (const palabra of palabras) {
     const candidata = linea ? `${linea} ${palabra}` : palabra;
-    if (candidata.length <= maximo || !linea) {
+    const mide = anchoTexto(candidata, estilo) * tamano + espaciado * candidata.length;
+    if (mide <= ancho || !linea) {
       linea = candidata;
     } else {
       lineas.push(linea);
@@ -50,31 +67,44 @@ function envolver(texto, maximo) {
 }
 
 function ajustarTitulo(titulo, opciones = {}) {
-  const { ancho = 500, factor = 0.56, maximo = 60, minimo = 30 } = opciones;
+  const {
+    ancho = 500,
+    maximo = 60,
+    minimo = 24,
+    maxLineas = 3,
+    estilo = 'serif',
+    espaciado = 0
+  } = opciones;
+  const texto = titulo.toUpperCase();
+  const palabraMasLarga = texto.split(/\s+/).reduce((maximoPalabra, palabra) =>
+    anchoTexto(palabra, estilo) > anchoTexto(maximoPalabra, estilo) ? palabra : maximoPalabra, '');
   let tamano = titulo.length <= 18 ? maximo : titulo.length <= 34 ? Math.round(maximo * 0.84) : Math.round(maximo * 0.7);
-  let limite = Math.max(8, Math.floor(ancho / (tamano * factor)));
-  let lineas = envolver(titulo.toUpperCase(), limite);
-  while (lineas.length > 3 && tamano > minimo) {
-    tamano -= 2;
-    limite = Math.max(8, Math.floor(ancho / (tamano * factor)));
-    lineas = envolver(titulo.toUpperCase(), limite);
+  const disponible = ancho * 0.97;
+  let lineas = envolver(texto, tamano, disponible, estilo, espaciado);
+  while (
+    (lineas.length > maxLineas || anchoTexto(palabraMasLarga, estilo) * tamano + espaciado * palabraMasLarga.length > disponible) &&
+    tamano > minimo
+  ) {
+    tamano -= 1;
+    lineas = envolver(texto, tamano, disponible, estilo, espaciado);
   }
   return { tamano, lineas, interlineado: Math.round(tamano * 1.08) };
+}
+
+/* Ajusta una línea secundaria (título original, créditos) al ancho disponible. */
+function ajustarLinea(texto, opciones = {}) {
+  const { ancho = 460, maximo = 15, minimo = 9, estilo = 'serif', espaciado = 0 } = opciones;
+  let tamano = maximo;
+  while (tamano > minimo && anchoTexto(texto, estilo) * tamano + espaciado * texto.length > ancho) {
+    tamano -= 1;
+  }
+  return tamano;
 }
 
 function generarLineasTitulo(lineas, tamano, interlineado, primeraLinea) {
   return lineas.map((linea, i) =>
     `<tspan x="300" y="${primeraLinea + i * interlineado}">${esc(linea)}</tspan>`
   ).join('');
-}
-
-function aleatorio(semilla) {
-  let estado = semilla % 2147483647;
-  if (estado <= 0) estado += 2147483646;
-  return () => {
-    estado = (estado * 16807) % 2147483647;
-    return (estado - 1) / 2147483646;
-  };
 }
 
 function motivo(categoria, rojo, oro, x = 300, y = 320, escala = 1) {
@@ -151,82 +181,17 @@ function motivo(categoria, rojo, oro, x = 300, y = 320, escala = 1) {
 }
 
 /* ------------------------------------------------------------
-   Sala 1 · Taquilla: papel, boleto y verde de sala
-   ------------------------------------------------------------ */
-
-function crearTaquilla(pelicula) {
-  const paleta = paletas[pelicula.categoria] || paletaPorDefecto;
-  const { fondo, papel, tinta, rojo, oro } = paleta;
-  const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo);
-  const primeraLinea = 720 - (lineas.length - 1) * interlineado;
-  const titulo = generarLineasTitulo(lineas, tamano, interlineado, primeraLinea);
-  const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
-  const categoria = esc(pelicula.categoria.toUpperCase());
-  const licencia = esc(pelicula.licencia);
-  const duracion = esc(pelicula.duracion);
-  const director = esc(pelicula.director);
-  const tituloOriginal = esc(pelicula.tituloOriginal);
-  const id = esc(pelicula.id);
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
-  <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
-  <desc id="desc-${id}">Cartel generado para la Videoteca Ácrata Punto de Ignición: ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
-  <defs>
-    <pattern id="trama" width="10" height="10" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="${tinta}" opacity=".18"/>
-    </pattern>
-    <filter id="grano" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch" result="ruido"/>
-      <feColorMatrix in="ruido" type="saturate" values="0" result="gris"/>
-      <feComponentTransfer in="gris" result="tenue">
-        <feFuncA type="table" tableValues="0 .12"/>
-      </feComponentTransfer>
-      <feBlend in="SourceGraphic" in2="tenue" mode="multiply"/>
-    </filter>
-  </defs>
-
-  <rect width="600" height="900" fill="${fondo}"/>
-  <rect x="20" y="20" width="560" height="860" fill="${papel}"/>
-  <rect x="20" y="20" width="560" height="860" fill="url(#trama)" opacity=".7"/>
-  <rect x="32" y="32" width="536" height="836" fill="none" stroke="${rojo}" stroke-width="2" opacity=".9"/>
-  <rect x="40" y="40" width="520" height="820" fill="none" stroke="${tinta}" stroke-width="1" opacity=".35"/>
-
-  <text x="300" y="62" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="15" letter-spacing="4" fill="${tinta}">VIDEOTECA ÁCRATA</text>
-  <text x="300" y="84" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="3" fill="${rojo}">PUNTO DE IGNICIÓN · ARCHIVO FÍLMICO LIBRE</text>
-  <path d="M70 102 L530 102" stroke="${rojo}" stroke-width="2" opacity=".7"/>
-
-  <text x="300" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="235" fill="none" stroke="${rojo}" stroke-width="2" opacity=".12">${anio}</text>
-  <rect x="65" y="125" width="470" height="405" fill="url(#trama)" opacity=".4"/>
-  ${motivo(pelicula.categoria, rojo, oro)}
-
-  <text x="300" y="${primeraLinea - tamano - 18}" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="${rojo}">${categoria}</text>
-  <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="${tamano}" letter-spacing="1" fill="${tinta}">${titulo}</text>
-  <text x="300" y="742" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="15" fill="${tinta}" opacity=".75">${tituloOriginal}</text>
-
-  <path d="M60 758 L540 758" stroke="${rojo}" stroke-width="2"/>
-  <text x="60" y="786" font-family="'Special Elite', 'Courier New', monospace" font-size="13" letter-spacing="2" fill="${rojo}">${anio} · ${duracion}</text>
-  <text x="540" y="786" text-anchor="end" font-family="'Special Elite', 'Courier New', monospace" font-size="11" letter-spacing="1" fill="${tinta}" opacity=".8">${licencia}</text>
-  <text x="60" y="816" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="${tinta}">Dir. ${director}</text>
-  <text x="540" y="816" text-anchor="end" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="${rojo}">DESCARGA LIBRE</text>
-  <g transform="translate(300 846)">
-    <path d="M-135 0 L135 0" stroke="${tinta}" stroke-width="1" opacity=".4"/>
-    <circle cx="0" cy="0" r="3" fill="${rojo}"/>
-  </g>
-  <rect x="20" y="20" width="560" height="860" fill="none" stroke="${tinta}" stroke-width="1" opacity=".2" filter="url(#grano)"/>
-</svg>
-`;
-}
-
-/* ------------------------------------------------------------
-   Sala 2 · Nitrato: cine mudo, ivory sobre negro y tira fílmica
+   Sala 1 · Nitrato (base): cine mudo, ivory sobre negro, tira fílmica
    ------------------------------------------------------------ */
 
 function crearNitrato(pelicula) {
   const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
-    ancho: 460,
-    factor: 0.62,
+    ancho: 440,
     maximo: 56,
-    minimo: 24
+    minimo: 22,
+    maxLineas: 4,
+    estilo: 'serif',
+    espaciado: 1.5
   });
   const primeraLinea = 662 - (lineas.length - 1) * interlineado;
   const titulo = generarLineasTitulo(lineas, tamano, interlineado, primeraLinea);
@@ -282,7 +247,7 @@ function crearNitrato(pelicula) {
 
   <text x="300" y="476" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="4" fill="#c8563f">${categoria}</text>
   <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="${tamano}" letter-spacing="1.5" fill="#f2ecdc">${titulo}</text>
-  <text x="300" y="712" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="14" fill="#cfc7b4" opacity=".8">${tituloOriginal}</text>
+  <text x="300" y="712" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 420, maximo: 14, estilo: 'serif' })}" fill="#cfc7b4" opacity=".8">${tituloOriginal}</text>
 
   <path d="M80 732 L520 732" stroke="#efe8d8" stroke-width="1" stroke-opacity=".5"/>
   <text x="80" y="762" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#efe8d8">${anio} · ${duracion}</text>
@@ -296,17 +261,102 @@ function crearNitrato(pelicula) {
 }
 
 /* ------------------------------------------------------------
-   Sala 3 · Incendio: carbón, brasas y cartel incendiario
+   Sala 2 · Plata: copia en gelatina de plata, grises fríos y líneas finas
    ------------------------------------------------------------ */
 
-function crearIncendio(pelicula) {
+function crearPlata(pelicula) {
   const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
-    ancho: 600,
-    factor: 0.55,
-    maximo: 64,
-    minimo: 28
+    ancho: 462,
+    maximo: 62,
+    minimo: 20,
+    estilo: 'sans',
+    espaciado: 0.5
   });
-  const primeraLinea = 660 - (lineas.length - 1) * interlineado;
+  const primeraLinea = 728 - (lineas.length - 1) * interlineado;
+  const titulo = lineas.map((linea, i) =>
+    `<tspan x="58" y="${primeraLinea + i * interlineado}">${esc(linea)}</tspan>`
+  ).join('');
+  const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
+  const categoria = esc(pelicula.categoria.toUpperCase());
+  const licencia = esc(pelicula.licencia);
+  const duracion = esc(pelicula.duracion);
+  const director = esc(pelicula.director);
+  const tituloOriginal = esc(pelicula.tituloOriginal);
+  const id = esc(pelicula.id);
+
+  const esquina = (x, y, dx, dy) =>
+    `<path d="M${x} ${y + dy * 24} L${x} ${y} L${x + dx * 24} ${y}" fill="none" stroke="#1a2225" stroke-width="2"/>`;
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
+  <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
+  <desc id="desc-${id}">Cartel de la sala Plata para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <defs>
+    <linearGradient id="plata-foto-${id}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2f6f6"/>
+      <stop offset=".45" stop-color="#c9d3d3"/>
+      <stop offset="1" stop-color="#8d9c9e"/>
+    </linearGradient>
+    <linearGradient id="plata-copia-${id}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e4eae9"/>
+      <stop offset="1" stop-color="#ccd5d4"/>
+    </linearGradient>
+    <pattern id="plata-trama-${id}" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r=".7" fill="#1a2225" opacity=".1"/>
+    </pattern>
+  </defs>
+
+  <rect width="600" height="900" fill="#0c1214"/>
+  <text x="36" y="30" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="15" letter-spacing="5" fill="#dbe3e3">VIDEOTECA ÁCRATA</text>
+  <text x="564" y="30" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="2" fill="#93a4a8">COPIA DE ARCHIVO</text>
+  <path d="M36 44 L564 44" stroke="#dbe3e3" stroke-width="1" stroke-opacity=".35"/>
+
+  <rect x="36" y="58" width="528" height="804" fill="url(#plata-copia-${id})"/>
+  <rect x="36" y="58" width="528" height="804" fill="url(#plata-trama-${id})"/>
+  <rect x="36" y="58" width="528" height="804" fill="none" stroke="#0a0f11" stroke-width="1.5"/>
+
+  <rect x="56" y="78" width="488" height="392" fill="url(#plata-foto-${id})"/>
+  <g stroke="#2c3a3d" stroke-opacity=".16" stroke-width="1">
+    <path d="M56 178 H544"/>
+    <path d="M56 278 H544"/>
+    <path d="M56 378 H544"/>
+  </g>
+  <circle cx="300" cy="274" r="128" fill="none" stroke="#2c3a3d" stroke-width="1" stroke-opacity=".45"/>
+  <circle cx="300" cy="274" r="152" fill="none" stroke="#2c3a3d" stroke-width="1" stroke-opacity=".2"/>
+  ${motivo(pelicula.categoria, '#2c3a3d', '#7f9296', 300, 274, 0.72)}
+  <rect x="56" y="78" width="488" height="392" fill="none" stroke="#1a2225" stroke-width="1.5"/>
+  ${esquina(56, 78, 1, 1)}${esquina(544, 78, -1, 1)}${esquina(56, 470, 1, -1)}${esquina(544, 470, -1, -1)}
+
+  <text x="56" y="496" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="2.5" fill="#46565a">FOTOGRAMA · COPIA EN GELATINA DE PLATA</text>
+  <text x="544" y="496" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="2" fill="#6b7c80">${anio}</text>
+
+  <text x="58" y="${primeraLinea - tamano - 16}" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="4" fill="#6b7c80">${categoria}</text>
+  <text text-anchor="start" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="${tamano}" letter-spacing=".5" fill="#141a1c">${titulo}</text>
+  <text x="58" y="${primeraLinea + (lineas.length - 1) * interlineado + 30}" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 480, maximo: 15, estilo: 'serif' })}" fill="#46565a">${tituloOriginal}</text>
+
+  <path d="M58 772 L542 772" stroke="#1a2225" stroke-width="1" stroke-opacity=".45"/>
+  <text x="58" y="800" font-family="'Courier Prime', 'Courier New', monospace" font-size="13" letter-spacing="1.5" fill="#1a2225">${anio} · ${duracion}</text>
+  <text x="542" y="800" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="1" fill="#46565a">${licencia}</text>
+  <text x="58" y="828" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="17" fill="#1a2225">Dir. ${director}</text>
+  <text x="542" y="828" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="2" fill="#6b7c80">ARCHIVO FÍLMICO</text>
+
+  <text x="300" y="888" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#6b7c80">PUNTO DE IGNICIÓN · SIN PATRONES</text>
+</svg>
+`;
+}
+
+/* ------------------------------------------------------------
+   Sala 3 · Cianotipo: azul de Prusia, retícula y dibujo técnico
+   ------------------------------------------------------------ */
+
+function crearCianotipo(pelicula) {
+  const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
+    ancho: 452,
+    maximo: 58,
+    minimo: 20,
+    estilo: 'sans',
+    espaciado: 1
+  });
+  const primeraLinea = 700 - (lineas.length - 1) * interlineado;
   const titulo = generarLineasTitulo(lineas, tamano, interlineado, primeraLinea);
   const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
   const categoria = esc(pelicula.categoria.toUpperCase());
@@ -316,76 +366,214 @@ function crearIncendio(pelicula) {
   const tituloOriginal = esc(pelicula.tituloOriginal);
   const id = esc(pelicula.id);
 
-  const azar = aleatorio([...pelicula.id].reduce((suma, letra) => suma + letra.charCodeAt(0), 7));
-  const brasas = Array.from({ length: 26 }, () => {
-    const x = Math.round(60 + azar() * 480);
-    const y = Math.round(110 + azar() * 700);
-    const r = (0.9 + azar() * 2.6).toFixed(1);
-    const o = (0.18 + azar() * 0.55).toFixed(2);
-    return `<circle cx="${x}" cy="${y}" r="${r}" fill="#ffb347" opacity="${o}"/>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
+  <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
+  <desc id="desc-${id}">Cartel de la sala Cianotipo para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <defs>
+    <pattern id="cian-ret-${id}" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M30 0H0V30" fill="none" stroke="#9fdcf0" stroke-width=".6" stroke-opacity=".16"/>
+      <path d="M15 0V30M0 15H30" fill="none" stroke="#9fdcf0" stroke-width=".4" stroke-opacity=".07"/>
+    </pattern>
+    <radialGradient id="cian-luz-${id}" cx=".5" cy=".3" r=".7">
+      <stop offset="0" stop-color="#5fc8e6" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#5fc8e6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="900" fill="#061a2b"/>
+  <rect width="600" height="900" fill="url(#cian-luz-${id})"/>
+  <rect width="600" height="900" fill="url(#cian-ret-${id})"/>
+
+  <rect x="24" y="24" width="552" height="852" fill="none" stroke="#9fdcf0" stroke-width="1.5" stroke-opacity=".5" stroke-dasharray="14 7"/>
+  <rect x="36" y="36" width="528" height="828" fill="none" stroke="#9fdcf0" stroke-width=".8" stroke-opacity=".26"/>
+
+  <text x="300" y="74" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="21" letter-spacing="8" fill="#dff2fa">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="95" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#9fdcf0">PUNTO DE IGNICIÓN · LÁMINA TÉCNICA</text>
+  <g stroke="#9fdcf0" stroke-width="1" stroke-opacity=".45">
+    <path d="M62 110 H538"/>
+    <path d="M62 106V114M120 106V114M180 106V114M240 106V114M300 106V114M360 106V114M420 106V114M480 106V114M538 106V114"/>
+  </g>
+
+  <text x="300" y="340" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="220" fill="none" stroke="#9fdcf0" stroke-width="2" stroke-opacity=".07">${anio}</text>
+  <rect x="76" y="134" width="448" height="330" fill="none" stroke="#9fdcf0" stroke-width=".8" stroke-opacity=".3" stroke-dasharray="4 6"/>
+  <g stroke="#9fdcf0" stroke-width="1" stroke-opacity=".55">
+    <path d="M76 449V134H391"/>
+    <path d="M76 134h-6M76 449h-6M391 134v-6"/>
+  </g>
+  <circle cx="300" cy="299" r="158" fill="none" stroke="#9fdcf0" stroke-width=".8" stroke-opacity=".2"/>
+  ${motivo(pelicula.categoria, '#9fdcf0', '#9fdcf0', 300, 299, 0.76)}
+
+  <text x="76" y="484" font-family="'Courier Prime', 'Courier New', monospace" font-size="8" letter-spacing="2" fill="#86a7b8">FIG. 01 · ${categoria}</text>
+  <text x="524" y="484" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="8" letter-spacing="2" fill="#86a7b8">PLACA / ${anio}</text>
+
+  <text x="300" y="${primeraLinea - tamano - 18}" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="4" fill="#9fdcf0">[ ${categoria} ]</text>
+  <text text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="${tamano}" letter-spacing="1" fill="#dff2fa">${titulo}</text>
+  <text x="300" y="${primeraLinea + (lineas.length - 1) * interlineado + 28}" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 440, maximo: 14, estilo: 'serif' })}" fill="#b0cfdd">${tituloOriginal}</text>
+
+  <path d="M74 756 H526" stroke="#9fdcf0" stroke-width="1" stroke-opacity=".4" stroke-dasharray="2 6"/>
+  <text x="300" y="784" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="2" fill="#b0cfdd">${anio} · ${duracion} · ${licencia}</text>
+  <text x="300" y="808" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="2" fill="#dff2fa">DIR. ${director.toUpperCase()}</text>
+  <text x="300" y="836" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#86a7b8">ESCALA 1:1 · ARCHIVO FÍLMICO LIBRE</text>
+</svg>
+`;
+}
+
+/* ------------------------------------------------------------
+   Sala 4 · Ámbar: papel cálido, arcos y serifas
+   ------------------------------------------------------------ */
+
+function crearAmbar(pelicula) {
+  const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
+    ancho: 424,
+    maximo: 56,
+    minimo: 20,
+    estilo: 'serif',
+    espaciado: 0
+  });
+  const primeraLinea = 700 - (lineas.length - 1) * interlineado;
+  const titulo = generarLineasTitulo(lineas, tamano, interlineado, primeraLinea);
+  const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
+  const categoria = esc(pelicula.categoria.toUpperCase());
+  const licencia = esc(pelicula.licencia);
+  const duracion = esc(pelicula.duracion);
+  const director = esc(pelicula.director);
+  const tituloOriginal = esc(pelicula.tituloOriginal);
+  const id = esc(pelicula.id);
+
+  const marcas = Array.from({ length: 24 }, (_, i) => {
+    const angulo = (i / 24) * Math.PI * 2;
+    const x1 = (300 + Math.cos(angulo) * 66).toFixed(1);
+    const y1 = (152 + Math.sin(angulo) * 66).toFixed(1);
+    const x2 = (300 + Math.cos(angulo) * 73).toFixed(1);
+    const y2 = (152 + Math.sin(angulo) * 73).toFixed(1);
+    return `<path d="M${x1} ${y1} L${x2} ${y2}"/>`;
   }).join('');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
   <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
-  <desc id="desc-${id}">Cartel de la sala Incendio para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <desc id="desc-${id}">Cartel de la sala Ámbar para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
   <defs>
-    <linearGradient id="brasa-${id}" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff3df"/>
-      <stop offset=".45" stop-color="#ffb347"/>
-      <stop offset="1" stop-color="#ff5a1e"/>
-    </linearGradient>
-    <radialGradient id="foco-${id}" cx=".5" cy=".46" r=".62">
-      <stop offset="0" stop-color="#ff6a2a" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#ff6a2a" stop-opacity="0"/>
+    <radialGradient id="ambar-luz-${id}" cx=".5" cy=".34" r=".72">
+      <stop offset="0" stop-color="#d9a441" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#d9a441" stop-opacity="0"/>
     </radialGradient>
-    <filter id="hollin-${id}" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch" result="ruido"/>
-      <feColorMatrix in="ruido" type="saturate" values="0" result="gris"/>
-      <feComponentTransfer in="gris" result="tenue">
-        <feFuncA type="table" tableValues="0 .1"/>
-      </feComponentTransfer>
-      <feBlend in="SourceGraphic" in2="tenue" mode="multiply"/>
-    </filter>
+    <pattern id="ambar-grano-${id}" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r=".8" fill="#5d4830" opacity=".14"/>
+    </pattern>
   </defs>
 
-  <rect width="600" height="900" fill="#0b0503"/>
-  <rect width="600" height="900" fill="url(#foco-${id})"/>
-  <g>${brasas}</g>
+  <rect width="600" height="900" fill="#17100a"/>
+  <rect width="600" height="900" fill="url(#ambar-luz-${id})"/>
 
-  <path d="M18 22 L582 16 L586 878 L14 884 Z" fill="none" stroke="#7d2b10" stroke-width="2" stroke-opacity=".85"/>
-  <path d="M27 35 L573 29 L577 866 L23 872 Z" fill="none" stroke="#ff7a3c" stroke-width="1" stroke-opacity=".28"/>
+  <path d="M36 862 L36 320 A264 264 0 0 1 564 320 L564 862 Z" fill="#ecd9b6"/>
+  <path d="M36 862 L36 320 A264 264 0 0 1 564 320 L564 862 Z" fill="url(#ambar-grano-${id})"/>
+  <path d="M36 862 L36 320 A264 264 0 0 1 564 320 L564 862 Z" fill="none" stroke="#d9a441" stroke-width="1.5" stroke-opacity=".7"/>
+  <path d="M50 852 L50 322 A250 250 0 0 1 550 322 L550 852" fill="none" stroke="#2a1d12" stroke-width="1" stroke-opacity=".28"/>
 
-  <text x="300" y="66" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="6" fill="#ffb347">VIDEOTECA ÁCRATA</text>
-  <text x="300" y="88" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="10" letter-spacing="4" fill="#c7a98e">PUNTO DE IGNICIÓN · CINE EN LLAMAS</text>
-  <path d="M72 106 L528 106" stroke="#7d2b10" stroke-width="2"/>
+  <text x="300" y="34" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="13" letter-spacing="6" fill="#d9a441">VIDEOTECA ÁCRATA</text>
 
-  <text x="300" y="590" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="225" fill="none" stroke="#ff7a3c" stroke-width="2" stroke-opacity=".08">${anio}</text>
-  ${motivo(pelicula.categoria, '#ff7a3c', '#ffb347', 300, 320, 0.86)}
+  <circle cx="300" cy="152" r="58" fill="none" stroke="#b4551f" stroke-width="1.5" stroke-opacity=".75"/>
+  <circle cx="300" cy="152" r="50" fill="none" stroke="#b4551f" stroke-width=".8" stroke-opacity=".4" stroke-dasharray="3 4"/>
+  <g stroke="#b4551f" stroke-width="1" stroke-opacity=".55">${marcas}</g>
+  <text x="300" y="164" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-weight="700" font-size="34" fill="#7d3712">${anio}</text>
 
-  <text x="300" y="478" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="5" fill="#ff9a5c">${categoria}</text>
-  <g transform="translate(300 0) scale(.86 1)">
-    <text text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="${tamano}" letter-spacing="1" fill="url(#brasa-${id})">${titulo}</text>
+  ${motivo(pelicula.categoria, '#b4551f', '#d9a441', 300, 380, 0.88)}
+
+  <text x="300" y="${primeraLinea - tamano - 20}" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="10" letter-spacing="4" fill="#9a3d12">${categoria}</text>
+  <text text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-weight="700" font-size="${tamano}" letter-spacing="0" fill="#2a1d12">${titulo}</text>
+  <text x="300" y="${primeraLinea + (lineas.length - 1) * interlineado + 28}" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 400, maximo: 15, estilo: 'serif' })}" fill="#5d4830">${tituloOriginal}</text>
+
+  <path d="M190 750 H410" stroke="#9a3d12" stroke-width="1" stroke-opacity=".55"/>
+  <circle cx="300" cy="750" r="3" fill="#9a3d12"/>
+  <text x="300" y="778" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="1" fill="#4a3826">${anio} · ${duracion}</text>
+  <text x="300" y="804" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="17" fill="#2a1d12">Dir. ${director}</text>
+  <text x="300" y="828" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="9" letter-spacing="2" fill="#5d4830">${licencia}</text>
+  <text x="300" y="852" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="8" letter-spacing="2" fill="#7a6142">SESIÓN · ARCHIVO FÍLMICO LIBRE</text>
+
+  <text x="300" y="886" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#c9a86f">PUNTO DE IGNICIÓN · SIN PATRONES</text>
+</svg>
+`;
+}
+
+/* ------------------------------------------------------------
+   Sala 5 · Consigna: cartel político, rojo y negro, diagonales
+   ------------------------------------------------------------ */
+
+function crearConsigna(pelicula) {
+  const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
+    ancho: 512,
+    maximo: 68,
+    minimo: 24,
+    estilo: 'sans',
+    espaciado: 0.5
+  });
+  const primeraLinea = 706 - (lineas.length - 1) * interlineado;
+  const titulo = lineas.map((linea, i) =>
+    `<tspan x="40" y="${primeraLinea + i * interlineado}">${esc(linea)}</tspan>`
+  ).join('');
+  const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
+  const categoria = esc(pelicula.categoria.toUpperCase());
+  const licencia = esc(pelicula.licencia);
+  const duracion = esc(pelicula.duracion);
+  const director = esc(pelicula.director);
+  const tituloOriginal = esc(pelicula.tituloOriginal);
+  const id = esc(pelicula.id);
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
+  <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
+  <desc id="desc-${id}">Cartel de la sala Consigna para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <defs>
+    <pattern id="consigna-grano-${id}" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r=".9" fill="#14100c" opacity=".12"/>
+    </pattern>
+  </defs>
+
+  <rect width="600" height="900" fill="#0a0908"/>
+  <polygon points="0,0 600,0 600,274 0,406" fill="#d02b16"/>
+  <polygon points="0,406 600,274 600,304 0,436" fill="#8a190c"/>
+  <rect width="600" height="900" fill="url(#consigna-grano-${id})"/>
+  <rect x="0" y="0" width="14" height="900" fill="#d02b16"/>
+
+  <text x="40" y="60" font-family="'Anton', 'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="22" letter-spacing="3" fill="#f8ead2">VIDEOTECA ÁCRATA</text>
+  <text x="560" y="60" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="12" letter-spacing="3" fill="#f1e3c8">ARCHIVO FÍLMICO LIBRE</text>
+  <path d="M40 78 H560" stroke="#14100c" stroke-width="3"/>
+
+  <text x="40" y="132" font-family="'Anton', 'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="42" letter-spacing="1" fill="#f8ead2">PUNTO DE IGNICIÓN</text>
+  <rect x="40" y="158" width="330" height="30" fill="#14100c"/>
+  <text x="52" y="180" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="16" letter-spacing="3" fill="#f1e3c8">${categoria}</text>
+
+  <g transform="translate(300 372)">
+    <circle cx="0" cy="0" r="96" fill="none" stroke="#f1e3c8" stroke-width="7"/>
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#f1e3c8" stroke-width="1.5" stroke-opacity=".5"/>
+    <path d="M-46 54 L0 -56 L46 54" fill="none" stroke="#f1e3c8" stroke-width="12" stroke-linecap="square"/>
+    <path d="M-27 14 H27" fill="none" stroke="#f1e3c8" stroke-width="11"/>
+    <path d="M0 -56 L0 58" fill="none" stroke="#d02b16" stroke-width="7"/>
   </g>
-  <text x="300" y="714" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="15" fill="#c7a98e" opacity=".8">${tituloOriginal}</text>
+  <path d="M120 486 H480" stroke="#f1e3c8" stroke-width="1" stroke-opacity=".35"/>
 
-  <path d="M70 734 L530 734" stroke="#ff7a3c" stroke-width="1.5" stroke-opacity=".55"/>
-  <text x="70" y="764" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="2" fill="#ffcf9a">${anio} · ${duracion}</text>
-  <text x="530" y="764" text-anchor="end" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="11" letter-spacing="2" fill="#c7a98e">${licencia}</text>
-  <text x="70" y="798" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#f7e8d5">Dir. ${director}</text>
-  <text x="530" y="798" text-anchor="end" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="12" letter-spacing="3" fill="#ff7a3c">DESCARGA LIBRE</text>
+  <text text-anchor="start" font-family="'Anton', 'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-weight="700" font-size="${tamano}" letter-spacing=".5" fill="#f1e3c8">${titulo}</text>
+  <text x="40" y="${primeraLinea + (lineas.length - 1) * interlineado + 30}" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 510, maximo: 15, estilo: 'serif' })}" fill="#dcd0b8">${tituloOriginal}</text>
 
-  <text x="300" y="842" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="10" letter-spacing="4" fill="#9a8070">NADA QUE ARDA DOS VECES</text>
-  <path d="M0 900 L0 870 L22 878 L47 866 L74 875 L101 864 L130 876 L158 867 L188 878 L219 866 L247 875 L277 865 L306 877 L336 866 L365 876 L394 865 L424 877 L453 866 L482 875 L512 864 L541 876 L569 866 L600 874 L600 900 Z" fill="#050201"/>
-
-  <rect x="20" y="20" width="560" height="860" fill="none" stroke="#f7e8d5" stroke-width="1" stroke-opacity=".12" filter="url(#hollin-${id})"/>
+  <path d="M0 772 H600 V900 H0 Z" fill="#f1e3c8"/>
+  <path d="M0 772 H600" stroke="#14100c" stroke-width="4"/>
+  <rect x="40" y="792" width="12" height="12" fill="#d02b16"/>
+  <text x="62" y="804" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="17" letter-spacing="2" fill="#14100c">${anio} · ${duracion}</text>
+  <text x="560" y="804" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="14" letter-spacing="1.5" fill="#8a190c">${licencia}</text>
+  <text x="40" y="840" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="18" fill="#14100c">Dir. ${director}</text>
+  <text x="560" y="840" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="13" letter-spacing="2" fill="#14100c">DESCARGA LIBRE</text>
+  <path d="M40 858 H560" stroke="#14100c" stroke-width="1" stroke-opacity=".35"/>
+  <text x="40" y="880" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="11" letter-spacing="3" fill="#4a3d2e">PUNTO DE IGNICIÓN · SIN PATRONES</text>
+  <text x="560" y="880" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="11" letter-spacing="3" fill="#b3261a">NI DIOS NI AMO</text>
 </svg>
 `;
 }
 
 function crearPoster(pelicula, tema) {
-  if (tema === 'nitrato') return crearNitrato(pelicula);
-  if (tema === 'incendio') return crearIncendio(pelicula);
-  return crearTaquilla(pelicula);
+  if (tema === 'plata') return crearPlata(pelicula);
+  if (tema === 'cianotipo') return crearCianotipo(pelicula);
+  if (tema === 'ambar') return crearAmbar(pelicula);
+  if (tema === 'consigna') return crearConsigna(pelicula);
+  return crearNitrato(pelicula);
 }
 
 /* ------------------------------------------------------------

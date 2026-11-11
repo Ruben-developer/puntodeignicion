@@ -5,44 +5,53 @@
   'use strict';
 
   const CLAVE = 'vapi-tema';
-  const TEMAS = ['taquilla', 'nitrato', 'incendio'];
+  const TEMAS = ['nitrato', 'plata', 'cianotipo', 'ambar', 'consigna'];
   const NOMBRES = {
-    taquilla: 'Taquilla',
     nitrato: 'Nitrato',
-    incendio: 'Incendio'
+    plata: 'Plata',
+    cianotipo: 'Cianotipo',
+    ambar: 'Ámbar',
+    consigna: 'Consigna'
   };
   const COLORES = {
-    taquilla: '#0c1a17',
     nitrato: '#0b0b0a',
-    incendio: '#0d0806'
+    plata: '#11171a',
+    cianotipo: '#061a2b',
+    ambar: '#17100a',
+    consigna: '#0a0908'
   };
   const CARPETAS = {
-    taquilla: '',
-    nitrato: 'nitrato/',
-    incendio: 'incendio/'
+    nitrato: '',
+    plata: 'plata/',
+    cianotipo: 'cianotipo/',
+    ambar: 'ambar/',
+    consigna: 'consigna/'
   };
 
   const raiz = document.documentElement;
-  let actual = 'taquilla';
+  let actual = 'nitrato';
 
   function leerPreferencia() {
+    /* El parámetro ?tema= sirve para previsualizar una sala sin tocar la
+       preferencia guardada; por eso gana sobre localStorage. */
+    try {
+      const parametro = new URLSearchParams(window.location.search).get('tema');
+      if (TEMAS.includes(parametro)) return parametro;
+    } catch {
+      /* Sin URL válida: se sigue con la preferencia guardada. */
+    }
     try {
       const guardado = window.localStorage.getItem(CLAVE);
       if (TEMAS.includes(guardado)) return guardado;
     } catch {
       /* Sin almacenamiento: se usa el tema por defecto. */
     }
-    try {
-      const parametro = new URLSearchParams(window.location.search).get('tema');
-      if (TEMAS.includes(parametro)) return parametro;
-    } catch {
-      /* Sin URL válida: se usa el tema por defecto. */
-    }
-    return 'taquilla';
+    return 'nitrato';
   }
 
   /* Devuelve la ruta del cartel del tema pedido a partir de la ruta base
-     (assets/posters/<id>.svg). */
+     (assets/posters/<id>.svg). Nitrato vive en la raíz; las demás salas,
+     en su propia carpeta. */
   function cartel(ruta, tema = actual) {
     const base = 'assets/posters/';
     if (typeof ruta !== 'string' || !ruta.startsWith(base)) return ruta;
@@ -52,7 +61,7 @@
   }
 
   function aplicar(tema, opciones = {}) {
-    const siguiente = TEMAS.includes(tema) ? tema : 'taquilla';
+    const siguiente = TEMAS.includes(tema) ? tema : 'nitrato';
     const anterior = actual;
     actual = siguiente;
     raiz.dataset.tema = siguiente;

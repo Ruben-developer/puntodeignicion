@@ -19,9 +19,10 @@ son propios. Las tipografías están auto-hospedadas en `assets/fonts/`:
 
 Los carteles de `assets/posters/` son ilustraciones SVG generadas por
 `scripts/generar-posters.mjs` a partir de los datos del catálogo. No reproducen
-los carteles originales de las películas. El generador crea tres variantes por
-obra —Taquilla, Nitrato e Incendio— en `assets/posters/`, `assets/posters/nitrato/`
-y `assets/posters/incendio/`.
+los carteles originales de las películas. El generador crea cinco variantes por
+obra —Nitrato, Plata, Cianotipo, Ámbar y Consigna— en `assets/posters/` y en las
+subcarpetas `assets/posters/plata/`, `assets/posters/cianotipo/`,
+`assets/posters/ambar/` y `assets/posters/consigna/`.
 
 El logotipo fue aportado por el proyecto y se conserva en
 `assets/logo-vapi-original.png`.
