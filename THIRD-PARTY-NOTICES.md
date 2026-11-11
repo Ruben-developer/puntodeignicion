@@ -66,6 +66,21 @@ archivo.
 | Durruti, hijo del pueblo (2021) | Sin licencia declarada | <https://archive.org/details/durruti-hijo-del-pueblo> |
 | La Patagonia rebelde (1974) | Sin licencia declarada | <https://archive.org/details/lapatagoniarebelde> |
 | Néstor Makhno, campesino de Ucrania (1996) | Sin licencia declarada | <https://archive.org/details/NstorMakhnoCampesinoDeUcrania> |
+| Mujeres en la Guerra Civil Española (2020) | Dominio público (PD Mark 1.0) | <https://archive.org/details/mujeres-en-la-guerra-civil-espan-ola> |
+| La mirada de Kati Horna. Guerra y Revolución (1936-1939) (2019) | CC BY-ND 4.0 | <https://archive.org/details/lamiradadekatihorna.guerrayrevolucion19361939> |
+| El fin de la policía (2020) | Dominio público (PD Mark 1.0) | <https://archive.org/details/el-fin-de-la-policia> |
+| Apuntes contra el avance de la conciencia tecnófila (2014) | CC BY-NC-ND 4.0 | <https://archive.org/details/apuntes_202103> |
+| Festival de Cinema Anarquista de Barcelona (entrevista) (2011) | CC BY-NC-SA 3.0 | <https://archive.org/details/Okupem-FestivalDeCinemaAnarquistaDeBarcelonaEntrevista732> |
+| ¡Nosotros somos así! (1937) | Sin licencia declarada | <https://archive.org/details/nosotros-somo-asi-pelicula-anarquista> |
+| Ni Dios ni amo (Historia del anarquismo en Argentina) (2021) | Sin licencia declarada | <https://archive.org/details/10_20210525_20210525_2007> |
+| Celuloide colectivo. El cine en guerra (2009) | Sin licencia declarada | <https://archive.org/details/celuloidecolectivo_2009> |
+| Anarquistas (1de2): Hijos del pueblo (2003) | Sin licencia declarada | <https://archive.org/details/Anarquistas1de2-HijosDelPueblo> |
+| Anarquistas (2de2): Mártires y vindicadores (2005) | Sin licencia declarada | <https://archive.org/details/Anarquistas2de2-MrtiresYVindicadores> |
+| Buenaventura Durruti, anarquista (2000) | Sin licencia declarada | <https://archive.org/details/buenaventura-durruti-anarquista> |
+| Libertarias (1996) | Sin licencia declarada | <https://archive.org/details/libertarias_1996> |
+| Tierra y Libertad (1995) | Sin licencia declarada | <https://archive.org/details/tierra-y-libertad-ken-loach-1995_202210> |
+| Mundo Bayer (2025) | Sin licencia declarada | <https://archive.org/details/mundo-bayer-t-01-c-01-sd-pa-pp-26192-pa-pp-27239> |
+| Un mundo mejor: Simón Radowitzky (2024) | Sin licencia declarada | <https://archive.org/details/un-mundo-mejor-simon-radowitzky> |
 
 Internet Archive presta el servicio de alojamiento y reproducción; su uso se
 rige por los términos del propio archivo.

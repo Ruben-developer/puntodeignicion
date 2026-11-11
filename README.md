@@ -10,7 +10,7 @@ tiempo de ejecución.
 
 ## Qué contiene
 
-- Catálogo de **38 obras** con audio íntegramente en español, alojadas en
+- Catálogo de **53 obras** con audio íntegramente en español, alojadas en
   Internet Archive, con enlaces reales de reproducción y descarga. Abarcan de
   1936 a 2026; las obras mudas, en inglés o bilingües quedan fuera de este
   criterio. El idioma se comprobó con reconocimiento automático del habla sobre
@@ -34,15 +34,19 @@ tiempo de ejecución.
 
 ## Dónde se reproducen y descargan
 
-El catálogo reúne 38 obras entre 1936 y 2026. Cada ficha enlaza al MP4 alojado
+El catálogo reúne 53 obras entre 1936 y 2026. Cada ficha enlaza al MP4 alojado
 en Internet Archive y al mismo archivo para su descarga:
 
 | Categoría | Obras |
 | --- | ---: |
-| Documentales Libres | 10 |
-| Memoria Obrera | 16 |
-| Revueltas Históricas | 7 |
-| Propaganda y Revuelta | 5 |
+| Documentales Libres | 12 |
+| Memoria Obrera | 24 |
+| Revueltas Históricas | 9 |
+| Propaganda y Revuelta | 8 |
+
+Dos fichas corresponden a series documentales —«Ni Dios ni amo» (13 capítulos)
+y «Mundo Bayer» (8 episodios)—: se enlaza el primer capítulo para proyectar y la
+ficha del archivo reúne la serie completa.
 
 La lista completa, con título, año, duración, licencia y enlaces, está en
 [`datos/peliculas.json`](datos/peliculas.json). Al pulsar «Proyectar», el
