@@ -41,4 +41,7 @@
 - [ ] Retirar GitHub Pages una vez validada la producción.
 - [ ] Rotar el token de Cloudflare compartido durante la migración.
 - [ ] Activar la rama `main` como protegida y exigir el CI de `develop`.
+- [ ] Desactivar la inyección automática de Cloudflare Web Analytics
+      (`beacon.min.js`): la CSP la bloquea y deja un error en consola. O se apaga
+      en la zona o se decide no medir; no se abre la CSP a terceros por esto.
 - [ ] Revisar el certificado y la URL canónica si se mueve el repositorio.
