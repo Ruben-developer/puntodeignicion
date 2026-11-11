@@ -1,8 +1,8 @@
-// Genera los cinco carteles SVG de cada obra a partir de datos/peliculas.json.
+// Genera los carteles SVG de cada obra a partir de datos/peliculas.json.
 // Nitrato es la sala base y sus carteles viven en la raíz de assets/posters/;
-// las otras cuatro salas usan su propia subcarpeta.
+// las demás salas usan su propia subcarpeta.
 // Uso:
-//   node scripts/generar-posters.mjs          # escribe las cinco salas
+//   node scripts/generar-posters.mjs          # escribe las ocho salas
 //   node scripts/generar-posters.mjs --check  # falla si algún cartel está desactualizado
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -13,13 +13,25 @@ const soloCheck = process.argv.includes('--check');
 
 const peliculas = JSON.parse(readFileSync(rutaDatos, 'utf8'));
 
-const TEMAS = ['nitrato', 'plata', 'cianotipo', 'ambar', 'consigna'];
+const TEMAS = [
+  'nitrato',
+  'nitrato-rojo',
+  'plata',
+  'cianotipo',
+  'ambar',
+  'consigna',
+  'trinchera',
+  'bloque'
+];
 const CARPETAS = {
   nitrato: '',
+  'nitrato-rojo': 'nitrato-rojo/',
   plata: 'plata/',
   cianotipo: 'cianotipo/',
   ambar: 'ambar/',
-  consigna: 'consigna/'
+  consigna: 'consigna/',
+  trinchera: 'trinchera/',
+  bloque: 'bloque/'
 };
 
 const esc = (valor) => String(valor)
@@ -35,6 +47,16 @@ const esc = (valor) => String(valor)
    del sitio: conviene medir con la reserva ancha para que el texto quepa
    en cualquier sistema. */
 const ANCHOS = {"serif":{"!":0.333,"\"":0.555,"#":0.5,"%":1,"&":0.833,"'":0.278,"(":0.333,")":0.333,",":0.25,"-":0.333,".":0.25,"/":0.278,"0":0.5,"1":0.5,"2":0.5,"3":0.5,"4":0.5,"5":0.5,"6":0.5,"7":0.5,"8":0.5,"9":0.5,":":0.333,";":0.333,"?":0.5,"A":0.722,"B":0.667,"C":0.722,"D":0.722,"E":0.667,"F":0.611,"G":0.778,"H":0.778,"I":0.389,"J":0.5,"K":0.778,"L":0.667,"M":0.944,"N":0.722,"O":0.778,"P":0.611,"Q":0.778,"R":0.722,"S":0.556,"T":0.667,"U":0.722,"V":0.722,"Y":0.722,"[":0.333,"]":0.333,"a":0.5,"b":0.556,"c":0.444,"d":0.556,"e":0.444,"f":0.333,"g":0.5,"h":0.556,"i":0.278,"j":0.333,"k":0.556,"l":0.278,"m":0.833,"n":0.556,"o":0.5,"p":0.556,"q":0.556,"r":0.444,"s":0.389,"t":0.333,"u":0.556,"v":0.5,"w":0.722,"x":0.5,"y":0.5,"z":0.444,"¡":0.333,"«":0.5,"·":0.334,"»":0.5,"¿":0.5,"É":0.667,"Ó":0.778,"×":0.57,"á":0.5,"è":0.444,"é":0.444,"í":0.278,"ñ":0.556,"ó":0.5,"ú":0.556,"–":0.5,"—":1,"“":0.5,"”":0.5,"…":1," ":0.28,"W":1.0},"sans":{"!":0.333,"\"":0.474,"#":0.556,"%":0.889,"&":0.722,"'":0.238,"(":0.333,")":0.333,",":0.278,"-":0.333,".":0.278,"/":0.278,"0":0.556,"1":0.556,"2":0.556,"3":0.556,"4":0.556,"5":0.556,"6":0.556,"7":0.556,"8":0.556,"9":0.556,":":0.333,";":0.333,"?":0.611,"A":0.722,"B":0.722,"C":0.722,"D":0.722,"E":0.667,"F":0.611,"G":0.778,"H":0.722,"I":0.278,"J":0.556,"K":0.722,"L":0.611,"M":0.833,"N":0.722,"O":0.778,"P":0.667,"Q":0.778,"R":0.722,"S":0.667,"T":0.611,"U":0.722,"V":0.667,"Y":0.667,"[":0.333,"]":0.333,"a":0.556,"b":0.611,"c":0.556,"d":0.611,"e":0.556,"f":0.333,"g":0.611,"h":0.611,"i":0.278,"j":0.278,"k":0.556,"l":0.278,"m":0.889,"n":0.611,"o":0.611,"p":0.611,"q":0.611,"r":0.389,"s":0.556,"t":0.333,"u":0.611,"v":0.556,"w":0.778,"x":0.556,"y":0.556,"z":0.5,"¡":0.333,"«":0.556,"·":0.333,"»":0.556,"¿":0.611,"É":0.667,"Ó":0.778,"×":0.584,"á":0.556,"è":0.556,"é":0.556,"í":0.278,"ñ":0.611,"ó":0.611,"ú":0.611,"–":0.556,"—":1,"“":0.5,"”":0.5,"…":1," ":0.28,"W":0.94}};
+
+/* Los rótulos en caja alta de Trinchera y Bloque introducen vocales
+   acentuadas que la tabla original no medía; se añaden con los mismos
+   anchos que sus versales sin tilde. */
+Object.assign(ANCHOS.serif, {
+  'Á': 0.722, 'É': 0.667, 'Í': 0.389, 'Ó': 0.778, 'Ú': 0.722, 'Ñ': 0.722, 'Ü': 0.722
+});
+Object.assign(ANCHOS.sans, {
+  'Á': 0.722, 'É': 0.667, 'Í': 0.278, 'Ó': 0.778, 'Ú': 0.722, 'Ñ': 0.722, 'Ü': 0.722
+});
 
 const ANCHO_POR_DEFECTO = { serif: 0.72, sans: 0.62 };
 
@@ -181,10 +203,40 @@ function motivo(categoria, rojo, oro, x = 300, y = 320, escala = 1) {
 }
 
 /* ------------------------------------------------------------
-   Sala 1 · Nitrato (base): cine mudo, ivory sobre negro, tira fílmica
+   Sala 1 · Nitrato (base): cine mudo, ivory sobre negro, tira fílmica.
+   La misma plantilla sirve para Nitrato rojo cambiando solo la paleta.
    ------------------------------------------------------------ */
 
-function crearNitrato(pelicula) {
+const PALETA_NITRATO = {
+  sala: 'Nitrato',
+  fondo: '#0a0a09',
+  tira: '#151513',
+  agujero: '#060605',
+  panel: '#0d0d0c',
+  tinta: '#efe8d8',
+  titulo: '#f2ecdc',
+  rojo: '#a33124',
+  rojoClaro: '#c8563f',
+  media: '#cfc7b4',
+  tenue: '#948c79'
+};
+
+const PALETA_NITRATO_ROJO = {
+  sala: 'Nitrato rojo',
+  fondo: '#0a0908',
+  tira: '#161110',
+  agujero: '#040303',
+  panel: '#12100e',
+  tinta: '#f1e3c8',
+  titulo: '#f1e3c8',
+  rojo: '#d02b16',
+  rojoClaro: '#ef5a35',
+  media: '#dcd0b8',
+  tenue: '#b0a48c'
+};
+
+function crearNitrato(pelicula, paleta = PALETA_NITRATO) {
+  const p = paleta;
   const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
     ancho: 440,
     maximo: 56,
@@ -209,10 +261,10 @@ function crearNitrato(pelicula) {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
   <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
-  <desc id="desc-${id}">Cartel de la sala Nitrato para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <desc id="desc-${id}">Cartel de la sala ${p.sala} para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
   <defs>
     <pattern id="grano-n" width="8" height="8" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1" fill="#f2ecdc" opacity=".14"/>
+      <circle cx="2" cy="2" r="1" fill="${p.titulo}" opacity=".14"/>
     </pattern>
     <radialGradient id="vineta-n" cx=".5" cy=".42" r=".78">
       <stop offset="52%" stop-color="#000" stop-opacity="0"/>
@@ -220,16 +272,16 @@ function crearNitrato(pelicula) {
     </radialGradient>
   </defs>
 
-  <rect width="600" height="900" fill="#0a0a09"/>
-  <rect x="0" y="0" width="36" height="900" fill="#151513"/>
-  <rect x="564" y="0" width="36" height="900" fill="#151513"/>
-  <g fill="#060605">${agujeros}</g>
+  <rect width="600" height="900" fill="${p.fondo}"/>
+  <rect x="0" y="0" width="36" height="900" fill="${p.tira}"/>
+  <rect x="564" y="0" width="36" height="900" fill="${p.tira}"/>
+  <g fill="${p.agujero}">${agujeros}</g>
 
-  <rect x="46" y="26" width="508" height="848" fill="#0d0d0c" stroke="#efe8d8" stroke-width="2" stroke-opacity=".55"/>
-  <rect x="54" y="34" width="492" height="832" fill="none" stroke="#efe8d8" stroke-width="1" stroke-opacity=".18"/>
+  <rect x="46" y="26" width="508" height="848" fill="${p.panel}" stroke="${p.tinta}" stroke-width="2" stroke-opacity=".55"/>
+  <rect x="54" y="34" width="492" height="832" fill="none" stroke="${p.tinta}" stroke-width="1" stroke-opacity=".18"/>
   <rect x="54" y="34" width="492" height="832" fill="url(#grano-n)" opacity=".7"/>
 
-  <g stroke="#efe8d8" stroke-opacity=".055" stroke-width="1">
+  <g stroke="${p.tinta}" stroke-opacity=".055" stroke-width="1">
     <path d="M118 34V866"/>
     <path d="M171 34V866"/>
     <path d="M302 34V866"/>
@@ -238,24 +290,24 @@ function crearNitrato(pelicula) {
   </g>
   <rect x="46" y="26" width="508" height="848" fill="url(#vineta-n)"/>
 
-  <text x="300" y="68" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="15" letter-spacing="5" fill="#efe8d8">VIDEOTECA ÁCRATA</text>
-  <text x="300" y="90" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#a33124">PUNTO DE IGNICIÓN · ARCHIVO FÍLMICO LIBRE</text>
-  <path d="M86 106 L514 106" stroke="#efe8d8" stroke-width="1" stroke-opacity=".42"/>
+  <text x="300" y="68" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="15" letter-spacing="5" fill="${p.tinta}">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="90" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="${p.rojo}">PUNTO DE IGNICIÓN · ARCHIVO FÍLMICO LIBRE</text>
+  <path d="M86 106 L514 106" stroke="${p.tinta}" stroke-width="1" stroke-opacity=".42"/>
 
-  <text x="300" y="596" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="210" fill="none" stroke="#efe8d8" stroke-width="2" stroke-opacity=".09">${anio}</text>
-  ${motivo(pelicula.categoria, '#efe8d8', '#c8563f', 300, 322, 0.8)}
+  <text x="300" y="596" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="210" fill="none" stroke="${p.tinta}" stroke-width="2" stroke-opacity=".09">${anio}</text>
+  ${motivo(pelicula.categoria, p.tinta, p.rojoClaro, 300, 322, 0.8)}
 
-  <text x="300" y="476" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="4" fill="#c8563f">${categoria}</text>
-  <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="${tamano}" letter-spacing="1.5" fill="#f2ecdc">${titulo}</text>
-  <text x="300" y="712" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 420, maximo: 14, estilo: 'serif' })}" fill="#cfc7b4" opacity=".8">${tituloOriginal}</text>
+  <text x="300" y="476" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="4" fill="${p.rojoClaro}">${categoria}</text>
+  <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="${tamano}" letter-spacing="1.5" fill="${p.titulo}">${titulo}</text>
+  <text x="300" y="712" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 420, maximo: 14, estilo: 'serif' })}" fill="${p.media}" opacity=".8">${tituloOriginal}</text>
 
-  <path d="M80 732 L520 732" stroke="#efe8d8" stroke-width="1" stroke-opacity=".5"/>
-  <text x="80" y="762" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#efe8d8">${anio} · ${duracion}</text>
-  <text x="520" y="762" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="1" fill="#cfc7b4">${licencia}</text>
-  <text x="80" y="796" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#efe8d8">Dir. ${director}</text>
-  <text x="520" y="796" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="#c8563f">ARCHIVO FÍLMICO</text>
+  <path d="M80 732 L520 732" stroke="${p.tinta}" stroke-width="1" stroke-opacity=".5"/>
+  <text x="80" y="762" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="${p.tinta}">${anio} · ${duracion}</text>
+  <text x="520" y="762" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="1" fill="${p.media}">${licencia}</text>
+  <text x="80" y="796" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="${p.tinta}">Dir. ${director}</text>
+  <text x="520" y="796" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="${p.rojoClaro}">ARCHIVO FÍLMICO</text>
 
-  <text x="300" y="846" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="#948c79">PUNTO DE IGNICIÓN · SIN PATRONES</text>
+  <text x="300" y="846" text-anchor="middle" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="3" fill="${p.tenue}">PUNTO DE IGNICIÓN · SIN PATRONES</text>
 </svg>
 `;
 }
@@ -568,11 +620,212 @@ function crearConsigna(pelicula) {
 `;
 }
 
+/* ------------------------------------------------------------
+   Sala 7 · Trinchera: afiche de la Guerra Civil, papel, sol radiante,
+   franjas rojinegras y sellos girados.
+   ------------------------------------------------------------ */
+
+function crearTrinchera(pelicula) {
+  const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
+    ancho: 520,
+    maximo: 62,
+    minimo: 24,
+    maxLineas: 4,
+    estilo: 'sans',
+    espaciado: 1
+  });
+  const ultima = 686;
+  const primeraLinea = ultima - (lineas.length - 1) * interlineado;
+  const titulo = generarLineasTitulo(lineas, tamano, interlineado, primeraLinea);
+  const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
+  const categoria = esc(pelicula.categoria.toUpperCase());
+  const licencia = esc(pelicula.licencia);
+  const duracion = esc(pelicula.duracion);
+  const director = esc(pelicula.director);
+  const tituloOriginal = esc(pelicula.tituloOriginal);
+  const id = esc(pelicula.id);
+
+  /* Sol radiante: rayos alternos de dos largos sobre el disco del carrete. */
+  const rayos = Array.from({ length: 36 }, (_, i) => {
+    const ancho = i % 2 ? 6 : 3;
+    const largo = i % 2 ? 44 : 62;
+    return `<rect x="${300 - ancho / 2}" y="90" width="${ancho}" height="${largo}" fill="#c2231a" transform="rotate(${i * 10} 300 240)"/>`;
+  }).join('');
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
+  <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
+  <desc id="desc-${id}">Cartel de la sala Trinchera para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <defs>
+    <pattern id="trinchera-grano-${id}" width="7" height="7" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r=".7" fill="#1a120c" opacity=".12"/>
+    </pattern>
+    <filter id="trinchera-sombra-${id}" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="6" dy="6" stdDeviation="0" flood-color="#c2231a" flood-opacity=".26"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="900" fill="#e9d8b4"/>
+  <rect width="600" height="900" fill="url(#trinchera-grano-${id})"/>
+  <g fill="#1a120c">
+    <rect x="40" y="0" width="40" height="14"/><rect x="120" y="0" width="40" height="14"/>
+    <rect x="200" y="0" width="40" height="14"/><rect x="280" y="0" width="40" height="14"/>
+    <rect x="360" y="0" width="40" height="14"/><rect x="440" y="0" width="40" height="14"/>
+    <rect x="520" y="0" width="40" height="14"/>
+  </g>
+  <g fill="#c2231a">
+    <rect x="0" y="0" width="40" height="14"/><rect x="80" y="0" width="40" height="14"/>
+    <rect x="160" y="0" width="40" height="14"/><rect x="240" y="0" width="40" height="14"/>
+    <rect x="320" y="0" width="40" height="14"/><rect x="400" y="0" width="40" height="14"/>
+    <rect x="480" y="0" width="40" height="14"/><rect x="560" y="0" width="40" height="14"/>
+  </g>
+  <rect x="0" y="0" width="12" height="900" fill="#c2231a"/>
+
+  <text x="40" y="64" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="26" letter-spacing="4" fill="#1a120c">VIDEOTECA ÁCRATA</text>
+  <text x="560" y="64" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="11" letter-spacing="3" fill="#c2231a">ARCHIVO FÍLMICO LIBRE</text>
+  <path d="M40 80 H560" stroke="#1a120c" stroke-width="3"/>
+  <path d="M40 86 H560" stroke="#c2231a" stroke-width="1"/>
+
+  <g transform="translate(466 128) rotate(-7)">
+    <rect x="-70" y="-19" width="140" height="38" fill="none" stroke="#c2231a" stroke-width="2"/>
+    <rect x="-64" y="-13" width="128" height="26" fill="none" stroke="#c2231a" stroke-width="1"/>
+    <text x="0" y="4" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="13" letter-spacing="2" fill="#c2231a">ARCHIVO LIBRE</text>
+  </g>
+
+  ${rayos}
+  <circle cx="300" cy="240" r="100" fill="#f7ecd4" stroke="#1a120c" stroke-width="5"/>
+  <circle cx="300" cy="240" r="74" fill="none" stroke="#1a120c" stroke-width="7"/>
+  <g fill="#c2231a">
+    <circle cx="300" cy="194" r="13"/><circle cx="340" cy="217" r="13"/>
+    <circle cx="340" cy="263" r="13"/><circle cx="300" cy="286" r="13"/>
+    <circle cx="260" cy="263" r="13"/><circle cx="260" cy="217" r="13"/>
+  </g>
+  <circle cx="300" cy="240" r="17" fill="#1a120c"/>
+
+  <rect x="0" y="462" width="600" height="34" fill="#1a120c"/>
+  <text x="300" y="485" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="17" letter-spacing="5" fill="#f7ecd4">${categoria}</text>
+
+  <text text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="${tamano}" letter-spacing="1" fill="#1a120c" filter="url(#trinchera-sombra-${id})">${titulo}</text>
+  <text x="300" y="722" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 500, maximo: 15, estilo: 'serif' })}" fill="#5b4732">${tituloOriginal}</text>
+
+  <rect x="0" y="756" width="600" height="144" fill="#f7ecd4"/>
+  <path d="M0 756 H600" stroke="#1a120c" stroke-width="4"/>
+  <text x="40" y="790" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="18" letter-spacing="2" fill="#1a120c">${anio} · ${duracion}</text>
+  <text x="560" y="790" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="13" letter-spacing="1.5" fill="#b21c12">${licencia}</text>
+  <text x="40" y="820" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="17" fill="#1a120c">Dir. ${director}</text>
+
+  <g transform="translate(462 818) rotate(-4)">
+    <rect x="-76" y="-17" width="152" height="34" fill="none" stroke="#c2231a" stroke-width="2"/>
+    <text x="0" y="5" text-anchor="middle" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="12" letter-spacing="2" fill="#c2231a">ARCHIVO FÍLMICO</text>
+  </g>
+
+  <path d="M40 850 H560" stroke="#1a120c" stroke-width="1" stroke-opacity=".35"/>
+  <text x="40" y="874" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="11" letter-spacing="3" fill="#5b4732">PUNTO DE IGNICIÓN · SIN PATRONES</text>
+  <text x="560" y="874" text-anchor="end" font-family="'Bebas Neue', 'Arial Narrow', Impact, sans-serif" font-size="11" letter-spacing="3" fill="#b21c12">ARCHIVO LIBRE</text>
+</svg>
+`;
+}
+
+/* ------------------------------------------------------------
+   Sala 8 · Bloque: geometría, círculos concéntricos y módulos,
+   monocromo sobre hueso, sombras duras y Bodoni.
+   ------------------------------------------------------------ */
+
+function crearBloque(pelicula) {
+  const { tamano, lineas, interlineado } = ajustarTitulo(pelicula.titulo, {
+    ancho: 496,
+    maximo: 62,
+    minimo: 22,
+    maxLineas: 4,
+    estilo: 'serif',
+    espaciado: 0.5
+  });
+  const ultima = 636;
+  const primeraLinea = ultima - (lineas.length - 1) * interlineado;
+  const titulo = lineas.map((linea, i) =>
+    `<tspan x="48" y="${primeraLinea + i * interlineado}">${esc(linea)}</tspan>`
+  ).join('');
+  const anio = Number.isInteger(pelicula.anio) ? String(pelicula.anio) : 's. f.';
+  const categoria = esc(pelicula.categoria.toUpperCase());
+  const licencia = esc(pelicula.licencia);
+  const duracion = esc(pelicula.duracion);
+  const director = esc(pelicula.director);
+  const tituloOriginal = esc(pelicula.tituloOriginal);
+  const id = esc(pelicula.id);
+
+  const verticales = Array.from({ length: 8 }, (_, i) =>
+    `<path d="M${60 + i * 60} 24V876"/>`
+  ).join('');
+  const horizontales = Array.from({ length: 13 }, (_, i) =>
+    `<path d="M24 ${84 + i * 60}H576"/>`
+  ).join('');
+  const modulos = Array.from({ length: 9 }, (_, i) =>
+    `<rect x="${48 + i * 56}" y="858" width="10" height="10" fill="${i < 5 ? '#111110' : '#f6f2e8'}" stroke="#f6f2e8" stroke-width="1"/>`
+  ).join('');
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-${id} desc-${id}">
+  <title id="titulo-${id}">Cartel de ${esc(pelicula.titulo)}</title>
+  <desc id="desc-${id}">Cartel de la sala Bloque para ${esc(pelicula.titulo)}, ${anio}, dirigida por ${director}.</desc>
+  <defs>
+    <pattern id="bloque-trama-${id}" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#111110" opacity=".1"/>
+    </pattern>
+    <filter id="bloque-sombra-${id}" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="7" dy="7" stdDeviation="0" flood-color="#111110" flood-opacity=".2"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="900" fill="#e7e2d4"/>
+  <rect width="600" height="900" fill="url(#bloque-trama-${id})"/>
+  <g stroke="#111110" stroke-width="1" stroke-opacity=".07">${verticales}${horizontales}</g>
+
+  <rect x="24" y="24" width="552" height="852" fill="none" stroke="#111110" stroke-width="2"/>
+  <rect x="18" y="18" width="12" height="12" fill="#111110"/>
+  <rect x="570" y="18" width="12" height="12" fill="#111110"/>
+  <rect x="18" y="870" width="12" height="12" fill="#111110"/>
+  <rect x="570" y="870" width="12" height="12" fill="#111110"/>
+
+  <rect x="392" y="176" width="120" height="120" fill="#111110" opacity=".08" transform="rotate(45 452 236)"/>
+  <circle cx="452" cy="236" r="118" fill="none" stroke="#111110" stroke-width="2" stroke-opacity=".2"/>
+  <circle cx="452" cy="236" r="92" fill="none" stroke="#111110" stroke-width="10" stroke-opacity=".14"/>
+  <circle cx="452" cy="236" r="66" fill="none" stroke="#111110" stroke-width="2" stroke-opacity=".24" stroke-dasharray="7 7"/>
+  <circle cx="452" cy="236" r="40" fill="none" stroke="#111110" stroke-width="10"/>
+  <circle cx="452" cy="236" r="9" fill="#111110"/>
+
+  <path d="M24 330 L576 258 L576 292 L24 364 Z" fill="#111110" opacity=".08"/>
+  <rect x="48" y="128" width="8" height="118" fill="#111110"/>
+
+  <text x="48" y="66" font-family="'Bodoni Moda', Didot, 'Times New Roman', serif" font-weight="700" font-size="22" letter-spacing="2" fill="#111110">VIDEOTECA ÁCRATA</text>
+  <text x="552" y="66" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="3" fill="#3d3b34">ARCHIVO FÍLMICO LIBRE</text>
+  <path d="M48 84 H552" stroke="#111110" stroke-width="2"/>
+
+  <rect x="48" y="396" width="248" height="26" fill="#111110"/>
+  <text x="60" y="414" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="2" fill="#f6f2e8">${categoria}</text>
+
+  <text text-anchor="start" font-family="'Bodoni Moda', Didot, 'Times New Roman', serif" font-weight="700" font-size="${tamano}" letter-spacing=".5" fill="#111110" filter="url(#bloque-sombra-${id})">${titulo}</text>
+  <text x="48" y="668" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-style="italic" font-size="${ajustarLinea(pelicula.tituloOriginal, { ancho: 470, maximo: 15, estilo: 'serif' })}" fill="#4a473e">${tituloOriginal}</text>
+
+  <path d="M48 694 H552" stroke="#111110" stroke-width="1" stroke-opacity=".45"/>
+  <text x="48" y="722" font-family="'Courier Prime', 'Courier New', monospace" font-size="12" letter-spacing="1" fill="#111110">${anio} · ${duracion}</text>
+  <text x="552" y="722" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="11" letter-spacing="1" fill="#3d3b34">${licencia}</text>
+  <text x="48" y="752" font-family="'Bodoni Moda', Didot, 'Times New Roman', serif" font-size="17" fill="#111110">Dir. ${director}</text>
+  <text x="552" y="752" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="9" letter-spacing="2" fill="#3d3b34">DESCARGA LIBRE</text>
+
+  <rect x="0" y="792" width="600" height="108" fill="#111110"/>
+  <text x="48" y="836" font-family="'Bodoni Moda', Didot, 'Times New Roman', serif" font-size="13" letter-spacing="3" fill="#f6f2e8">PUNTO DE IGNICIÓN</text>
+  <text x="552" y="836" text-anchor="end" font-family="'Courier Prime', 'Courier New', monospace" font-size="10" letter-spacing="3" fill="#f6f2e8">SIN PATRONES</text>
+  ${modulos}
+</svg>
+`;
+}
+
 function crearPoster(pelicula, tema) {
+  if (tema === 'nitrato-rojo') return crearNitrato(pelicula, PALETA_NITRATO_ROJO);
   if (tema === 'plata') return crearPlata(pelicula);
   if (tema === 'cianotipo') return crearCianotipo(pelicula);
   if (tema === 'ambar') return crearAmbar(pelicula);
   if (tema === 'consigna') return crearConsigna(pelicula);
+  if (tema === 'trinchera') return crearTrinchera(pelicula);
+  if (tema === 'bloque') return crearBloque(pelicula);
   return crearNitrato(pelicula);
 }
 

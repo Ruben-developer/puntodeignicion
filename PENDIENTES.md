@@ -18,16 +18,17 @@
 - [ ] Guardar filtros en la URL (`?q=…&cat=…`) para compartir una vista concreta.
 - [ ] Añadir una vista de "obra anterior / siguiente" dentro de la ficha.
 - [ ] Valorar una página de fuentes y otra de licencias, enlazadas desde el pie.
-- [ ] Probar en beta las cinco salas (Nitrato, Plata, Cianotipo, Ámbar y
-      Consigna) y decidir si se mantienen todas, se ajusta alguna o queda una
-      como definitiva.
+- [ ] Probar en beta las ocho salas (Nitrato, Nitrato rojo, Plata, Cianotipo,
+      Ámbar, Consigna, Trinchera y Bloque) y decidir si se mantienen todas, se
+      ajusta alguna o queda una como definitiva. Trinchera y Bloque son las más
+      recientes y conviene revisarlas en pantalla antes de tocar producción.
 
 ## Calidad
 
 - [ ] Auditoría con lector de pantalla (NVDA o VoiceOver) en escritorio y móvil.
 - [ ] Repetir la auditoría de contraste (WCAG AA) al añadir textos pequeños en
-      cualquiera de las cinco salas; la última pasada dejó Nitrato, Plata,
-      Cianotipo, Ámbar y Consigna por encima de 4,5:1.
+      cualquiera de las ocho salas; la última pasada dejó las ocho por encima de
+      4,5:1 (Trinchera y Bloque incluían ajustes de rojo y gris para lograrlo).
 - [ ] Pruebas en navegadores antiguos: comprobar `dialog`, `aspect-ratio`,
       `line-clamp` y `backdrop-filter`.
 - [ ] Añadir un flujo programado que compruebe enlaces de Internet Archive y

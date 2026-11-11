@@ -336,6 +336,20 @@ button {
   background: linear-gradient(135deg, #f1e3c8 0 45%, #d02b16 45% 100%);
 }
 
+.tema[data-estilo='nitrato-rojo'] .tema-punto {
+  background: linear-gradient(135deg, #f1e3c8 0 45%, #d02b16 45% 100%);
+  box-shadow: inset 0 0 0 1px rgba(241, 227, 200, 0.5);
+}
+
+.tema[data-estilo='trinchera'] .tema-punto {
+  background: linear-gradient(180deg, #c2231a 0 34%, #f1e3c8 34% 66%, #1a120c 66% 100%);
+}
+
+.tema[data-estilo='bloque'] .tema-punto {
+  border-radius: 0;
+  background: linear-gradient(135deg, #f6f2e8 0 50%, #111110 50% 100%);
+}
+
 /* ------------------------------------------------------------
    Botones y etiquetas
    ------------------------------------------------------------ */
@@ -1684,6 +1698,29 @@ button {
     display: none;
   }
 
+  /* Con ocho salas el selector necesita su propia fila antes de 720 px. */
+  .cabecera-interior {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .temas-etiqueta {
+    display: none;
+  }
+
+  .temas {
+    width: 100%;
+    gap: 4px;
+    justify-content: space-between;
+  }
+
+  .tema {
+    flex: 1 1 0;
+    justify-content: center;
+    padding: 8px 5px;
+    font-size: 0.5rem;
+  }
+
   .modal-contenido {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1725,7 +1762,7 @@ button {
   }
 
   .tema {
-    flex: 1 1 0;
+    flex: 1 1 calc(25% - 4px);
     justify-content: center;
     padding: 8px 6px;
     font-size: 0.5rem;
@@ -1885,9 +1922,13 @@ button {
     justify-content: space-between;
   }
 
+  /* Ocho salas: cuatro por fila también en móvil para no engordar la cabecera. */
   .tema {
-    flex: 1 1 calc(33.333% - 4px);
+    flex: 1 1 calc(25% - 4px);
     justify-content: center;
+    padding: 8px 3px;
+    font-size: 0.46rem;
+    letter-spacing: 0.04em;
   }
 
   .rejilla {
@@ -3951,6 +3992,1092 @@ html[data-tema='consigna'] .aviso-toast {
   border: 2px solid #d02b16;
   background: #0d0a08;
 }
+
+/* --- Nitrato rojo: tira fílmica de Nitrato con la paleta de Consigna --- */
+
+html[data-tema='nitrato-rojo'] {
+  --fondo: #0a0908;
+  --fondo-hondo: #050404;
+  --panel: #141110;
+  --panel-alto: #1d1815;
+  --tinta: #f1e3c8;
+  --tinta-media: #dcd0b8;
+  --tinta-tenue: #b0a48c;
+  --rojo: #d02b16;
+  --rojo-claro: #ef5a35;
+  --rojo-hondo: #8a190c;
+  --oro: #f1e3c8;
+  --verde: #7a6a52;
+  --verde-claro: #b8a88c;
+  --papel: #121110;
+  --papel-hondo: #191613;
+  --papel-sombra: #040303;
+  --tinta-papel: #f1e3c8;
+  --tinta-papel-media: #c9bca6;
+  --rojo-papel: #ef5a35;
+  --linea: rgba(241, 227, 200, 0.16);
+  --linea-fuerte: rgba(241, 227, 200, 0.36);
+  --linea-papel: rgba(241, 227, 200, 0.22);
+  --sombra: 0 28px 70px -38px #000;
+  --radio: 0px;
+  --fuente-titulo: 'Bodoni Moda', Didot, 'Times New Roman', serif;
+  --fuente-cuerpo: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --fuente-maquina: 'Courier Prime', 'Courier New', monospace;
+}
+
+html[data-tema='nitrato-rojo'] body {
+  background:
+    radial-gradient(ellipse at 50% -18%, rgba(208, 43, 22, 0.26), transparent 58%),
+    repeating-linear-gradient(90deg, transparent 0 118px, rgba(241, 227, 200, 0.025) 118px 119px),
+    linear-gradient(180deg, #140d0a 0%, #0a0706 68%, #050303 100%);
+}
+
+html[data-tema='nitrato-rojo'] ::selection {
+  background: #d02b16;
+  color: #fff7e8;
+}
+
+html[data-tema='nitrato-rojo'] a {
+  color: var(--tinta);
+  text-decoration-color: rgba(241, 227, 200, 0.45);
+}
+
+html[data-tema='nitrato-rojo'] .cabecera {
+  background: rgba(8, 6, 5, 0.96);
+}
+
+html[data-tema='nitrato-rojo'] .cabecera::after {
+  border-bottom: 2px solid #d02b16;
+  opacity: 0.95;
+}
+
+html[data-tema='nitrato-rojo'] .marca-sub {
+  color: var(--rojo-claro);
+}
+
+html[data-tema='nitrato-rojo'] .temas {
+  border-color: rgba(241, 227, 200, 0.4);
+  background: #0a0807;
+}
+
+html[data-tema='nitrato-rojo'] .tema[aria-pressed='true'] {
+  border-color: #d02b16;
+  background: #d02b16;
+  color: #fff7e8;
+}
+
+html[data-tema='nitrato-rojo'] .antetitulo {
+  color: var(--rojo-claro);
+}
+
+html[data-tema='nitrato-rojo'] .heroe-titulo {
+  text-shadow: 0 0 44px rgba(208, 43, 22, 0.4);
+}
+
+html[data-tema='nitrato-rojo'] .heroe-titulo-sub {
+  color: var(--rojo-claro);
+}
+
+html[data-tema='nitrato-rojo'] .heroe-datos > div {
+  background: #120e0c;
+}
+
+html[data-tema='nitrato-rojo'] .boton-primario {
+  border-color: #d02b16;
+  background: #d02b16;
+  color: #fff7e8;
+  box-shadow: 5px 5px 0 rgba(241, 227, 200, 0.14);
+}
+
+html[data-tema='nitrato-rojo'] .boton-primario:hover {
+  border-color: #ef5a35;
+  background: #ef5a35;
+  color: #160a06;
+}
+
+html[data-tema='nitrato-rojo'] .manifiesto {
+  background: #0a0807;
+}
+
+html[data-tema='nitrato-rojo'] .manifiesto::after {
+  border-color: rgba(208, 43, 22, 0.45);
+}
+
+html[data-tema='nitrato-rojo'] .sello {
+  border-color: rgba(208, 43, 22, 0.7);
+  color: var(--tinta);
+}
+
+html[data-tema='nitrato-rojo'] .filtro[aria-pressed='true'] {
+  border-color: #d02b16;
+  background: #d02b16;
+  color: #fff7e8;
+}
+
+html[data-tema='nitrato-rojo'] .filtro[aria-pressed='true'] .filtro-cuenta {
+  background: rgba(20, 10, 6, 0.26);
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta {
+  border-color: rgba(241, 227, 200, 0.46);
+  box-shadow:
+    8px 8px 0 rgba(208, 43, 22, 0.55),
+    0 24px 50px -32px #000;
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta-portada {
+  background:
+    linear-gradient(90deg, #060404 0 10px, transparent 10px calc(100% - 10px), #060404 calc(100% - 10px)),
+    #0a0706;
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta-portada img {
+  filter: contrast(1.04) saturate(1.06);
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta-anio {
+  background: rgba(8, 5, 4, 0.82);
+  border-color: rgba(241, 227, 200, 0.6);
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta-play {
+  border-color: rgba(241, 227, 200, 0.8);
+  background: #d02b16;
+  color: #fff7e8;
+  box-shadow: 0 8px 20px -6px #000;
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta-cat::before {
+  color: var(--tinta-papel-media);
+}
+
+html[data-tema='nitrato-rojo'] .tarjeta-descarga:hover {
+  border-color: #d02b16;
+  background: #d02b16;
+  color: #fff7e8;
+}
+
+html[data-tema='nitrato-rojo'] .paso {
+  background: #120e0c;
+}
+
+html[data-tema='nitrato-rojo'] .pie {
+  border-top: 3px double rgba(208, 43, 22, 0.65);
+  background: linear-gradient(180deg, rgba(12, 8, 7, 0.92), #050303);
+}
+
+html[data-tema='nitrato-rojo'] .modal {
+  border-color: rgba(241, 227, 200, 0.5);
+  background: #0e0a08;
+}
+
+html[data-tema='nitrato-rojo'] .modal-cerrar {
+  background: #070504;
+}
+
+html[data-tema='nitrato-rojo'] .aviso-toast {
+  border-color: #d02b16;
+  background: #0a0807;
+}
+
+/* --- Trinchera: afiche de la Guerra Civil, papel, sol radiante y sellos --- */
+
+html[data-tema='trinchera'] {
+  color-scheme: light;
+  --fondo: #e9d8b4;
+  --fondo-hondo: #dcc9a2;
+  --panel: #f1e3c6;
+  --panel-alto: #f7ecd4;
+  --tinta: #1a120c;
+  --tinta-media: #4a3827;
+  --tinta-tenue: #6d5942;
+  --rojo: #c2231a;
+  --rojo-claro: #e04a2f;
+  --rojo-hondo: #7d120c;
+  --oro: #c2231a;
+  --verde: #5c5a3a;
+  --verde-claro: #8a8560;
+  --papel: #f7ecd4;
+  --papel-hondo: #efe0c2;
+  --papel-sombra: #c9b48c;
+  --tinta-papel: #1a120c;
+  --tinta-papel-media: #5b4732;
+  --rojo-papel: #b21c12;
+  --linea: rgba(26, 18, 12, 0.22);
+  --linea-fuerte: rgba(26, 18, 12, 0.46);
+  --linea-papel: rgba(26, 18, 12, 0.3);
+  --sombra: 0 22px 48px -32px rgba(60, 40, 20, 0.85);
+  --radio: 0px;
+  --fuente-titulo: 'Bebas Neue', 'Arial Narrow', Impact, sans-serif;
+  --fuente-cuerpo: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --fuente-maquina: 'Courier Prime', 'Courier New', monospace;
+}
+
+html[data-tema='trinchera'] body {
+  background:
+    repeating-conic-gradient(from -8deg at 50% -14%, rgba(194, 35, 26, 0.1) 0 1.6deg, transparent 1.6deg 5deg) 0 0 / 100% 760px no-repeat,
+    radial-gradient(ellipse at 50% -4%, rgba(255, 255, 255, 0.55), transparent 62%),
+    linear-gradient(180deg, #f1e4c6 0%, #e9d8b4 58%, #e2cfa8 100%);
+}
+
+html[data-tema='trinchera'] ::selection {
+  background: #c2231a;
+  color: #fff7e8;
+}
+
+html[data-tema='trinchera'] a {
+  color: #1a120c;
+  text-decoration-color: rgba(194, 35, 26, 0.6);
+}
+
+html[data-tema='trinchera'] a:hover {
+  color: #c2231a;
+}
+
+html[data-tema='trinchera'] .saltar {
+  border-color: #1a120c;
+  background: #1a120c;
+  color: #f7ecd4;
+}
+
+html[data-tema='trinchera'] .cabecera {
+  background: #f4e7ca;
+  border-bottom: 4px solid #1a120c;
+}
+
+html[data-tema='trinchera'] .cabecera::after {
+  height: 7px;
+  background: repeating-linear-gradient(90deg, #c2231a 0 22px, #1a120c 22px 44px);
+  border-bottom: 0;
+  opacity: 1;
+}
+
+html[data-tema='trinchera'] .marca-titulo {
+  font-family: var(--fuente-titulo);
+  font-weight: 400;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .marca-sub {
+  color: #c2231a;
+  letter-spacing: 0.3em;
+}
+
+html[data-tema='trinchera'] .temas {
+  border: 2px solid #1a120c;
+  background: #f7ecd4;
+}
+
+html[data-tema='trinchera'] .tema {
+  color: #3d2c1d;
+}
+
+html[data-tema='trinchera'] .tema:hover {
+  border-color: #1a120c;
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .tema[aria-pressed='true'] {
+  border-color: #1a120c;
+  background: #c2231a;
+  color: #fff7e8;
+}
+
+html[data-tema='trinchera'] .antetitulo {
+  color: #a3160e;
+  letter-spacing: 0.26em;
+}
+
+html[data-tema='trinchera'] .heroe {
+  position: relative;
+}
+
+html[data-tema='trinchera'] .heroe::before {
+  content: '';
+  position: absolute;
+  top: -26px;
+  right: -10px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(194, 35, 26, 0.15) 0 4deg, transparent 4deg 12deg);
+  pointer-events: none;
+}
+
+html[data-tema='trinchera'] .heroe > * {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-tema='trinchera'] .heroe h1 {
+  font-weight: 400;
+  font-size: clamp(2.9rem, 6.4vw, 6rem);
+  letter-spacing: 0.01em;
+  line-height: 0.9;
+}
+
+html[data-tema='trinchera'] .heroe-titulo {
+  text-transform: uppercase;
+  text-shadow: 6px 6px 0 rgba(194, 35, 26, 0.22);
+}
+
+html[data-tema='trinchera'] .heroe-titulo-sub {
+  margin-top: 0.26em;
+  font-family: var(--fuente-maquina);
+  font-style: normal;
+  font-size: 0.26em;
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #a3160e;
+}
+
+html[data-tema='trinchera'] .heroe-entrada {
+  color: #4a3827;
+}
+
+html[data-tema='trinchera'] .heroe-datos {
+  border: 3px double #1a120c;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+html[data-tema='trinchera'] .heroe-datos > div {
+  background: #f7ecd4;
+}
+
+html[data-tema='trinchera'] .heroe-datos dd {
+  font-family: var(--fuente-titulo);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #c2231a;
+}
+
+html[data-tema='trinchera'] .boton-primario {
+  border: 2px solid #1a120c;
+  background: #c2231a;
+  color: #fff7e8;
+  box-shadow: 5px 5px 0 #1a120c;
+}
+
+html[data-tema='trinchera'] .boton-primario:hover {
+  border-color: #1a120c;
+  background: #a3160e;
+  color: #fff7e8;
+}
+
+html[data-tema='trinchera'] .boton-fantasma {
+  border: 2px solid rgba(26, 18, 12, 0.55);
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .boton-fantasma:hover {
+  border-color: #1a120c;
+  color: #c2231a;
+}
+
+html[data-tema='trinchera'] .manifiesto {
+  border: 3px solid #1a120c;
+  border-left: 3px solid #1a120c;
+  background: #f7ecd4;
+  box-shadow:
+    9px 9px 0 rgba(194, 35, 26, 0.75),
+    0 26px 60px -40px rgba(60, 40, 20, 0.9);
+}
+
+html[data-tema='trinchera'] .manifiesto::before {
+  content: none;
+}
+
+html[data-tema='trinchera'] .manifiesto::after {
+  inset: 10px;
+  border: 1px solid rgba(194, 35, 26, 0.45);
+  background: none;
+}
+
+html[data-tema='trinchera'] .sello {
+  border: 2px solid #c2231a;
+  background: rgba(255, 255, 255, 0.4);
+  color: #b21c12;
+  letter-spacing: 0.3em;
+  transform: rotate(-2deg);
+}
+
+html[data-tema='trinchera'] .manifiesto h2 {
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  letter-spacing: 0.02em;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+html[data-tema='trinchera'] .manifiesto p {
+  color: #4a3827;
+}
+
+html[data-tema='trinchera'] .manifiesto-lista {
+  border-top-color: rgba(26, 18, 12, 0.3);
+}
+
+html[data-tema='trinchera'] .seccion-cabeza h2 {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+html[data-tema='trinchera'] .resultado,
+html[data-tema='trinchera'] .estado {
+  color: #5b4732;
+}
+
+html[data-tema='trinchera'] .buscador input,
+html[data-tema='trinchera'] .ordenador {
+  border: 1px solid rgba(26, 18, 12, 0.4);
+  background: #fbf3df;
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .filtro {
+  border: 1px solid rgba(26, 18, 12, 0.45);
+  color: #3d2c1d;
+}
+
+html[data-tema='trinchera'] .filtro[aria-pressed='true'] {
+  border-color: #c2231a;
+  background: #c2231a;
+  color: #fff7e8;
+}
+
+html[data-tema='trinchera'] .filtro[aria-pressed='true'] .filtro-cuenta {
+  background: rgba(20, 10, 6, 0.24);
+}
+
+html[data-tema='trinchera'] .tarjeta {
+  border: 3px solid #1a120c;
+  border-top: 12px solid #c2231a;
+  background: #f7ecd4;
+  color: #1a120c;
+  box-shadow:
+    7px 7px 0 #1a120c,
+    0 22px 44px -32px rgba(60, 40, 20, 0.9);
+}
+
+html[data-tema='trinchera'] .tarjeta::before {
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 3px 3px, rgba(26, 18, 12, 0.16) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.6), transparent 44%);
+  background-size: 7px 7px, auto;
+}
+
+html[data-tema='trinchera'] .tarjeta-portada {
+  border-right: 3px solid #1a120c;
+  background: #1a120c;
+}
+
+html[data-tema='trinchera'] .tarjeta-portada img {
+  filter: none;
+}
+
+html[data-tema='trinchera'] .tarjeta-anio {
+  border: 2px solid #f7ecd4;
+  background: rgba(26, 18, 12, 0.82);
+  color: #f7ecd4;
+}
+
+html[data-tema='trinchera'] .tarjeta-play {
+  border-color: #1a120c;
+  background: #c2231a;
+  color: #fff7e8;
+  box-shadow: 3px 3px 0 #1a120c;
+}
+
+html[data-tema='trinchera'] .tarjeta-cat {
+  color: #b21c12;
+}
+
+html[data-tema='trinchera'] .tarjeta-cat::before {
+  content: 'Comité · ';
+  color: #5b4732;
+}
+
+html[data-tema='trinchera'] .tarjeta-titulo {
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.1vw, 1.8rem);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+html[data-tema='trinchera'] .tarjeta-sinopsis {
+  color: #5b4732;
+}
+
+html[data-tema='trinchera'] .tarjeta-pie {
+  border-left-color: rgba(26, 18, 12, 0.35);
+}
+
+html[data-tema='trinchera'] .tarjeta-pie::before,
+html[data-tema='trinchera'] .tarjeta-pie::after {
+  box-shadow: inset 0 0 0 1px rgba(26, 18, 12, 0.24);
+}
+
+html[data-tema='trinchera'] .tarjeta-licencia::before {
+  content: 'Edición · ';
+}
+
+html[data-tema='trinchera'] .tarjeta-admite {
+  border-color: rgba(26, 18, 12, 0.6);
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .tarjeta-descarga {
+  border-color: rgba(26, 18, 12, 0.4);
+  background: rgba(26, 18, 12, 0.05);
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .tarjeta-descarga:hover {
+  border-color: #c2231a;
+  background: #c2231a;
+  color: #fff7e8;
+}
+
+html[data-tema='trinchera'] .como-rejilla {
+  border-color: rgba(26, 18, 12, 0.26);
+  background: rgba(255, 255, 255, 0.32);
+}
+
+html[data-tema='trinchera'] .paso {
+  border: 2px solid rgba(26, 18, 12, 0.28);
+  background: #f7ecd4;
+}
+
+html[data-tema='trinchera'] .paso-numero {
+  font-family: var(--fuente-titulo);
+  font-weight: 400;
+  color: rgba(194, 35, 26, 0.18);
+}
+
+html[data-tema='trinchera'] .pie {
+  border-top: 6px solid #c2231a;
+  background: linear-gradient(180deg, #f1e3c6, #e2cfa8);
+}
+
+html[data-tema='trinchera'] .modal {
+  border: 3px solid #1a120c;
+  background: #f7ecd4;
+  color: #1a120c;
+  box-shadow: 0 30px 80px -30px rgba(26, 18, 12, 0.8);
+}
+
+html[data-tema='trinchera'] .modal::backdrop {
+  background: rgba(26, 18, 12, 0.72);
+}
+
+html[data-tema='trinchera'] .modal-cerrar {
+  border-color: rgba(26, 18, 12, 0.4);
+  background: #efe0c2;
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .modal-principal h2 {
+  font-family: var(--fuente-titulo);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+html[data-tema='trinchera'] .modal-meta {
+  color: #5b4732;
+}
+
+html[data-tema='trinchera'] .modal-sinopsis {
+  border-left: 3px solid #c2231a;
+}
+
+html[data-tema='trinchera'] .modal-lateral {
+  border-left-color: rgba(26, 18, 12, 0.26);
+}
+
+html[data-tema='trinchera'] .ficha-datos dd a {
+  color: #1a120c;
+}
+
+html[data-tema='trinchera'] .aviso-toast {
+  border-color: #1a120c;
+  background: #1a120c;
+  color: #f7ecd4;
+}
+
+html[data-tema='trinchera'] .grano {
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
+/* --- Bloque: geometría constructivista, círculos y módulos --- */
+
+html[data-tema='bloque'] {
+  color-scheme: light;
+  --fondo: #e7e2d4;
+  --fondo-hondo: #d9d2bf;
+  --panel: #efeade;
+  --panel-alto: #f6f2e8;
+  --tinta: #111110;
+  --tinta-media: #3d3b34;
+  --tinta-tenue: #5a574d;
+  --rojo: #111110;
+  --rojo-claro: #111110;
+  --rojo-hondo: #000;
+  --oro: #111110;
+  --verde: #5c5a50;
+  --verde-claro: #8a8578;
+  --papel: #f6f2e8;
+  --papel-hondo: #ece7d9;
+  --papel-sombra: #c5beaa;
+  --tinta-papel: #111110;
+  --tinta-papel-media: #4a473e;
+  --rojo-papel: #111110;
+  --linea: rgba(17, 17, 16, 0.24);
+  --linea-fuerte: rgba(17, 17, 16, 0.46);
+  --linea-papel: rgba(17, 17, 16, 0.28);
+  --sombra: 0 24px 60px -38px rgba(17, 17, 16, 0.65);
+  --radio: 0px;
+  --fuente-titulo: 'Bodoni Moda', Didot, 'Times New Roman', serif;
+  --fuente-cuerpo: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --fuente-maquina: 'Courier Prime', 'Courier New', monospace;
+}
+
+html[data-tema='bloque'] body {
+  background:
+    radial-gradient(circle at 50% -14%, transparent 0 208px, rgba(17, 17, 16, 0.13) 208px 210px, transparent 210px),
+    radial-gradient(circle at 50% -14%, transparent 0 288px, rgba(17, 17, 16, 0.08) 288px 290px, transparent 290px),
+    radial-gradient(circle at 6px 6px, rgba(17, 17, 16, 0.07) 0 1.6px, transparent 2.1px) 0 0 / 26px 26px,
+    linear-gradient(115deg, transparent 0 70%, rgba(17, 17, 16, 0.06) 70% 74%, transparent 74%),
+    linear-gradient(180deg, #efeade 0%, #e7e2d4 55%, #d9d2bf 100%);
+}
+
+html[data-tema='bloque'] ::selection {
+  background: #111110;
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] a {
+  color: #111110;
+  text-decoration-color: rgba(17, 17, 16, 0.45);
+}
+
+html[data-tema='bloque'] a:hover {
+  color: #000;
+}
+
+html[data-tema='bloque'] .saltar {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] .cabecera {
+  background: #efeade;
+  border-bottom: 4px solid #111110;
+}
+
+html[data-tema='bloque'] .cabecera::after {
+  content: none;
+}
+
+html[data-tema='bloque'] .marca-titulo {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #111110;
+}
+
+html[data-tema='bloque'] .marca-sub {
+  color: #3d3b34;
+  letter-spacing: 0.3em;
+}
+
+html[data-tema='bloque'] .temas {
+  border: 2px solid #111110;
+  background: #f6f2e8;
+}
+
+html[data-tema='bloque'] .tema {
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .tema:hover {
+  border-color: #111110;
+  color: #111110;
+}
+
+html[data-tema='bloque'] .tema[aria-pressed='true'] {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] .antetitulo {
+  color: #111110;
+  letter-spacing: 0.3em;
+}
+
+html[data-tema='bloque'] .heroe {
+  position: relative;
+}
+
+html[data-tema='bloque'] .heroe::before {
+  content: '';
+  position: absolute;
+  top: -34px;
+  right: 2%;
+  width: 300px;
+  height: 300px;
+  border: 14px solid rgba(17, 17, 16, 0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+html[data-tema='bloque'] .heroe::after {
+  content: '';
+  position: absolute;
+  right: 9%;
+  bottom: 24px;
+  width: 132px;
+  height: 132px;
+  background: repeating-linear-gradient(90deg, rgba(17, 17, 16, 0.12) 0 11px, transparent 11px 22px);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+html[data-tema='bloque'] .heroe > * {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-tema='bloque'] .heroe h1 {
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5.4vw, 5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+html[data-tema='bloque'] .heroe-titulo {
+  text-transform: uppercase;
+  text-shadow: 10px 10px 0 rgba(17, 17, 16, 0.1);
+}
+
+html[data-tema='bloque'] .heroe-titulo-sub {
+  margin-top: 0.3em;
+  font-family: var(--fuente-maquina);
+  font-style: normal;
+  font-size: 0.26em;
+  letter-spacing: 0.32em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .heroe-entrada {
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .heroe-datos {
+  border: 2px solid #111110;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+html[data-tema='bloque'] .heroe-datos > div {
+  background: #f6f2e8;
+}
+
+html[data-tema='bloque'] .heroe-datos dd {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #111110;
+}
+
+html[data-tema='bloque'] .boton {
+  border: 2px solid #111110;
+}
+
+html[data-tema='bloque'] .boton-primario {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+  box-shadow: 6px 6px 0 rgba(17, 17, 16, 0.16);
+}
+
+html[data-tema='bloque'] .boton-primario:hover {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+html[data-tema='bloque'] .boton-fantasma {
+  border: 2px solid rgba(17, 17, 16, 0.55);
+  color: #111110;
+}
+
+html[data-tema='bloque'] .boton-fantasma:hover {
+  border-color: #111110;
+  color: #111110;
+}
+
+html[data-tema='bloque'] .manifiesto {
+  border: 3px solid #111110;
+  border-left: 3px solid #111110;
+  background:
+    radial-gradient(circle at 88% 18%, transparent 0 74px, rgba(17, 17, 16, 0.1) 74px 76px, transparent 76px),
+    #f6f2e8;
+  box-shadow:
+    12px 12px 0 rgba(17, 17, 16, 0.14),
+    0 26px 60px -40px rgba(17, 17, 16, 0.7);
+}
+
+html[data-tema='bloque'] .manifiesto::before {
+  content: none;
+}
+
+html[data-tema='bloque'] .manifiesto::after {
+  inset: 14px;
+  border: 1px solid rgba(17, 17, 16, 0.25);
+  background: none;
+}
+
+html[data-tema='bloque'] .sello {
+  border: 2px solid #111110;
+  color: #111110;
+  letter-spacing: 0.3em;
+  transform: none;
+}
+
+html[data-tema='bloque'] .manifiesto h2 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.06;
+  text-transform: uppercase;
+}
+
+html[data-tema='bloque'] .manifiesto p {
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .manifiesto-lista {
+  border-top-color: rgba(17, 17, 16, 0.28);
+}
+
+html[data-tema='bloque'] .seccion-cabeza h2 {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+html[data-tema='bloque'] .resultado,
+html[data-tema='bloque'] .estado {
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .buscador input,
+html[data-tema='bloque'] .ordenador {
+  border: 2px solid rgba(17, 17, 16, 0.35);
+  background: #fbf7ee;
+  color: #111110;
+}
+
+html[data-tema='bloque'] .filtro {
+  border: 2px solid rgba(17, 17, 16, 0.4);
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .filtro[aria-pressed='true'] {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] .filtro[aria-pressed='true'] .filtro-cuenta {
+  background: rgba(246, 242, 232, 0.18);
+}
+
+html[data-tema='bloque'] .tarjeta {
+  border: 3px solid #111110;
+  background: #f6f2e8;
+  color: #111110;
+  box-shadow:
+    9px 9px 0 rgba(17, 17, 16, 0.2),
+    0 22px 44px -32px rgba(17, 17, 16, 0.7);
+}
+
+html[data-tema='bloque'] .tarjeta:hover {
+  box-shadow:
+    13px 13px 0 rgba(17, 17, 16, 0.24),
+    0 26px 50px -32px rgba(17, 17, 16, 0.75);
+}
+
+html[data-tema='bloque'] .tarjeta::before {
+  opacity: 0.2;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 2px 2px, rgba(17, 17, 16, 0.18) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 82% 12%, transparent 0 48px, rgba(17, 17, 16, 0.1) 48px 50px, transparent 50px);
+  background-size: 6px 6px, auto;
+}
+
+html[data-tema='bloque'] .tarjeta-portada {
+  border-right: 3px solid #111110;
+  background: #111110;
+}
+
+html[data-tema='bloque'] .tarjeta-portada img {
+  filter: grayscale(1) contrast(1.12);
+}
+
+html[data-tema='bloque'] .tarjeta-anio {
+  border: 2px solid #f6f2e8;
+  background: rgba(17, 17, 16, 0.84);
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] .tarjeta-play {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+  box-shadow: 4px 4px 0 rgba(246, 242, 232, 0.35);
+}
+
+html[data-tema='bloque'] .tarjeta-cat {
+  color: #111110;
+}
+
+html[data-tema='bloque'] .tarjeta-cat::before {
+  content: 'Módulo · ';
+  color: #4a473e;
+}
+
+html[data-tema='bloque'] .tarjeta-titulo {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  text-transform: uppercase;
+}
+
+html[data-tema='bloque'] .tarjeta-sinopsis {
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .tarjeta-pie {
+  border-left: 3px solid rgba(17, 17, 16, 0.3);
+}
+
+html[data-tema='bloque'] .tarjeta-pie::before,
+html[data-tema='bloque'] .tarjeta-pie::after {
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 16, 0.22);
+}
+
+html[data-tema='bloque'] .tarjeta-licencia::before {
+  content: 'Pieza · ';
+}
+
+html[data-tema='bloque'] .tarjeta-admite {
+  border-color: rgba(17, 17, 16, 0.6);
+  color: #111110;
+}
+
+html[data-tema='bloque'] .tarjeta-descarga {
+  border: 2px solid rgba(17, 17, 16, 0.4);
+  background: rgba(17, 17, 16, 0.04);
+  color: #111110;
+}
+
+html[data-tema='bloque'] .tarjeta-descarga:hover {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] .como-rejilla {
+  border-color: rgba(17, 17, 16, 0.26);
+  background: rgba(255, 255, 255, 0.32);
+}
+
+html[data-tema='bloque'] .paso {
+  border: 2px solid rgba(17, 17, 16, 0.3);
+  background: #f6f2e8;
+}
+
+html[data-tema='bloque'] .paso-numero {
+  color: rgba(17, 17, 16, 0.13);
+}
+
+html[data-tema='bloque'] .pie {
+  border-top: 10px solid #111110;
+  background: linear-gradient(180deg, #efeade, #d9d2bf);
+}
+
+html[data-tema='bloque'] .modal {
+  border: 3px solid #111110;
+  background: #f6f2e8;
+  color: #111110;
+  box-shadow: 0 30px 80px -30px rgba(17, 17, 16, 0.85);
+}
+
+html[data-tema='bloque'] .modal::backdrop {
+  background: rgba(17, 17, 16, 0.74);
+}
+
+html[data-tema='bloque'] .modal-cerrar {
+  border-color: rgba(17, 17, 16, 0.4);
+  background: #ece7d9;
+  color: #111110;
+}
+
+html[data-tema='bloque'] .modal-principal h2 {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+html[data-tema='bloque'] .modal-meta {
+  color: #3d3b34;
+}
+
+html[data-tema='bloque'] .modal-sinopsis {
+  border-left: 3px solid #111110;
+}
+
+html[data-tema='bloque'] .modal-lateral {
+  border-left-color: rgba(17, 17, 16, 0.26);
+}
+
+html[data-tema='bloque'] .ficha-datos dd a {
+  color: #111110;
+}
+
+html[data-tema='bloque'] .aviso-toast {
+  border-color: #111110;
+  background: #111110;
+  color: #f6f2e8;
+}
+
+html[data-tema='bloque'] .grano {
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 720px) {
+  html[data-tema='trinchera'] .heroe::before,
+  html[data-tema='bloque'] .heroe::before,
+  html[data-tema='bloque'] .heroe::after {
+    display: none;
+  }
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

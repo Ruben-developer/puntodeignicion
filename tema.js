@@ -5,27 +5,45 @@
   'use strict';
 
   const CLAVE = 'vapi-tema';
-  const TEMAS = ['nitrato', 'plata', 'cianotipo', 'ambar', 'consigna'];
+  const TEMAS = [
+    'nitrato',
+    'nitrato-rojo',
+    'plata',
+    'cianotipo',
+    'ambar',
+    'consigna',
+    'trinchera',
+    'bloque'
+  ];
   const NOMBRES = {
     nitrato: 'Nitrato',
+    'nitrato-rojo': 'Nitrato rojo',
     plata: 'Plata',
     cianotipo: 'Cianotipo',
     ambar: 'Ámbar',
-    consigna: 'Consigna'
+    consigna: 'Consigna',
+    trinchera: 'Trinchera',
+    bloque: 'Bloque'
   };
   const COLORES = {
     nitrato: '#0b0b0a',
+    'nitrato-rojo': '#0a0908',
     plata: '#11171a',
     cianotipo: '#061a2b',
     ambar: '#17100a',
-    consigna: '#0a0908'
+    consigna: '#0a0908',
+    trinchera: '#e9d8b4',
+    bloque: '#e7e2d4'
   };
   const CARPETAS = {
     nitrato: '',
+    'nitrato-rojo': 'nitrato-rojo/',
     plata: 'plata/',
     cianotipo: 'cianotipo/',
     ambar: 'ambar/',
-    consigna: 'consigna/'
+    consigna: 'consigna/',
+    trinchera: 'trinchera/',
+    bloque: 'bloque/'
   };
 
   const raiz = document.documentElement;
