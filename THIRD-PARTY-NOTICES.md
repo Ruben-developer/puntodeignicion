@@ -49,6 +49,23 @@ archivo.
 | Antonio Torres, anarquista y miliciano (2011) | CC BY-NC-ND 4.0 | <https://archive.org/details/vencidxs-2> |
 | Lucio Urtubia, obrero y anarquista (2011) | CC BY-NC-ND 4.0 | <https://archive.org/details/vencidxs-61> |
 | La guerra eco-anarquista contra el progreso en Chile (2016) | CC BY-NC 4.0 | <https://archive.org/details/LaGuerraEcoAnarquistaContraElProgresoEnChile_201805> |
+| En la brecha: aspectos de nuestra revolución proletaria (1937) | CC BY-NC-ND 2.5/es | <https://archive.org/details/EnLaBrecha> |
+| La silla vacía (1937) | CC BY-NC-ND 2.5/es | <https://archive.org/details/LaSillaVaca_150> |
+| Simón, hijo del pueblo (2013) | CC BY-NC 4.0 | <https://archive.org/details/SimonHijoDelPueblo> |
+| Hay un lugar: anarquistas de la Ciudad de México (2010) | CC BY-NC 4.0 | <https://archive.org/details/HayUnLugarAnarquistasDeLaCiudadDeMxico> |
+| Cuaderno chiapaneco I: solidaridad de crepúsculo (2026) | CC0 1.0 | <https://archive.org/details/cuaderno-chiapaneco-i.-solidaridad-de-crepusculo> |
+| El despertar de la revuelta: piedra contra la bala (2020) | Dominio público (PD Mark 1.0) | <https://archive.org/details/eldespertardelarevuelta> |
+| AMOR&RABIA (2014) | Dominio público (PD Mark 1.0) | <https://archive.org/details/AMORYRABIA> |
+| Cascajo (2021) | CC BY-NC-SA 4.0 | <https://archive.org/details/cascajo-AL> |
+| Huellas (2015) | CC BY-NC-ND 4.0 | <https://archive.org/details/HUELLASHD> |
+| Surcos en la realidad (2017) | CC BY-NC-ND 3.0 | <https://archive.org/details/SURCOSENLAREALIDAD> |
+| Virginia Bolten (2019) | Sin licencia declarada | <https://archive.org/details/virginiabolten> |
+| Juana Rouco (2019) | Sin licencia declarada | <https://archive.org/details/juanarouco> |
+| Los ojos de América (2015) | Sin licencia declarada | <https://archive.org/details/losojosdeamerica> |
+| Presidio. Experimento Ushuaia: los anarquistas (2018) | Sin licencia declarada | <https://archive.org/details/presidioexperimentoushuaialosanarquistas> |
+| Durruti, hijo del pueblo (2021) | Sin licencia declarada | <https://archive.org/details/durruti-hijo-del-pueblo> |
+| La Patagonia rebelde (1974) | Sin licencia declarada | <https://archive.org/details/lapatagoniarebelde> |
+| Néstor Makhno, campesino de Ucrania (1996) | Sin licencia declarada | <https://archive.org/details/NstorMakhnoCampesinoDeUcrania> |
 
 Internet Archive presta el servicio de alojamiento y reproducción; su uso se
 rige por los términos del propio archivo.

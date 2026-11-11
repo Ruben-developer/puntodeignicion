@@ -10,7 +10,7 @@ tiempo de ejecución.
 
 ## Qué contiene
 
-- Catálogo de **21 obras** con audio íntegramente en español, alojadas en
+- Catálogo de **38 obras** con audio íntegramente en español, alojadas en
   Internet Archive, con enlaces reales de reproducción y descarga. Abarcan de
   1936 a 2026; las obras mudas, en inglés o bilingües quedan fuera de este
   criterio. El idioma se comprobó con reconocimiento automático del habla sobre
@@ -34,15 +34,15 @@ tiempo de ejecución.
 
 ## Dónde se reproducen y descargan
 
-El catálogo reúne 21 obras entre 1936 y 2026. Cada ficha enlaza al MP4 alojado
+El catálogo reúne 38 obras entre 1936 y 2026. Cada ficha enlaza al MP4 alojado
 en Internet Archive y al mismo archivo para su descarga:
 
 | Categoría | Obras |
 | --- | ---: |
-| Documentales Libres | 5 |
-| Memoria Obrera | 9 |
-| Revueltas Históricas | 4 |
-| Propaganda y Revuelta | 3 |
+| Documentales Libres | 10 |
+| Memoria Obrera | 16 |
+| Revueltas Históricas | 7 |
+| Propaganda y Revuelta | 5 |
 
 La lista completa, con título, año, duración, licencia y enlaces, está en
 [`datos/peliculas.json`](datos/peliculas.json). Al pulsar «Proyectar», el
