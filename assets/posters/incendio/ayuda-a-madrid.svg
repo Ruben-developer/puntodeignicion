@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-ayuda-a-madrid desc-ayuda-a-madrid">
+  <title id="titulo-ayuda-a-madrid">Cartel de ¡¡Ayuda a Madrid!!</title>
+  <desc id="desc-ayuda-a-madrid">Cartel de la sala Incendio para ¡¡Ayuda a Madrid!!, 1936, dirigida por CNT-FAI.</desc>
+  <defs>
+    <linearGradient id="brasa-ayuda-a-madrid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff3df"/>
+      <stop offset=".45" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ff5a1e"/>
+    </linearGradient>
+    <radialGradient id="foco-ayuda-a-madrid" cx=".5" cy=".46" r=".62">
+      <stop offset="0" stop-color="#ff6a2a" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ff6a2a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hollin-ayuda-a-madrid" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch" result="ruido"/>
+      <feColorMatrix in="ruido" type="saturate" values="0" result="gris"/>
+      <feComponentTransfer in="gris" result="tenue">
+        <feFuncA type="table" tableValues="0 .1"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="tenue" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="900" fill="#0b0503"/>
+  <rect width="600" height="900" fill="url(#foco-ayuda-a-madrid)"/>
+  <g><circle cx="65" cy="605" r="3.0" fill="#ffb347" opacity="0.53"/><circle cx="429" cy="680" r="2.3" fill="#ffb347" opacity="0.26"/><circle cx="410" cy="649" r="1.2" fill="#ffb347" opacity="0.58"/><circle cx="364" cy="605" r="1.5" fill="#ffb347" opacity="0.52"/><circle cx="407" cy="390" r="3.5" fill="#ffb347" opacity="0.35"/><circle cx="71" cy="691" r="2.7" fill="#ffb347" opacity="0.19"/><circle cx="142" cy="727" r="1.5" fill="#ffb347" opacity="0.42"/><circle cx="67" cy="326" r="3.1" fill="#ffb347" opacity="0.58"/><circle cx="336" cy="197" r="2.1" fill="#ffb347" opacity="0.42"/><circle cx="393" cy="747" r="3.2" fill="#ffb347" opacity="0.49"/><circle cx="420" cy="408" r="1.7" fill="#ffb347" opacity="0.61"/><circle cx="157" cy="249" r="1.8" fill="#ffb347" opacity="0.31"/><circle cx="267" cy="524" r="2.3" fill="#ffb347" opacity="0.41"/><circle cx="172" cy="389" r="1.9" fill="#ffb347" opacity="0.70"/><circle cx="197" cy="624" r="1.8" fill="#ffb347" opacity="0.63"/><circle cx="149" cy="537" r="2.2" fill="#ffb347" opacity="0.19"/><circle cx="518" cy="364" r="2.4" fill="#ffb347" opacity="0.50"/><circle cx="266" cy="555" r="2.1" fill="#ffb347" opacity="0.72"/><circle cx="222" cy="507" r="2.7" fill="#ffb347" opacity="0.44"/><circle cx="187" cy="574" r="3.0" fill="#ffb347" opacity="0.48"/><circle cx="243" cy="368" r="2.0" fill="#ffb347" opacity="0.24"/><circle cx="61" cy="469" r="2.6" fill="#ffb347" opacity="0.20"/><circle cx="188" cy="433" r="1.0" fill="#ffb347" opacity="0.64"/><circle cx="166" cy="413" r="2.4" fill="#ffb347" opacity="0.69"/><circle cx="406" cy="727" r="3.1" fill="#ffb347" opacity="0.29"/><circle cx="491" cy="219" r="1.0" fill="#ffb347" opacity="0.69"/></g>
+
+  <path d="M18 22 L582 16 L586 878 L14 884 Z" fill="none" stroke="#7d2b10" stroke-width="2" stroke-opacity=".85"/>
+  <path d="M27 35 L573 29 L577 866 L23 872 Z" fill="none" stroke="#ff7a3c" stroke-width="1" stroke-opacity=".28"/>
+
+  <text x="300" y="66" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="6" fill="#ffb347">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="88" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="10" letter-spacing="4" fill="#c7a98e">PUNTO DE IGNICIÓN · CINE EN LLAMAS</text>
+  <path d="M72 106 L528 106" stroke="#7d2b10" stroke-width="2"/>
+
+  <text x="300" y="590" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="225" fill="none" stroke="#ff7a3c" stroke-width="2" stroke-opacity=".08">1936</text>
+  <g transform="translate(300 320) scale(0.86)">
+      <g>
+        <path d="M-120 -55 L15 -110 L15 110 L-120 55 Z" fill="#ffb347" opacity=".14"/>
+        <path d="M-120 -55 L15 -110 L15 110 L-120 55 Z" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-80 55 L-55 55 L-55 140 L-80 140 Z" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-25 30 L-25 90" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M50 -55 Q100 -55 100 0 Q100 55 50 55" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M80 -90 Q150 -90 150 0 Q150 90 80 90" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
+        <circle cx="45" cy="-45" r="8" fill="#ffb347"/>
+        <circle cx="45" cy="45" r="8" fill="#ffb347"/>
+      </g></g>
+
+  <text x="300" y="478" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="5" fill="#ff9a5c">PROPAGANDA Y REVUELTA</text>
+  <g transform="translate(300 0) scale(.86 1)">
+    <text text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="1" fill="url(#brasa-ayuda-a-madrid)"><tspan x="300" y="591">¡¡AYUDA A</tspan><tspan x="300" y="660">MADRID!!</tspan></text>
+  </g>
+  <text x="300" y="714" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="15" fill="#c7a98e" opacity=".8">¡¡Ayuda a Madrid!!</text>
+
+  <path d="M70 734 L530 734" stroke="#ff7a3c" stroke-width="1.5" stroke-opacity=".55"/>
+  <text x="70" y="764" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="2" fill="#ffcf9a">1936 · 7 min</text>
+  <text x="530" y="764" text-anchor="end" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="11" letter-spacing="2" fill="#c7a98e">Dominio público (PD Mark 1.0)</text>
+  <text x="70" y="798" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#f7e8d5">Dir. CNT-FAI</text>
+  <text x="530" y="798" text-anchor="end" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="12" letter-spacing="3" fill="#ff7a3c">DESCARGA LIBRE</text>
+
+  <text x="300" y="842" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="10" letter-spacing="4" fill="#9a8070">NADA QUE ARDA DOS VECES</text>
+  <path d="M0 900 L0 870 L22 878 L47 866 L74 875 L101 864 L130 876 L158 867 L188 878 L219 866 L247 875 L277 865 L306 877 L336 866 L365 876 L394 865 L424 877 L453 866 L482 875 L512 864 L541 876 L569 866 L600 874 L600 900 Z" fill="#050201"/>
+
+  <rect x="20" y="20" width="560" height="860" fill="none" stroke="#f7e8d5" stroke-width="1" stroke-opacity=".12" filter="url(#hollin-ayuda-a-madrid)"/>
+</svg>

@@ -18,11 +18,15 @@
 - [ ] Guardar filtros en la URL (`?q=…&cat=…`) para compartir una vista concreta.
 - [ ] Añadir una vista de "obra anterior / siguiente" dentro de la ficha.
 - [ ] Valorar una página de fuentes y otra de licencias, enlazadas desde el pie.
+- [ ] Probar en beta los tres estilos (Taquilla, Nitrato e Incendio) y decidir si
+      se mantienen todos, se ajusta alguno o queda uno como definitivo.
 
 ## Calidad
 
 - [ ] Auditoría con lector de pantalla (NVDA o VoiceOver) en escritorio y móvil.
-- [ ] Revisar contraste de los textos pequeños sobre el fondo sepia.
+- [ ] Repetir la auditoría de contraste (WCAG AA) al añadir textos pequeños en
+      cualquiera de los tres estilos; la última pasada dejó Taquilla, Nitrato e
+      Incendio por encima de 4,5:1.
 - [ ] Pruebas en navegadores antiguos: comprobar `dialog`, `aspect-ratio`,
       `line-clamp` y `backdrop-filter`.
 - [ ] Añadir un flujo programado que compruebe enlaces de Internet Archive y

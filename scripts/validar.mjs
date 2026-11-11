@@ -176,6 +176,7 @@ const requeridos = [
   'index.html',
   'styles.css',
   'app.js',
+  'tema.js',
   'assets/fonts.css',
   'assets/logo-vapi.png',
   'assets/favicon.png',
@@ -203,7 +204,7 @@ if (fuentesCss) {
 
 const indexHtml = leerTexto('index.html');
 if (indexHtml) {
-  for (const recurso of ['assets/fonts.css', 'styles.css', 'app.js']) {
+  for (const recurso of ['assets/fonts.css', 'styles.css', 'app.js', 'tema.js']) {
     if (!indexHtml.includes(recurso)) errores.push(`index.html: no referencia «${recurso}»`);
   }
   if (/<script\b[^>]+src=["']https?:\/\//i.test(indexHtml)) {

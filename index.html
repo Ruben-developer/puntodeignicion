@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-tema="taquilla">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,7 @@
   <link rel="canonical" href="https://puntodeignicion.antarquia.cl/">
   <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <script src="tema.js"></script>
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -60,6 +61,18 @@
         </span>
       </a>
       <p class="cabecera-cita">«La pantalla en llamas contra la apatía institucional y el celuloide comercial.»</p>
+      <div class="temas" role="group" aria-label="Estilo visual del archivo">
+        <span class="temas-etiqueta" aria-hidden="true">Estilo</span>
+        <button class="tema" type="button" data-estilo="taquilla" aria-pressed="true" title="Taquilla: papel, boletos y verde de sala">
+          <span class="tema-punto" aria-hidden="true"></span><span>Taquilla</span>
+        </button>
+        <button class="tema" type="button" data-estilo="nitrato" aria-pressed="false" title="Nitrato: cine mudo en blanco y negro">
+          <span class="tema-punto" aria-hidden="true"></span><span>Nitrato</span>
+        </button>
+        <button class="tema" type="button" data-estilo="incendio" aria-pressed="false" title="Incendio: carbón, brasas y cartel incendiario">
+          <span class="tema-punto" aria-hidden="true"></span><span>Incendio</span>
+        </button>
+      </div>
     </div>
   </header>
 

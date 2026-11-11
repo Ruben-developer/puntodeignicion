@@ -27,14 +27,14 @@
 
   <text x="300" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="235" fill="none" stroke="#8b261b" stroke-width="2" opacity=".12">1996</text>
   <rect x="65" y="125" width="470" height="405" fill="url(#trama)" opacity=".4"/>
-  
-      <g transform="translate(300 320)">
+  <g transform="translate(300 320) scale(1)">
+      <g>
         <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="#c59b27" opacity=".14"/>
         <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M0 -45 C28 5 42 28 42 58 C42 95 22 112 0 112 C-22 112 -42 95 -42 58 C-42 28 -28 5 0 -45 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M-160 95 L-115 95 M115 95 L160 95 M-150 45 L-118 45 M118 45 L150 45" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
         <circle cx="0" cy="35" r="6" fill="#c59b27"/>
-      </g>
+      </g></g>
 
   <text x="300" y="615" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#8b261b">REVUELTAS HISTÓRICAS</text>
   <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="42" letter-spacing="1" fill="#2c221e"><tspan x="300" y="675">NÉSTOR MAKHNO,</tspan><tspan x="300" y="720">CAMPESINO DE UCRANIA</tspan></text>

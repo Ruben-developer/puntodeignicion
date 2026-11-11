@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-labelledby="titulo-vivir-la-utopia desc-vivir-la-utopia">
+  <title id="titulo-vivir-la-utopia">Cartel de Vivir la utopía</title>
+  <desc id="desc-vivir-la-utopia">Cartel de la sala Incendio para Vivir la utopía, 1997, dirigida por Juan Gamero.</desc>
+  <defs>
+    <linearGradient id="brasa-vivir-la-utopia" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff3df"/>
+      <stop offset=".45" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ff5a1e"/>
+    </linearGradient>
+    <radialGradient id="foco-vivir-la-utopia" cx=".5" cy=".46" r=".62">
+      <stop offset="0" stop-color="#ff6a2a" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#ff6a2a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hollin-vivir-la-utopia" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" stitchTiles="stitch" result="ruido"/>
+      <feColorMatrix in="ruido" type="saturate" values="0" result="gris"/>
+      <feComponentTransfer in="gris" result="tenue">
+        <feFuncA type="table" tableValues="0 .1"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="tenue" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <rect width="600" height="900" fill="#0b0503"/>
+  <rect width="600" height="900" fill="url(#foco-vivir-la-utopia)"/>
+  <g><circle cx="66" cy="766" r="2.3" fill="#ffb347" opacity="0.26"/><circle cx="447" cy="683" r="2.2" fill="#ffb347" opacity="0.66"/><circle cx="315" cy="623" r="3.3" fill="#ffb347" opacity="0.46"/><circle cx="92" cy="495" r="1.6" fill="#ffb347" opacity="0.26"/><circle cx="131" cy="601" r="3.0" fill="#ffb347" opacity="0.51"/><circle cx="338" cy="736" r="1.5" fill="#ffb347" opacity="0.32"/><circle cx="143" cy="762" r="2.9" fill="#ffb347" opacity="0.71"/><circle cx="213" cy="677" r="2.7" fill="#ffb347" opacity="0.48"/><circle cx="506" cy="212" r="3.1" fill="#ffb347" opacity="0.68"/><circle cx="353" cy="631" r="1.9" fill="#ffb347" opacity="0.35"/><circle cx="300" cy="444" r="2.1" fill="#ffb347" opacity="0.24"/><circle cx="208" cy="448" r="1.1" fill="#ffb347" opacity="0.60"/><circle cx="309" cy="352" r="1.1" fill="#ffb347" opacity="0.26"/><circle cx="260" cy="711" r="1.1" fill="#ffb347" opacity="0.23"/><circle cx="303" cy="416" r="3.5" fill="#ffb347" opacity="0.21"/><circle cx="95" cy="722" r="2.9" fill="#ffb347" opacity="0.69"/><circle cx="394" cy="701" r="2.3" fill="#ffb347" opacity="0.68"/><circle cx="349" cy="179" r="1.1" fill="#ffb347" opacity="0.67"/><circle cx="139" cy="112" r="1.5" fill="#ffb347" opacity="0.71"/><circle cx="199" cy="199" r="2.2" fill="#ffb347" opacity="0.57"/><circle cx="196" cy="499" r="1.2" fill="#ffb347" opacity="0.43"/><circle cx="413" cy="744" r="1.1" fill="#ffb347" opacity="0.52"/><circle cx="144" cy="551" r="2.1" fill="#ffb347" opacity="0.52"/><circle cx="321" cy="233" r="2.2" fill="#ffb347" opacity="0.67"/><circle cx="234" cy="177" r="1.8" fill="#ffb347" opacity="0.40"/><circle cx="397" cy="274" r="2.4" fill="#ffb347" opacity="0.21"/></g>
+
+  <path d="M18 22 L582 16 L586 878 L14 884 Z" fill="none" stroke="#7d2b10" stroke-width="2" stroke-opacity=".85"/>
+  <path d="M27 35 L573 29 L577 866 L23 872 Z" fill="none" stroke="#ff7a3c" stroke-width="1" stroke-opacity=".28"/>
+
+  <text x="300" y="66" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="16" letter-spacing="6" fill="#ffb347">VIDEOTECA ÁCRATA</text>
+  <text x="300" y="88" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="10" letter-spacing="4" fill="#c7a98e">PUNTO DE IGNICIÓN · CINE EN LLAMAS</text>
+  <path d="M72 106 L528 106" stroke="#7d2b10" stroke-width="2"/>
+
+  <text x="300" y="590" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="225" fill="none" stroke="#ff7a3c" stroke-width="2" stroke-opacity=".08">1997</text>
+  <g transform="translate(300 320) scale(0.86)">
+      <g>
+        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="#ffb347" opacity=".14"/>
+        <path d="M0 -145 C55 -60 90 -20 90 35 C90 100 48 145 0 145 C-48 145 -90 100 -90 35 C-90 -20 -55 -60 0 -145 Z" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M0 -45 C28 5 42 28 42 58 C42 95 22 112 0 112 C-22 112 -42 95 -42 58 C-42 28 -28 5 0 -45 Z" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M-160 95 L-115 95 M115 95 L160 95 M-150 45 L-118 45 M118 45 L150 45" fill="none" stroke="#ff7a3c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>
+        <circle cx="0" cy="35" r="6" fill="#ffb347"/>
+      </g></g>
+
+  <text x="300" y="478" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14" letter-spacing="5" fill="#ff9a5c">REVUELTAS HISTÓRICAS</text>
+  <g transform="translate(300 0) scale(.86 1)">
+    <text text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="64" letter-spacing="1" fill="url(#brasa-vivir-la-utopia)"><tspan x="300" y="660">VIVIR LA UTOPÍA</tspan></text>
+  </g>
+  <text x="300" y="714" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="15" fill="#c7a98e" opacity=".8">Living Utopia</text>
+
+  <path d="M70 734 L530 734" stroke="#ff7a3c" stroke-width="1.5" stroke-opacity=".55"/>
+  <text x="70" y="764" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="15" letter-spacing="2" fill="#ffcf9a">1997 · 1 h 35 min</text>
+  <text x="530" y="764" text-anchor="end" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="11" letter-spacing="2" fill="#c7a98e">CC BY-NC-SA 3.0</text>
+  <text x="70" y="798" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#f7e8d5">Dir. Juan Gamero</text>
+  <text x="530" y="798" text-anchor="end" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="12" letter-spacing="3" fill="#ff7a3c">DESCARGA LIBRE</text>
+
+  <text x="300" y="842" text-anchor="middle" font-family="'Arial Narrow', 'Helvetica Neue', Arial, sans-serif" font-size="10" letter-spacing="4" fill="#9a8070">NADA QUE ARDA DOS VECES</text>
+  <path d="M0 900 L0 870 L22 878 L47 866 L74 875 L101 864 L130 876 L158 867 L188 878 L219 866 L247 875 L277 865 L306 877 L336 866 L365 876 L394 865 L424 877 L453 866 L482 875 L512 864 L541 876 L569 866 L600 874 L600 900 Z" fill="#050201"/>
+
+  <rect x="20" y="20" width="560" height="860" fill="none" stroke="#f7e8d5" stroke-width="1" stroke-opacity=".12" filter="url(#hollin-vivir-la-utopia)"/>
+</svg>

@@ -27,8 +27,8 @@
 
   <text x="300" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="235" fill="none" stroke="#8b261b" stroke-width="2" opacity=".12">1937</text>
   <rect x="65" y="125" width="470" height="405" fill="url(#trama)" opacity=".4"/>
-  
-      <g transform="translate(300 320)">
+  <g transform="translate(300 320) scale(1)">
+      <g>
         <path d="M-120 -55 L15 -110 L15 110 L-120 55 Z" fill="#c59b27" opacity=".14"/>
         <path d="M-120 -55 L15 -110 L15 110 L-120 55 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M-80 55 L-55 55 L-55 140 L-80 140 Z" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -37,7 +37,7 @@
         <path d="M80 -90 Q150 -90 150 0 Q150 90 80 90" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
         <circle cx="45" cy="-45" r="8" fill="#c59b27"/>
         <circle cx="45" cy="45" r="8" fill="#c59b27"/>
-      </g>
+      </g></g>
 
   <text x="300" y="598" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#8b261b">PROPAGANDA Y REVUELTA</text>
   <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="50" letter-spacing="1" fill="#241a15"><tspan x="300" y="666">¡NOSOTROS SOMOS</tspan><tspan x="300" y="720">ASÍ!</tspan></text>

@@ -35,6 +35,15 @@
     }
   };
 
+  /* Tema visual activo y ruta del cartel correspondiente. */
+  const temaActual = () => document.documentElement.dataset.tema || 'taquilla';
+  const cartelDelTema = (poster) => (
+    window.VAPITema ? window.VAPITema.cartel(poster, temaActual()) : poster
+  );
+  const nombreTema = (tema) => (
+    window.VAPITema && window.VAPITema.NOMBRES[tema] ? window.VAPITema.NOMBRES[tema] : tema
+  );
+
   function icono(id) {
     const svg = document.createElementNS(SVG, 'svg');
     svg.setAttribute('class', 'icono');
@@ -191,7 +200,8 @@
     portada.setAttribute('aria-label', `Abrir la ficha de ${pelicula.titulo}`);
 
     const imagen = document.createElement('img');
-    imagen.src = pelicula.poster;
+    imagen.dataset.poster = pelicula.poster;
+    imagen.src = cartelDelTema(pelicula.poster);
     imagen.alt = '';
     imagen.width = 600;
     imagen.height = 900;
@@ -372,7 +382,7 @@
     asignarTexto('fichaFuenteTexto', fuenteTexto);
 
     if (portadaImagen) {
-      portadaImagen.src = pelicula.poster;
+      portadaImagen.src = cartelDelTema(pelicula.poster);
       portadaImagen.alt = `Cartel de ${pelicula.titulo}`;
     }
     if (enlaceError) enlaceError.href = pelicula.fuente;
@@ -486,6 +496,38 @@
   }
 
   /* ----------------------------------------------------------
+     Estilo visual
+     ---------------------------------------------------------- */
+
+  function sincronizarTema() {
+    const tema = temaActual();
+
+    $$('.tema').forEach((boton) => {
+      boton.setAttribute('aria-pressed', String(boton.dataset.estilo === tema));
+    });
+
+    $$('.tarjeta-portada img[data-poster]').forEach((imagen) => {
+      const ruta = cartelDelTema(imagen.dataset.poster);
+      if (imagen.getAttribute('src') !== ruta) imagen.src = ruta;
+    });
+
+    if (estado.abierta && portadaImagen) {
+      portadaImagen.src = cartelDelTema(estado.abierta.poster);
+    }
+  }
+
+  function cambiarTema(tema) {
+    if (!window.VAPITema) {
+      document.documentElement.dataset.tema = tema;
+      sincronizarTema();
+      return;
+    }
+    if (window.VAPITema.actual() === tema) return;
+    window.VAPITema.aplicar(tema);
+    avisar(`Estilo ${nombreTema(tema)} activado.`);
+  }
+
+  /* ----------------------------------------------------------
      Eventos
      ---------------------------------------------------------- */
 
@@ -493,6 +535,13 @@
     document.addEventListener('click', (evento) => {
       const objetivo = evento.target instanceof Element ? evento.target : null;
       if (!objetivo) return;
+
+      const botonTema = objetivo.closest('[data-estilo]');
+      if (botonTema) {
+        evento.preventDefault();
+        cambiarTema(botonTema.dataset.estilo);
+        return;
+      }
 
       const botonAbrir = objetivo.closest('[data-abrir]');
       if (botonAbrir) {
@@ -573,6 +622,7 @@
     if (copiar) copiar.addEventListener('click', copiarEnlace);
 
     window.addEventListener('hashchange', leerHash);
+    document.addEventListener('vapi:tema', sincronizarTema);
 
     document.addEventListener('keydown', (evento) => {
       if (evento.key !== '/' || evento.defaultPrevented || evento.metaKey || evento.ctrlKey || evento.altKey) return;
@@ -596,6 +646,7 @@
   async function iniciar() {
     const estadoCatalogo = $('#estadoCatalogo');
     conectarEventos();
+    sincronizarTema();
 
     try {
       estado.peliculas = await cargarPeliculas();

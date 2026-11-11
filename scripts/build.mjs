@@ -17,6 +17,7 @@ const entries = [
   '404.html',
   'styles.css',
   'app.js',
+  'tema.js',
   'robots.txt',
   'sitemap.xml',
   '_headers',

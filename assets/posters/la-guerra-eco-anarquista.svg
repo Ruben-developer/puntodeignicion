@@ -27,8 +27,8 @@
 
   <text x="300" y="500" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="235" fill="none" stroke="#8b261b" stroke-width="2" opacity=".12">2016</text>
   <rect x="65" y="125" width="470" height="405" fill="url(#trama)" opacity=".4"/>
-  
-      <g transform="translate(300 320)">
+  <g transform="translate(300 320) scale(1)">
+      <g>
         <rect x="-145" y="-55" width="250" height="145" rx="10" fill="#c59b27" opacity=".14"/>
         <rect x="-145" y="-55" width="250" height="145" rx="10" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M-100 -55 L-100 -100 L-40 -100 L-40 -55" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -38,7 +38,7 @@
         <circle cx="10" cy="-115" r="24" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M-105 90 L-105 145 M105 90 L105 145" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M-45 125 L115 125" fill="none" stroke="#8b261b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>
-      </g>
+      </g></g>
 
   <text x="300" y="570" text-anchor="middle" font-family="'Special Elite', 'Courier New', monospace" font-size="12" letter-spacing="2" fill="#8b261b">DOCUMENTALES LIBRES</text>
   <text text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="42" letter-spacing="1" fill="#1d2a24"><tspan x="300" y="630">LA GUERRA</tspan><tspan x="300" y="675">ECO-ANARQUISTA CONTRA</tspan><tspan x="300" y="720">EL PROGRESO EN CHILE</tspan></text>

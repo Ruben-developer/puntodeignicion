@@ -24,6 +24,10 @@ tiempo de ejecución.
 - Enlaces profundos a cada ficha (`#p=<id>`) y botón para copiar el enlace.
 - Fichas horizontales con estética de boleto de cine antiguo y tira fílmica;
   carteles SVG generados de forma determinista desde `datos/peliculas.json`.
+- Tres estilos visuales conmutables desde la cabecera: **Taquilla** (papel,
+  boletos y verde de sala), **Nitrato** (cine mudo, ivory sobre negro y tira
+  fílmica) e **Incendio** (carbón, brasas y tipografía de cartel). La elección
+  se guarda en `localStorage` y cada estilo tiene su propia tanda de carteles.
 - Interfaz responsive, navegación por teclado, foco visible, `prefers-reduced-motion`
   y estilos de impresión.
 - CSP estricta, sin `eval`, sin manejadores inline y sin CDNs.
@@ -67,6 +71,11 @@ npm run dev             # build + wrangler dev (réplica de Workers)
 
 Abre <http://localhost:8000> o la URL que indique `wrangler dev`.
 
+Para previsualizar un estilo sin cambiar la preferencia guardada, añade
+`?tema=nitrato` o `?tema=incendio` a la URL. El selector de la cabecera guarda
+la elección en `localStorage` bajo la clave `vapi-tema`; `tema.js` la aplica
+antes de pintar para que no haya parpadeo.
+
 ## Validación
 
 ```bash
@@ -78,8 +87,8 @@ El comando ejecuta:
 1. `node scripts/validar.mjs` — campos obligatorios, IDs únicos, años, rutas
    locales, carteles existentes y enlaces `https://archive.org/download/…` o
    `/details/…`.
-2. `node scripts/generar-posters.mjs --check` — comprueba que los carteles SVG
-   coinciden con los datos.
+2. `node scripts/generar-posters.mjs --check` — comprueba que las tres tandas de
+   carteles SVG (taquilla, nitrato e incendio) coinciden con los datos.
 3. `node --check app.js` — sintaxis del JavaScript.
 4. `npx html-validate@9 index.html 404.html` — validación del HTML.
 
@@ -117,7 +126,10 @@ entrada usa estos campos:
 | `subtitulos` | texto | Disponibilidad de subtítulos |
 
 El cartel debe llamarse exactamente como el `id` y generarse con
-`npm run posters`; la validación falla si no coinciden.
+`npm run posters`; la validación falla si no coinciden. `poster` guarda siempre
+la ruta de la sala Taquilla (`assets/posters/<id>.svg`); el generador crea las
+variantes de Nitrato e Incendio en `assets/posters/nitrato/<id>.svg` y
+`assets/posters/incendio/<id>.svg`, y `app.js` cambia la ruta según el tema.
 
 ## Estructura
 
@@ -126,11 +138,14 @@ El cartel debe llamarse exactamente como el `id` y generarse con
 ├── 404.html
 ├── styles.css
 ├── app.js
+├── tema.js                # tema visual temprano + selector
 ├── _headers               # cabeceras de seguridad de Workers
 ├── assets/
 │   ├── fonts.css          # tipografías auto-hospedadas
 │   ├── fonts/             # WOFF2 + textos de licencia
-│   ├── posters/           # carteles SVG generados
+│   ├── posters/           # carteles SVG de Taquilla
+│   │   ├── nitrato/       # variante de cine mudo
+│   │   └── incendio/      # variante de cartel incendiario
 │   ├── logo-vapi.png
 │   ├── favicon.png
 │   └── apple-touch-icon.png
@@ -181,7 +196,8 @@ portada.
 - Cada película conserva su propia licencia. Las fichas enlazan a la licencia y
   a la fuente original. Ver [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 - Las tipografías son SIL Open Font License 1.1 y Apache 2.0; los textos están
-  en `assets/fonts/`.
+  en `assets/fonts/`. Las familias de los tres estilos son Cinzel, Playfair
+  Display, Special Elite, Bodoni Moda, Bebas Neue, Courier Prime y Anton.
 
 ## Seguridad
 
