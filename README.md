@@ -24,15 +24,9 @@ tiempo de ejecución.
 - Enlaces profundos a cada ficha (`#p=<id>`) y botón para copiar el enlace.
 - Fichas horizontales con estética de boleto de cine antiguo y tira fílmica;
   carteles SVG generados de forma determinista desde `datos/peliculas.json`.
-- Ocho salas visuales conmutables desde la cabecera: **Nitrato** (cine mudo,
-  ivory sobre negro y tira fílmica), **Nitrato rojo** (la misma tira fílmica con
-  la paleta de Consigna), **Plata** (gelatina de plata, grises fríos y líneas
-  finas), **Cianotipo** (azul de Prusia, retícula y dibujo técnico), **Ámbar**
-  (papel cálido, arcos y serifas), **Consigna** (cartel político en rojo y
-  negro), **Trinchera** (afiche de la Guerra Civil: papel, sol radiante, franjas
-  y sellos) y **Bloque** (geometría monocroma, círculos concéntricos y módulos,
-  con Bodoni y sombras duras). La elección se guarda en `localStorage` y cada
-  sala tiene su propia tanda de carteles.
+- Una sola sala visual, **Nitrato rojo**: tira fílmica de cine mudo con paleta
+  de rojo, negro y crema. No hay selector de estilos ni preferencia guardada;
+  los 53 carteles viven en `assets/posters/<id>.svg`.
 - Interfaz responsive, navegación por teclado, foco visible, `prefers-reduced-motion`
   y estilos de impresión.
 - CSP estricta, sin `eval`, sin manejadores inline y sin CDNs.
@@ -76,12 +70,6 @@ npm run dev             # build + wrangler dev (réplica de Workers)
 
 Abre <http://localhost:8000> o la URL que indique `wrangler dev`.
 
-Para previsualizar una sala sin cambiar la preferencia guardada, añade
-`?tema=nitrato`, `?tema=nitrato-rojo`, `?tema=plata`, `?tema=cianotipo`,
-`?tema=ambar`, `?tema=consigna`, `?tema=trinchera` o `?tema=bloque` a la URL.
-El selector de la cabecera guarda la elección en `localStorage` bajo la clave
-`vapi-tema`; `tema.js` la aplica antes de pintar para que no haya parpadeo.
-
 ## Validación
 
 ```bash
@@ -93,9 +81,8 @@ El comando ejecuta:
 1. `node scripts/validar.mjs` — campos obligatorios, IDs únicos, años, rutas
    locales, carteles existentes y enlaces `https://archive.org/download/…` o
    `/details/…`.
-2. `node scripts/generar-posters.mjs --check` — comprueba que las ocho tandas
-   de carteles SVG (nitrato, nitrato-rojo, plata, cianotipo, ámbar, consigna,
-   trinchera y bloque) coinciden con los datos.
+2. `node scripts/generar-posters.mjs --check` — comprueba que los 53 carteles
+   SVG de `assets/posters/` coinciden con los datos.
 3. `node --check app.js` — sintaxis del JavaScript.
 4. `npx html-validate@9 index.html 404.html` — validación del HTML.
 
@@ -133,10 +120,8 @@ entrada usa estos campos:
 | `subtitulos` | texto | Disponibilidad de subtítulos |
 
 El cartel debe llamarse exactamente como el `id` y generarse con
-`npm run posters`; la validación falla si no coinciden. `poster` guarda siempre
-la ruta base (`assets/posters/<id>.svg`), que corresponde a la sala Nitrato; el
-generador crea las variantes de las otras siete salas en
-`assets/posters/<sala>/<id>.svg`, y `app.js` cambia la ruta según la sala.
+`npm run posters`; la validación falla si no coinciden. `poster` guarda la ruta
+`assets/posters/<id>.svg`, que es la única tanda de carteles del sitio.
 
 ## Estructura
 
@@ -145,19 +130,11 @@ generador crea las variantes de las otras siete salas en
 ├── 404.html
 ├── styles.css
 ├── app.js
-├── tema.js                # tema visual temprano + selector
 ├── _headers               # cabeceras de seguridad de Workers
 ├── assets/
 │   ├── fonts.css          # tipografías auto-hospedadas
 │   ├── fonts/             # WOFF2 + textos de licencia
-│   ├── posters/           # carteles SVG de Nitrato (sala base)
-│   │   ├── nitrato-rojo/  # tira fílmica con la paleta de Consigna
-│   │   ├── plata/         # copia en gelatina de plata
-│   │   ├── cianotipo/     # lámina técnica en azul de Prusia
-│   │   ├── ambar/         # papel cálido y arcos
-│   │   ├── consigna/      # cartel político en rojo y negro
-│   │   ├── trinchera/     # afiche de la Guerra Civil y sol radiante
-│   │   └── bloque/        # geometría monocroma y módulos
+│   ├── posters/           # 53 carteles SVG de Nitrato rojo
 │   ├── logo-vapi.png
 │   ├── favicon.png
 │   └── apple-touch-icon.png
@@ -207,9 +184,9 @@ portada.
 - El código de este sitio se publica bajo licencia MIT; ver [`LICENSE`](LICENSE).
 - Cada película conserva su propia licencia. Las fichas enlazan a la licencia y
   a la fuente original. Ver [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
-- Las tipografías son SIL Open Font License 1.1 y Apache 2.0; los textos están
-  en `assets/fonts/`. Las familias de las ocho salas son Cinzel, Playfair
-  Display, Special Elite, Bodoni Moda, Bebas Neue, Courier Prime y Anton.
+- Las tipografías son SIL Open Font License 1.1; los textos están en
+  `assets/fonts/`. El sitio usa Bodoni Moda (títulos), Playfair Display (cuerpo)
+  y Courier Prime (máquina).
 
 ## Seguridad
 

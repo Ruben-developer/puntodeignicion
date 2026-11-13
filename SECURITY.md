@@ -29,9 +29,8 @@ issue público: manda el correo primero.
 - **Enlaces externos** con `target="_blank"` y `rel="noopener noreferrer"`.
 - **`referrer`** limitado a `strict-origin-when-cross-origin`.
 - **Descargas y video** apuntan a Internet Archive; el sitio no aloja copias.
-- **Preferencia local mínima.** El selector de estilo guarda solo
-  `vapi-tema` en `localStorage`; no se usan cookies ni identificadores y el
-  valor nunca se envía por red.
+- **Sin preferencias locales.** El sitio no usa `localStorage`, cookies ni
+  identificadores; no hay selector de estilo ni nada que guardar.
 - **Beta fuera de buscadores**: `npm run build:beta` añade `X-Robots-Tag:
   noindex, nofollow` y un `robots.txt` cerrado.
 - **CI** (`.github/workflows/ci.yml`): valida datos, carteles, HTML y sintaxis de

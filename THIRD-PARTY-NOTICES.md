@@ -7,25 +7,18 @@ son propios. Las tipografías están auto-hospedadas en `assets/fonts/`:
 
 | Archivo | Proyecto | Licencia | Texto |
 | --- | --- | --- | --- |
-| `assets/fonts/cinzel-latin.woff2` | Cinzel | SIL OFL 1.1 | `assets/fonts/OFL-cinzel.txt` |
 | `assets/fonts/playfair-display-latin.woff2` | Playfair Display | SIL OFL 1.1 | `assets/fonts/OFL-playfair-display.txt` |
 | `assets/fonts/playfair-display-italic-latin.woff2` | Playfair Display Italic | SIL OFL 1.1 | `assets/fonts/OFL-playfair-display.txt` |
-| `assets/fonts/special-elite-latin.woff2` | Special Elite | Apache License 2.0 | `assets/fonts/LICENSE-special-elite.txt` |
 | `assets/fonts/bodoni-moda-latin.woff2` | Bodoni Moda 700 | SIL OFL 1.1 | `assets/fonts/OFL-bodonimoda.txt` |
-| `assets/fonts/bebas-neue-latin.woff2` | Bebas Neue | SIL OFL 1.1 | `assets/fonts/OFL-bebasneue.txt` |
 | `assets/fonts/courier-prime-latin.woff2` | Courier Prime 400 | SIL OFL 1.1 | `assets/fonts/OFL-courierprime.txt` |
 | `assets/fonts/courier-prime-bold-latin.woff2` | Courier Prime 700 | SIL OFL 1.1 | `assets/fonts/OFL-courierprime.txt` |
-| `assets/fonts/anton-latin.woff2` | Anton | SIL OFL 1.1 | `assets/fonts/OFL-anton.txt` |
 
 Los carteles de `assets/posters/` son ilustraciones SVG generadas por
 `scripts/generar-posters.mjs` a partir de los datos del catálogo. No reproducen
-los carteles originales de las películas. El generador crea ocho variantes por
-obra —Nitrato, Nitrato rojo, Plata, Cianotipo, Ámbar, Consigna, Trinchera y
-Bloque— en `assets/posters/` y en las subcarpetas `assets/posters/nitrato-rojo/`,
-`assets/posters/plata/`, `assets/posters/cianotipo/`, `assets/posters/ambar/`,
-`assets/posters/consigna/`, `assets/posters/trinchera/` y
-`assets/posters/bloque/`. Todos los carteles son dibujos vectoriales propios:
-no reproducen fotogramas, carteles históricos ni obras de terceros.
+los carteles originales de las películas. El generador crea un cartel por obra
+en `assets/posters/<id>.svg`, todos con la estética de Nitrato rojo. Son dibujos
+vectoriales propios: no reproducen fotogramas, carteles históricos ni obras de
+terceros.
 
 El logotipo fue aportado por el proyecto y se conserva en
 `assets/logo-vapi-original.png`.

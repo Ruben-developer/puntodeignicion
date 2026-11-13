@@ -18,17 +18,15 @@
 - [ ] Guardar filtros en la URL (`?q=…&cat=…`) para compartir una vista concreta.
 - [ ] Añadir una vista de "obra anterior / siguiente" dentro de la ficha.
 - [ ] Valorar una página de fuentes y otra de licencias, enlazadas desde el pie.
-- [ ] Probar en beta las ocho salas (Nitrato, Nitrato rojo, Plata, Cianotipo,
-      Ámbar, Consigna, Trinchera y Bloque) y decidir si se mantienen todas, se
-      ajusta alguna o queda una como definitiva. Trinchera y Bloque son las más
-      recientes y conviene revisarlas en pantalla antes de tocar producción.
+- [ ] Probar la sala Nitrato rojo en pantalla y decidir si se ajusta el
+      contraste, la tipografía o los carteles antes de dar el diseño por
+      cerrado.
 
 ## Calidad
 
 - [ ] Auditoría con lector de pantalla (NVDA o VoiceOver) en escritorio y móvil.
-- [ ] Repetir la auditoría de contraste (WCAG AA) al añadir textos pequeños en
-      cualquiera de las ocho salas; la última pasada dejó las ocho por encima de
-      4,5:1 (Trinchera y Bloque incluían ajustes de rojo y gris para lograrlo).
+- [ ] Repetir la auditoría de contraste (WCAG AA) al añadir textos pequeños; la
+      última pasada dejó la sala por encima de 4,5:1.
 - [ ] Pruebas en navegadores antiguos: comprobar `dialog`, `aspect-ratio`,
       `line-clamp` y `backdrop-filter`.
 - [ ] Añadir un flujo programado que compruebe enlaces de Internet Archive y
@@ -38,7 +36,7 @@
 ## Operación
 
 - [x] Publicar la beta en Cloudflare Workers (`puntodeignicion-beta.antarquia.cl`).
-- [ ] Publicar producción en `puntodeignicion.antarquia.cl` (merge a `main`).
+- [x] Publicar producción en `puntodeignicion.antarquia.cl` (merge a `main`).
 - [x] Añadir cabeceras de seguridad, CodeQL y `404.html`.
 - [ ] Retirar GitHub Pages una vez validada la producción.
 - [ ] Rotar el token de Cloudflare compartido durante la migración.
@@ -46,4 +44,8 @@
 - [ ] Desactivar la inyección automática de Cloudflare Web Analytics
       (`beacon.min.js`): la CSP la bloquea y deja un error en consola. O se apaga
       en la zona o se decide no medir; no se abre la CSP a terceros por esto.
+- [ ] Revisar el *Managed robots.txt* de Cloudflare: en beta reescribe el
+      `Disallow: /` del build y lo sustituye por `Allow: /`. La beta sigue
+      protegida por `X-Robots-Tag: noindex, nofollow`, pero conviene desactivar
+      esa gestión o ajustarla para que el archivo se respete.
 - [ ] Revisar el certificado y la URL canónica si se mueve el repositorio.
